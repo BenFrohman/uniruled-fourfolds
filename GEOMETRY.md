@@ -47,3 +47,5 @@ namely \(-\tfrac12\), \(-\tfrac34\), and \(\tfrac12\). Completing the square giv
 For the same rank and first Chern numbers, \(\mu(F)>\mu(E)\) with positive ranks is the integer inequality \(c_F r_E>c_E r_F\). For \(E=(2,0)\) and \(F=(1,-1)\) that is \(-2>0\), which is false, and the opposite inequality holds. That comparison does not use \(\mathrm{ch}_2\). It is not \(\chi(E(mH))\). A fourfold Hilbert polynomial has degree 4 and needs \(H\) and \(\mathrm{td}(X)\).
 
 If \(c=0\), \(r\ge 0\), and \(s\le 0\), then \(c^2-2rs\ge 0\). That is `disc_nonneg_of_vanishing_ch1`. The product \(c^2\) is not an intersection number, and a nonnegative value is not Bogomolov–Gieseker stability.
+
+If \(c_1 c_3\le 0\) and \(c_0 c_4\ge 0\), then \(3 c_0 c_4 - c_1 c_3 + c_2^2\ge 0\), because each of \(3 c_0 c_4\), \(-(c_1 c_3)\), and \(c_2^2\) is nonnegative. That is `chern_combination_nonneg`. It is not a Gieseker–Yau bound, and the factor \(0.2\) in a contour plot is not a Chern character. The call `v.giesekerYauMetric v` passes the vector twice.

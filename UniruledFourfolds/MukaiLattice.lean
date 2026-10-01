@@ -282,6 +282,32 @@ theorem disc_nonneg_of_vanishing_ch1
   rw [heq]
   exact hscaled
 
+/--
+If `ch1 * ch3 ≤ 0` and `ch0 * ch4 ≥ 0`, then
+`3 ch0 ch4 - ch1 ch3 + ch2^2 ≥ 0`.
+This is a sum of nonnegative integers. It is not a Gieseker–Yau inequality.
+-/
+theorem chern_combination_nonneg
+    (ch0 ch1 ch2 ch3 ch4 : Int)
+    (h13 : ch1 * ch3 ≤ 0)
+    (h04 : 0 ≤ ch0 * ch4) :
+    0 ≤ 3 * ch0 * ch4 - ch1 * ch3 + ch2 * ch2 := by
+  have h3 : (0 : Int) ≤ 3 := by decide
+  have h04s : 0 ≤ 3 * (ch0 * ch4) := Int.mul_nonneg h3 h04
+  have hpair : 0 ≤ -(ch1 * ch3) := Int.neg_nonneg_of_nonpos h13
+  have hsq : 0 ≤ ch2 * ch2 := by
+    have : ch2 * ch2 = ch2 ^ 2 := by rw [Int.pow_succ, Int.pow_one]
+    rw [this]
+    exact Int.sq_nonneg ch2
+  have hsum : 0 ≤ 3 * (ch0 * ch4) + -(ch1 * ch3) + ch2 * ch2 :=
+    Int.add_nonneg (Int.add_nonneg h04s hpair) hsq
+  have heq :
+      3 * ch0 * ch4 - ch1 * ch3 + ch2 * ch2
+        = 3 * (ch0 * ch4) + -(ch1 * ch3) + ch2 * ch2 := by
+    rw [Int.mul_assoc, Int.sub_eq_add_neg]
+  rw [heq]
+  exact hsum
+
 def main : IO Unit := do
   IO.println s!"(1, 0, -1) square {mukaiSquareNorm vectorK3} primitive {isPrimitive vectorK3}"
   IO.println s!"(2, 0, -1) square {mukaiSquareNorm vectorTransverse} primitive {isPrimitive vectorTransverse}"

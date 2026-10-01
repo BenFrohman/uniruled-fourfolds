@@ -1,3 +1,4 @@
+# Copyright (c) 2026 Benjamin Frohman (GitHub: BenFrohman). MIT License.
 # One runner: elaborate the Lake project, then re-check MukaiLattice.lean
 # and the Python copy of the same four rows.
 # A green run is not a proof of any geometric statement.

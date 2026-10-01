@@ -6,6 +6,8 @@ labels: []
 assignees: []
 ---
 
+Copyright (c) 2026 Benjamin Frohman (GitHub: BenFrohman). MIT License.
+
 ## Scope
 
 Name the file. `UniruledFourfolds/MukaiLattice.lean` is integer arithmetic.
