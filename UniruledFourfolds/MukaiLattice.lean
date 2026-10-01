@@ -238,6 +238,31 @@ theorem complement_of_k3_surface (w : MukaiVector) :
     · simp [hv2, h04, Int.one_mul, Int.neg_one_mul, Int.sub_self]
     · simp [hv2, Int.mul_zero, Int.zero_mul]
 
+/-
+μ(F) > μ(E) for positive ranks means ch1(F) * ch0(E) > ch1(E) * ch0(F).
+This is slope comparison. It is not the Hilbert polynomial
+χ(E(mH)), and it does not use ch2, ch3, or ch4.
+-/
+
+structure ChernData where
+  ch0 : Int
+  ch1 : Int
+
+def higherSlope (F E : ChernData) : Prop :=
+  F.ch0 > 0 ∧ E.ch0 > 0 ∧ F.ch1 * E.ch0 > E.ch1 * F.ch0
+
+def slopeParent : ChernData := { ch0 := 2, ch1 := 0 }
+def slopeSub : ChernData := { ch0 := 1, ch1 := -1 }
+
+theorem sub_not_higher_slope : ¬ higherSlope slopeSub slopeParent := by
+  intro h
+  rcases h with ⟨_, _, hlt⟩
+  simp [slopeParent, slopeSub] at hlt
+
+theorem parent_higher_slope : higherSlope slopeParent slopeSub := by
+  unfold higherSlope slopeParent slopeSub
+  exact ⟨by decide, by decide, by decide⟩
+
 def main : IO Unit := do
   IO.println s!"(1, 0, -1) square {mukaiSquareNorm vectorK3} primitive {isPrimitive vectorK3}"
   IO.println s!"(2, 0, -1) square {mukaiSquareNorm vectorTransverse} primitive {isPrimitive vectorTransverse}"
