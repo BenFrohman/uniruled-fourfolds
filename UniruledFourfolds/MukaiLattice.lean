@@ -340,6 +340,9 @@ theorem cubic_fourfold_euler : cubicFourfoldNumbers.euler = 27 := by decide
 
 theorem quintic_threefold_euler : quinticThreefoldNumbers.euler = -200 := by decide
 
+theorem cubic_fourfold_not_zero_canonical :
+    cubicFourfoldNumbers.canonical ≠ 0 := by decide
+
 def main : IO Unit := do
   IO.println s!"(1, 0, -1) square {mukaiSquareNorm vectorK3} primitive {isPrimitive vectorK3}"
   IO.println s!"(2, 0, -1) square {mukaiSquareNorm vectorTransverse} primitive {isPrimitive vectorTransverse}"
