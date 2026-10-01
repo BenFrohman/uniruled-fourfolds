@@ -1,6 +1,6 @@
 # What the four vectors are
 
-Copyright (c) 2026 Benjamin Frohman. All rights reserved. See LICENSE.
+Copyright (c) 2026 Benjamin Frohman. MIT License. See LICENSE.
 
 This is not a v1.0.1 release, and it is not a computation in \(K_0(\mathcal{A}_X)\). The repository pins `leanprover/lean4:v4.34.1` in `lean-toolchain`. It does not target Lean 4.11.0.
 
@@ -13,7 +13,7 @@ This is not a v1.0.1 release, and it is not a computation in \(K_0(\mathcal{A}_X
 | `(0, 1, 0)` | 1 | yes |
 | `(2, 0, -2)` | 8 | no, the gcd is 2 |
 
-The same file proves, for every vector `v`, that the square equals the pairing of `v` with itself: \(v_2^2 - 2 v_0 v_4 = \langle v, v \rangle\). It also proves \(\langle (1,0,-1), (-1,0,1) \rangle = -2\) and \(\langle (1,0,-1), (0,1,0) \rangle = 0\). No Mathlib import.
+The same file proves, for every vector `v`, that the square equals the pairing of `v` with itself: \(v_2^2 - 2 v_0 v_4 = \langle v, v \rangle\). It also proves \(\langle (1,0,-1), (-1,0,1) \rangle = -2\) and \(\langle (1,0,-1), (0,1,0) \rangle = 0\). For that orthogonal pair the Gram determinant is \(2 \cdot 1 - 0^2 = 2\). No Mathlib import.
 
 `scripts/pre-push` runs `verify_lean.sh` and `validate_mukai.py` before a push. GitHub Actions does the same in `.github/workflows/verify.yml`.
 

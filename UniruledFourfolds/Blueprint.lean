@@ -1,5 +1,5 @@
 /-
-Copyright (c) 2026 Benjamin Frohman. All rights reserved.
+Copyright (c) 2026 Benjamin Frohman. MIT License.
 See LICENSE in the repository root.
 
 Conditional sketch for uniruled complex projective fourfolds.

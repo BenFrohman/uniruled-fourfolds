@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2026 Benjamin Frohman. All rights reserved.
+# Copyright (c) 2026 Benjamin Frohman. MIT License.
 #
 # Git does not version .git/hooks. Install with:
 #   cp scripts/pre-push .git/hooks/pre-push && chmod +x .git/hooks/pre-push

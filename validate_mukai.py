@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 Benjamin Frohman. All rights reserved.
+# Copyright (c) 2026 Benjamin Frohman. MIT License.
 """Cross-check the four Mukai rows proved in MukaiLattice.lean.
 
 Square is v2^2 - 2*v0*v4. Primitive means gcd(|v0|, |v2|, |v4|) == 1.
@@ -56,6 +56,10 @@ def main() -> int:
         status = "ok" if ok else "FAIL"
         print(f"{status} pairing {u} {v} = {got} (expected {expected_pair})")
         failed = failed or not ok
+    disc = mukai_square(1, 0, -1) * mukai_square(0, 1, 0) - mukai_pairing((1, 0, -1), (0, 1, 0)) ** 2
+    ok = disc == 2
+    print(f"{'ok' if ok else 'FAIL'} discriminant (1, 0, -1), (0, 1, 0) = {disc} (expected 2)")
+    failed = failed or not ok
     return 1 if failed else 0
 
 

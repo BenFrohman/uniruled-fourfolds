@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2026 Benjamin Frohman. All rights reserved.
+# Copyright (c) 2026 Benjamin Frohman. MIT License.
 #
 # Local hook. Git does not version .git/hooks, so this copy lives in
 # scripts/. Install with:

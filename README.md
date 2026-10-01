@@ -1,8 +1,8 @@
 # Uniruled fourfolds: conditional cycle reductions and Mukai lattice tools
 
-Copyright (c) 2026 Benjamin Frohman. All rights reserved.
-Author: Benjamin Frohman.
-License: see [LICENSE](LICENSE). No use or redistribution without prior written permission.
+Copyright (c) 2026 Benjamin Frohman.
+Author: Benjamin Frohman (GitHub: BenFrohman).
+License: [MIT](LICENSE). Copies must keep the copyright notice and the permission notice.
 
 **The Clay Mathematics Institute Hodge conjecture is open. This repository does not resolve it.**
 
@@ -43,7 +43,7 @@ and proves the four rows below with `decide`. The pairing is \(\langle u, v \ran
 | `validate_mukai.py` | The same four rows in Python. Exits 1 on a mismatch. |
 | `lakefile.lean`, `lean-toolchain`, `lake-manifest.json` | Lean 4.34.1 build of the two sources above. No Mathlib. |
 | `.github/workflows/verify.yml` | CI: `lake build`, then `verify_lean.sh` and `validate_mukai.py`. Green means those checks passed. |
-| `LICENSE` | All rights reserved to Benjamin Frohman. |
+| `LICENSE` | MIT License. Copyright Benjamin Frohman (GitHub: BenFrohman). |
 | `COPYRIGHT` | Authorship and copyright notice. |
 
 ## Arithmetic table

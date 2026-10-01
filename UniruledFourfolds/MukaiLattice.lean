@@ -1,5 +1,5 @@
 /-
-Copyright (c) 2026 Benjamin Frohman. All rights reserved.
+Copyright (c) 2026 Benjamin Frohman. MIT License.
 GitHub account: BenFrohman.
 See LICENSE in the repository root.
 
@@ -29,6 +29,9 @@ def isPrimitive (v : MukaiVector) : Bool :=
 
 def isOrthogonal (u v : MukaiVector) : Bool :=
   mukaiPairing u v == 0
+
+def subLatticeDiscriminant (u v : MukaiVector) : Int :=
+  mukaiSquareNorm u * mukaiSquareNorm v - mukaiPairing u v * mukaiPairing u v
 
 def vectorK3 : MukaiVector := { v0 := 1, v2 := 0, v4 := -1 }
 def vectorTransverse : MukaiVector := { v0 := 2, v2 := 0, v4 := -1 }
@@ -62,6 +65,14 @@ theorem cert_square_is_self_pairing (v : MukaiVector) :
 theorem cert_pair_neg_k3 : mukaiPairing vectorK3 vectorNegK3 = -2 := by decide
 theorem cert_k3_not_orthogonal_to_neg : isOrthogonal vectorK3 vectorNegK3 = false := by decide
 theorem cert_k3_surface_orthogonal : isOrthogonal vectorK3 vectorSurface = true := by decide
+
+theorem cert_k3_surface_discriminant :
+    subLatticeDiscriminant vectorK3 vectorSurface = 2 := by decide
+
+theorem disc_of_orthogonal_pair (u v : MukaiVector) (h : mukaiPairing u v = 0) :
+    subLatticeDiscriminant u v = mukaiSquareNorm u * mukaiSquareNorm v := by
+  unfold subLatticeDiscriminant
+  rw [h, Int.mul_zero, Int.sub_zero]
 
 def main : IO Unit := do
   IO.println s!"(1, 0, -1) square {mukaiSquareNorm vectorK3} primitive {isPrimitive vectorK3}"

@@ -2,7 +2,7 @@ import Lake
 open Lake DSL
 
 /-
-Copyright (c) 2026 Benjamin Frohman. All rights reserved.
+Copyright (c) 2026 Benjamin Frohman. MIT License.
 See LICENSE.
 
 Builds the two Lean files in this repository. Neither file imports

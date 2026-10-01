@@ -1,6 +1,6 @@
 # What is checked, and what is not
 
-Copyright (c) 2026 Benjamin Frohman. All rights reserved. See LICENSE.
+Copyright (c) 2026 Benjamin Frohman. MIT License. See LICENSE.
 
 There is no release of this repository that certifies a case of the Hodge conjecture. Conte–Murre (1978), Zucker (1977), and Kollár–Miyaoka–Mori (1992) are citations in [docs/special-cases.md](docs/special-cases.md). They are not formalized here. `Blueprint.lean` ends in `sorry`.
 
