@@ -22,19 +22,21 @@ The uniruled reduction uses a rational curve through a general point. It stops t
 
 `Blueprint.lean` is a conditional sketch: *if* a Bloch–Srinivas package is supplied for a uniruled fourfold, the file *states* that codimension-2 cycle-class surjectivity would reduce to the classical Lefschetz theorem on (1,1)-classes on a threefold. The proof is `sorry`. Elaborating the file only checks that the statement is well-formed.
 
-`MukaiLattice.lean` is only the integer form
+`MukaiLattice.lean` defines the integer form
 
 \[
-\langle v, v \rangle = v_2^2 - 2 v_0 v_4, \qquad \text{primitive} \iff \gcd(|v_0|, |v_2|, |v_4|) = 1.
+\langle v, v \rangle = v_2^2 - 2 v_0 v_4, \qquad \text{primitive} \iff \gcd(|v_0|, |v_2|, |v_4|) = 1
 \]
 
-It does not check geometry.
+and proves the four rows below with `decide`. No Mathlib. No cycle-class statement.
 
 | File | Role |
 |---|---|
 | `Blueprint.lean` | Conditional statement. Unproved (`sorry`). |
-| `MukaiLattice.lean` | Square and primitivity, with a `main` that prints four vectors. |
+| `MukaiLattice.lean` | Square and primitivity, proved for four vectors by `decide`, plus a `main` that prints them. |
 | `docs/special-cases.md` | Citations, the holes in a five-line pathway, and where the method ends. |
+| `RELEASES.md` | What the build checks. It does not list a Hodge-conjecture release. |
+| `scripts/pre-commit` | Optional local hook: `lake build`, then the Mukai table must match. |
 | `lakefile.lean`, `lean-toolchain`, `lake-manifest.json` | Lean 4.34.1 build of the two sources above. No Mathlib. |
 | `.github/workflows/lean.yml` | CI: `lake build`. Green means elaboration, not a proof. |
 | `LICENSE` | All rights reserved to Benjamin Frohman. |
