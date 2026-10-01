@@ -28,4 +28,18 @@ The boolean `squaresOneAndPairingZero` requires two squares equal to 1 and one p
 | `(2, 1, -2)` | 4 | 9 | 1 |
 | `(0, 1, 0)` | 0 | 1 | 1 |
 
-On the coordinate basis `(1,0,0)`, `(0,1,0)`, `(0,0,1)`, the same form has Gram determinant `-1`. That is `cert_coordinate_gram_det`. The form is not positive definite: the square of `(1,0,-1)` is `2` and the square of `(1,0,1)` is `-2`. A free \(\mathbb{Z}\)-module of rank 3 does not, by itself, carry this number. No semicircle in the \((\beta, \alpha)\)-plane is determined by these triples.
+On the coordinate basis `(1,0,0)`, `(0,1,0)`, `(0,0,1)`, the same form has Gram determinant `-1`. That is `cert_coordinate_gram_det`. The form is not positive definite: the square of `(1,0,-1)` is `2` and the square of `(1,0,1)` is `-2`. A free \(\mathbb{Z}\)-module of rank 3 does not, by itself, carry this number.
+
+## No semicircle for these three characters
+
+`LinearMap.det` is not an exterior-algebra computation in this repository, and two calls to `Module.Free.chooseBasis` are not definitionally one basis. Nothing below uses Mathlib.
+
+Take the slope
+\[
+\nu_{\beta,\alpha}(r,c,s)=\frac{s-\beta c+(\beta^2-\alpha^2)r/2}{c-\beta r}.
+\]
+Equating \(\nu(E)=\nu(F)\) for \(E=(2,0,-1)\) and the three classes \(F=(1,-1,0)\), \((1,-2,1)\), \((3,-1,-2)\) gives a circle whose center is the displayed quotient
+\[
+\frac{r_F s_E-r_E s_F}{r_F c_E-r_E c_F},
+\]
+namely \(-\tfrac12\), \(-\tfrac34\), and \(\tfrac12\). Completing the square gives squared radii \(-\tfrac34\), \(-\tfrac{7}{16}\), and \(-\tfrac34\). Those loci do not meet the half-plane \(\alpha>0\). The square-root expression \(\sqrt{\lvert \mathrm{center}^2+2(s_F/r_F-s_E/r_E)\rvert}\) is a different, positive number, and it is not this radius.

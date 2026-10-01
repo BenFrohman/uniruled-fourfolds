@@ -96,6 +96,66 @@ def main() -> int:
     ok = det == -1
     print(f"{'ok' if ok else 'FAIL'} coordinate gram det {det} (expected -1)")
     failed = failed or not ok
+    from fractions import Fraction
+
+    def tilt_circle(E, F):
+        """Center and squared radius of nu(E)=nu(F), where
+        nu = (s - beta*c + (beta**2 - alpha**2)*r/2) / (c - beta*r).
+        """
+        def mul(left, right):
+            out = {}
+            for (i, j), a in left.items():
+                for (k, l), b in right.items():
+                    out[(i + k, j + l)] = out.get((i + k, j + l), 0) + a * b
+            return {monomial: coeff for monomial, coeff in out.items() if coeff}
+
+        def add(left, right, sign=1):
+            out = dict(left)
+            for monomial, coeff in right.items():
+                out[monomial] = out.get(monomial, 0) + sign * coeff
+            return {monomial: coeff for monomial, coeff in out.items() if coeff}
+
+        def term(i, j, coeff):
+            return {(i, j): Fraction(coeff)}
+
+        def two_num(rank, c1, ch2):
+            return add(
+                add(term(0, 0, 2 * ch2), term(1, 0, -2 * c1)),
+                add(term(2, 0, rank), term(0, 2, -rank)),
+            )
+
+        def den(c1, rank):
+            return add(term(0, 0, c1), term(1, 0, -rank))
+
+        rE, cE, sE = E
+        rF, cF, sF = F
+        poly = add(
+            mul(two_num(rE, cE, sE), den(cF, rF)),
+            mul(two_num(rF, cF, sF), den(cE, rE)),
+            sign=-1,
+        )
+        A = poly.get((2, 0), 0)
+        if A == 0 or poly.get((0, 2), 0) != A:
+            return None
+        extra = [m for m in poly if m not in {(2, 0), (0, 2), (1, 0), (0, 0)}]
+        if extra:
+            return None
+        B = poly.get((1, 0), 0)
+        C = poly.get((0, 0), 0)
+        center = -B / (2 * A)
+        rad2 = center ** 2 - C / A
+        return center, rad2
+
+    expected_walls = [
+        ((1, -1, 0), (Fraction(-1, 2), Fraction(-3, 4))),
+        ((1, -2, 1), (Fraction(-3, 4), Fraction(-7, 16))),
+        ((3, -1, -2), (Fraction(1, 2), Fraction(-3, 4))),
+    ]
+    for sub, expected in expected_walls:
+        got = tilt_circle((2, 0, -1), sub)
+        ok = got == expected and expected[1] < 0
+        print(f"{'ok' if ok else 'FAIL'} empty wall F={sub} {got} (expected {expected})")
+        failed = failed or not ok
     return 1 if failed else 0
 
 
