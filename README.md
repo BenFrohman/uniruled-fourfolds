@@ -39,6 +39,7 @@ and proves the four rows below with `decide`. The pairing is \(\langle u, v \ran
 | `scripts/pre-commit` | Optional local hook: `lake build`, then the Mukai table must match. |
 | `scripts/pre-push` | Optional local hook: `verify_lean.sh`, then `validate_mukai.py`. |
 | `RELEASE_NOTES.md` | The four integer rows. Not a class in \(K_0\), and not Lean 4.11.0. |
+| `GEOMETRY.md` | The orthogonal in \(\mathbb{Z}^3\). Not the transcendental lattice of a cubic fourfold. |
 | `verify_lean.sh` | `lean UniruledFourfolds/MukaiLattice.lean` and `lean --run`; output must match the table. |
 | `validate_mukai.py` | The same four rows in Python. Exits 1 on a mismatch. |
 | `lakefile.lean`, `lean-toolchain`, `lake-manifest.json` | Lean 4.34.1 build of the two sources above. No Mathlib. |

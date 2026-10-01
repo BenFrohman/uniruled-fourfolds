@@ -118,6 +118,51 @@ theorem cert_k3_surface_span_primitive :
   · simp [vectorK3, vectorSurface]
   · simp [vectorK3, vectorSurface, hv4]
 
+/-
+A vector w is in the orthogonal of span(u, v) when it pairs to 0 with both
+generators. For u = (1, 0, -1) and v = (0, 1, 0) that is the line Z(1, 0, 1).
+The vector (-1, 0, 1) pairs to -2 with u, so it is not in the orthogonal.
+-/
+
+def inOrthogonalComplement (u v w : MukaiVector) : Prop :=
+  mukaiPairing u w = 0 ∧ mukaiPairing v w = 0
+
+def vectorComplement : MukaiVector := { v0 := 1, v2 := 0, v4 := 1 }
+
+theorem cert_neg_k3_not_in_complement :
+    ¬ inOrthogonalComplement vectorK3 vectorSurface vectorNegK3 := by
+  intro h
+  have : mukaiPairing vectorK3 vectorNegK3 = 0 := h.1
+  rw [cert_pair_neg_k3] at this
+  cases this
+
+theorem cert_complement_witness :
+    inOrthogonalComplement vectorK3 vectorSurface vectorComplement := by
+  unfold inOrthogonalComplement mukaiPairing vectorK3 vectorSurface vectorComplement
+  constructor <;> rfl
+
+theorem cert_complement_square : mukaiSquareNorm vectorComplement = -2 := by
+  decide
+
+theorem complement_of_k3_surface (w : MukaiVector) :
+    inOrthogonalComplement vectorK3 vectorSurface w ↔ w.v2 = 0 ∧ w.v0 = w.v4 := by
+  unfold inOrthogonalComplement mukaiPairing vectorK3 vectorSurface
+  refine ⟨?_, ?_⟩
+  · intro h
+    rcases h with ⟨hu, hv⟩
+    have hv2 : w.v2 = 0 := by
+      simpa [Int.mul_zero, Int.zero_mul, Int.sub_zero] using hv
+    have hu' : -w.v4 + w.v0 = 0 := by
+      simpa [Int.zero_mul, Int.one_mul, Int.neg_one_mul, Int.sub_eq_add_neg] using hu
+    have hv4 : w.v4 = w.v0 := by
+      have := Int.neg_eq_of_add_eq_zero hu'
+      simpa [Int.neg_neg] using this
+    exact ⟨hv2, hv4.symm⟩
+  · intro h
+    rcases h with ⟨hv2, h04⟩
+    refine ⟨?_, ?_⟩
+    · simp [hv2, h04, Int.one_mul, Int.neg_one_mul, Int.sub_self]
+    · simp [hv2, Int.mul_zero, Int.zero_mul]
 
 def main : IO Unit := do
   IO.println s!"(1, 0, -1) square {mukaiSquareNorm vectorK3} primitive {isPrimitive vectorK3}"
