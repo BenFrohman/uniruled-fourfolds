@@ -218,6 +218,28 @@ theorem cert_complement_witness :
 theorem cert_complement_square : mukaiSquareNorm vectorComplement = -2 := by
   decide
 
+theorem cert_basis_v0_square : mukaiSquareNorm basisV0 = 0 := by
+  decide
+
+/-- `sign = -1` is the formula in the draft. With square `-2`, the reflection is `sign = 1`. -/
+def shiftByPairing (v s : MukaiVector) (sign : Int) : MukaiVector :=
+  let p := mukaiPairing v s
+  { v0 := v.v0 + sign * p * s.v0
+    v2 := v.v2 + sign * p * s.v2
+    v4 := v.v4 + sign * p * s.v4 }
+
+theorem cert_minus_shift_transverse :
+    shiftByPairing vectorTransverse vectorComplement (-1)
+      = { v0 := 3, v2 := 0, v4 := 0 } := by
+  unfold shiftByPairing mukaiPairing vectorTransverse vectorComplement
+  rfl
+
+theorem cert_plus_shift_transverse :
+    shiftByPairing vectorTransverse vectorComplement 1
+      = { v0 := 1, v2 := 0, v4 := -2 } := by
+  unfold shiftByPairing mukaiPairing vectorTransverse vectorComplement
+  rfl
+
 theorem complement_of_k3_surface (w : MukaiVector) :
     inOrthogonalComplement vectorK3 vectorSurface w ↔ w.v2 = 0 ∧ w.v0 = w.v4 := by
   unfold inOrthogonalComplement mukaiPairing vectorK3 vectorSurface
