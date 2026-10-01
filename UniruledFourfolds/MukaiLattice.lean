@@ -641,6 +641,10 @@ theorem theta_does_not_preserve_sign :
     have h0 : (0 : Int) ≤ -1 := h 0
     omega
 
+def DraftChern : Int := 1
+
+theorem draft_chern_ignores_gauge (_gauge : Nat) : DraftChern = 1 := rfl
+
 /--
 The degree-3 piece of a product of two integer series.
 The Todd class of a variety has rational coefficients, and there is no
