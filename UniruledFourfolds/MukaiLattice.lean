@@ -42,6 +42,16 @@ def vectorNegK3 : MukaiVector := { v0 := -1, v2 := 0, v4 := 1 }
 /-- The triple (2, 1, -2). This is not a class on a Gushel–Mukai fourfold. -/
 def vectorTwoOneNegTwo : MukaiVector := { v0 := 2, v2 := 1, v4 := -2 }
 
+/-- The triple (1, 1, 0). Not an exceptional object of a derived category. -/
+def vectorOneOneZero : MukaiVector := { v0 := 1, v2 := 1, v4 := 0 }
+
+/--
+Squares equal to 1 and one pairing equal to 0. This is a boolean on two
+integer triples. It is not the definition of an exceptional collection.
+-/
+def squaresOneAndPairingZero (u v : MukaiVector) : Bool :=
+  (mukaiSquareNorm u == 1) && (mukaiSquareNorm v == 1) && (mukaiPairing v u == 0)
+
 /-
 These are proofs about the four integer vectors above.
 They use only Lean's `Int` and `Nat.gcd`. They do not import Mathlib,
@@ -55,6 +65,12 @@ theorem cert_two_one_neg_two_norm : mukaiSquareNorm vectorTwoOneNegTwo = 9 := by
 theorem cert_two_one_neg_two_primitive : isPrimitive vectorTwoOneNegTwo = true := by decide
 theorem cert_k3_pairs_two_one_neg_two :
     mukaiPairing vectorK3 vectorTwoOneNegTwo = 4 := by decide
+
+theorem cert_one_one_zero_norm : mukaiSquareNorm vectorOneOneZero = 1 := by decide
+theorem cert_surface_pairs_one_one_zero :
+    mukaiPairing vectorSurface vectorOneOneZero = 1 := by decide
+theorem cert_one_one_zero_surface_not_this_boolean :
+    squaresOneAndPairingZero vectorOneOneZero vectorSurface = false := by decide
 
 theorem cert_transverse_norm : mukaiSquareNorm vectorTransverse = 4 := by decide
 theorem cert_transverse_primitive : isPrimitive vectorTransverse = true := by decide
