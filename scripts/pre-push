@@ -1,0 +1,16 @@
+#!/bin/sh
+# Copyright (c) 2026 Benjamin Frohman. All rights reserved.
+#
+# Git does not version .git/hooks. Install with:
+#   cp scripts/pre-push .git/hooks/pre-push && chmod +x .git/hooks/pre-push
+#
+# Blocks the push unless UniruledFourfolds/MukaiLattice.lean typechecks,
+# its printed table matches, and validate_mukai.py agrees.
+# Blueprint.lean is not run here. A passing hook is not a geometric proof.
+
+set -e
+cd "$(git rev-parse --show-toplevel)"
+
+./verify_lean.sh
+python3 validate_mukai.py
+echo "Mukai checks passed."

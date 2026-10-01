@@ -37,6 +37,8 @@ and proves the four rows below with `decide`. No Mathlib. No cycle-class stateme
 | `docs/special-cases.md` | Citations, the holes in a five-line pathway, and where the method ends. |
 | `RELEASES.md` | What the build checks. It does not list a Hodge-conjecture release. |
 | `scripts/pre-commit` | Optional local hook: `lake build`, then the Mukai table must match. |
+| `scripts/pre-push` | Optional local hook: `verify_lean.sh`, then `validate_mukai.py`. |
+| `RELEASE_NOTES.md` | The four integer rows. Not a class in \(K_0\), and not Lean 4.11.0. |
 | `verify_lean.sh` | `lean UniruledFourfolds/MukaiLattice.lean` and `lean --run`; output must match the table. |
 | `validate_mukai.py` | The same four rows in Python. Exits 1 on a mismatch. |
 | `lakefile.lean`, `lean-toolchain`, `lake-manifest.json` | Lean 4.34.1 build of the two sources above. No Mathlib. |
