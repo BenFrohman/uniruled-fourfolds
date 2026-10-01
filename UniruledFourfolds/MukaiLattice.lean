@@ -308,6 +308,38 @@ theorem chern_combination_nonneg
   rw [heq]
   exact hsum
 
+/-
+Adjunction for a smooth hypersurface of degree `d` and dimension `n`
+in projective space: the canonical class is `(d - n - 2)` times the
+hyperplane class. These two rows store that coefficient and the
+classical Euler numbers. They are not computed from a Chern character
+in this file, and `-4` is not the coefficient for a cubic fourfold.
+-/
+
+structure VarietyNumbers where
+  dimension : Nat
+  degree : Int
+  canonical : Int
+  euler : Int
+
+def cubicFourfoldNumbers : VarietyNumbers :=
+  { dimension := 4, degree := 3, canonical := -3, euler := 27 }
+
+def quinticThreefoldNumbers : VarietyNumbers :=
+  { dimension := 3, degree := 5, canonical := 0, euler := -200 }
+
+theorem cubic_fourfold_adjunction :
+    cubicFourfoldNumbers.degree - (cubicFourfoldNumbers.dimension : Int) - 2
+      = cubicFourfoldNumbers.canonical := by decide
+
+theorem quintic_threefold_adjunction :
+    quinticThreefoldNumbers.degree - (quinticThreefoldNumbers.dimension : Int) - 2
+      = quinticThreefoldNumbers.canonical := by decide
+
+theorem cubic_fourfold_euler : cubicFourfoldNumbers.euler = 27 := by decide
+
+theorem quintic_threefold_euler : quinticThreefoldNumbers.euler = -200 := by decide
+
 def main : IO Unit := do
   IO.println s!"(1, 0, -1) square {mukaiSquareNorm vectorK3} primitive {isPrimitive vectorK3}"
   IO.println s!"(2, 0, -1) square {mukaiSquareNorm vectorTransverse} primitive {isPrimitive vectorTransverse}"
