@@ -420,6 +420,28 @@ def fig_relaxation_quiver():
     save(fig, "relaxation_quiver.png")
 
 
+def fig_duffing():
+    def step(b, a, t, dt=0.02, gamma=0.35, omega=1.2, force=0.4):
+        return b + a * dt, a + (b - b**3 - gamma * a + force * np.cos(omega * t)) * dt, t + dt
+
+    fig = plt.figure(figsize=(10, 6))
+    ax = fig.add_subplot(111, projection="3d")
+    for b, a in ((-1.5, 0.5), (1.5, -0.5), (0.1, 2.0)):
+        t = 0.0
+        bs, as_, ts = [b], [a], [t]
+        for _ in range(1500):
+            b, a, t = step(b, a, t)
+            bs.append(b)
+            as_.append(a)
+            ts.append(t)
+        ax.plot(bs, as_, ts, linewidth=0.8)
+    ax.set_title(r"formula: Duffing $\ddot\beta=\beta-\beta^3-0.35\dot\beta+0.4\cos(1.2 t)$")
+    ax.set_xlabel(r"$\beta$")
+    ax.set_ylabel(r"$\alpha$")
+    ax.set_zlabel("t")
+    save(fig, "duffing.png")
+
+
 def main():
     fig_ch3_surface()
     fig_ch3_slice()
@@ -440,6 +462,7 @@ def main():
     fig_tau_slice()
     fig_tau_relaxation()
     fig_relaxation_quiver()
+    fig_duffing()
     return 0
 
 
