@@ -75,6 +75,13 @@ def main() -> int:
     ok = gram == expected_gram
     print(f"{'ok' if ok else 'FAIL'} gram {gram} (expected {expected_gram})")
     failed = failed or not ok
+    labels = ["(1, 0, -1)", "(2, 1, -2)", "(0, 1, 0)"]
+    header = "| | " + " | ".join(labels) + " |"
+    separator = "| --- | " + " | ".join("---" for _ in labels) + " |"
+    lines = [header, separator]
+    for label, row in zip(labels, gram):
+        lines.append("| " + label + " | " + " | ".join(str(val) for val in row) + " |")
+    print("\n".join(lines))
     return 1 if failed else 0
 
 

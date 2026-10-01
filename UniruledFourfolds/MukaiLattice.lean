@@ -73,6 +73,13 @@ theorem cert_two_one_neg_two_primitive : isPrimitive vectorTwoOneNegTwo = true :
 theorem cert_k3_pairs_two_one_neg_two :
     mukaiPairing vectorK3 vectorTwoOneNegTwo = 4 := by decide
 
+/-- The pairing is a positive integer. This is not a Bridgeland wall. -/
+def pairingPositive (u v : MukaiVector) : Bool :=
+  decide (mukaiPairing u v > 0)
+
+theorem cert_k3_two_one_neg_two_pairing_positive :
+    pairingPositive vectorK3 vectorTwoOneNegTwo = true := by decide
+
 theorem cert_one_one_zero_norm : mukaiSquareNorm vectorOneOneZero = 1 := by decide
 theorem cert_surface_pairs_one_one_zero :
     mukaiPairing vectorSurface vectorOneOneZero = 1 := by decide
