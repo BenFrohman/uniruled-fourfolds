@@ -240,6 +240,21 @@ theorem cert_plus_shift_transverse :
   unfold shiftByPairing mukaiPairing vectorTransverse vectorComplement
   rfl
 
+def vectorAdd (v1 v2 : MukaiVector) : MukaiVector :=
+  { v0 := v1.v0 + v2.v0, v2 := v1.v2 + v2.v2, v4 := v1.v4 + v2.v4 }
+
+theorem shift_of_orthogonal (v s : MukaiVector) (sign : Int)
+    (h : mukaiPairing v s = 0) :
+    shiftByPairing v s sign = v := by
+  unfold shiftByPairing
+  rw [h]
+  simp [Int.mul_zero, Int.zero_mul, Int.add_zero]
+
+theorem pairing_add_left (v1 v2 s : MukaiVector) :
+    mukaiPairing (vectorAdd v1 v2) s = mukaiPairing v1 s + mukaiPairing v2 s := by
+  unfold mukaiPairing vectorAdd
+  simp [Int.add_mul, Int.sub_eq_add_neg, Int.neg_add, Int.add_assoc, Int.add_left_comm]
+
 theorem complement_of_k3_surface (w : MukaiVector) :
     inOrthogonalComplement vectorK3 vectorSurface w ↔ w.v2 = 0 ∧ w.v0 = w.v4 := by
   unfold inOrthogonalComplement mukaiPairing vectorK3 vectorSurface
