@@ -1,5 +1,7 @@
 # Special cases, stated precisely
 
+Copyright (c) 2026 Benjamin Frohman. All rights reserved. See LICENSE.
+
 The general Hodge conjecture is open. The statements below are textbooks cases. None of them is a proof written in this repository, and none of them is the Clay problem.
 
 ## Theorem (Conte–Murre, 1978)
