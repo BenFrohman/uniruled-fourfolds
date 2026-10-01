@@ -485,6 +485,18 @@ theorem vacuous_separation_false :
   obtain ⟨_L, hyes, hno⟩ := h
   exact hno hyes
 
+/-- `timeFn` is not a bound on the number of steps used to compute `map`. -/
+structure PolyTimeLabel where
+  map : List Bool → List Bool
+  timeFn : Nat → Nat
+  isPoly : IsPolynomialTimeBounded timeFn
+
+theorem reduction_refl (L : List Bool → Prop) :
+    ∃ f : PolyTimeLabel, ∀ x, L x ↔ L (f.map x) := by
+  refine ⟨{ map := id, timeFn := fun _ => 0, isPoly := zero_is_poly }, ?_⟩
+  intro x
+  rfl
+
 /--
 The degree-3 piece of a product of two integer series.
 The Todd class of a variety has rational coefficients, and there is no
