@@ -37,6 +37,8 @@ and proves the four rows below with `decide`. No Mathlib. No cycle-class stateme
 | `docs/special-cases.md` | Citations, the holes in a five-line pathway, and where the method ends. |
 | `RELEASES.md` | What the build checks. It does not list a Hodge-conjecture release. |
 | `scripts/pre-commit` | Optional local hook: `lake build`, then the Mukai table must match. |
+| `verify_lean.sh` | `lean MukaiLattice.lean` and `lean --run`; output must match the table. |
+| `validate_mukai.py` | The same four rows in Python. Exits 1 on a mismatch. |
 | `lakefile.lean`, `lean-toolchain`, `lake-manifest.json` | Lean 4.34.1 build of the two sources above. No Mathlib. |
 | `.github/workflows/lean.yml` | CI: `lake build`. Green means elaboration, not a proof. |
 | `LICENSE` | All rights reserved to Benjamin Frohman. |
