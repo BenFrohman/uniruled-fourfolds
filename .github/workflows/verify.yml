@@ -1,0 +1,38 @@
+# One runner: elaborate the Lake project, then re-check MukaiLattice.lean
+# and the Python copy of the same four rows.
+# A green run is not a proof of any geometric statement.
+# Blueprint.lean still contains sorry; lake build only warns.
+
+name: Verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Lean build, Mukai run, Python cross-check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Lean 4.34.1 and build
+        uses: leanprover/lean-action@v1
+        with:
+          build: "true"
+          use-mathlib-cache: "false"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Typecheck and run MukaiLattice.lean
+        run: ./verify_lean.sh
+
+      - name: Cross-check the same rows in Python
+        run: python3 validate_mukai.py

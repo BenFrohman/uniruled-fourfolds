@@ -40,7 +40,7 @@ and proves the four rows below with `decide`. No Mathlib. No cycle-class stateme
 | `verify_lean.sh` | `lean MukaiLattice.lean` and `lean --run`; output must match the table. |
 | `validate_mukai.py` | The same four rows in Python. Exits 1 on a mismatch. |
 | `lakefile.lean`, `lean-toolchain`, `lake-manifest.json` | Lean 4.34.1 build of the two sources above. No Mathlib. |
-| `.github/workflows/lean.yml` | CI: `lake build`. Green means elaboration, not a proof. |
+| `.github/workflows/verify.yml` | CI: `lake build`, then `verify_lean.sh` and `validate_mukai.py`. Green means those checks passed. |
 | `LICENSE` | All rights reserved to Benjamin Frohman. |
 | `COPYRIGHT` | Authorship and copyright notice. |
 
@@ -64,7 +64,7 @@ lake exe mukai
 
 `lake build` elaborates `Blueprint.lean` and compiles `MukaiLattice.lean`. It exits successfully while warning that `conditionalCycleClassReduction` uses `sorry`. Elaboration is not a proof.
 
-GitHub Actions (`.github/workflows/lean.yml`) runs that same build on pushes and pull requests to `main`. A green check means the files elaborated. It does not mean a theorem was proved.
+GitHub Actions (`.github/workflows/verify.yml`) runs that build, then `verify_lean.sh` and `validate_mukai.py`, on pushes and pull requests to `main`. A green check means those commands passed. It does not mean a theorem of algebraic geometry was proved.
 
 
 ## Not included
