@@ -399,6 +399,27 @@ def fig_tau_relaxation():
     save(fig, "tau_relaxation.png")
 
 
+def fig_relaxation_quiver():
+    b = np.linspace(-2.0, 2.0, 20)
+    a = np.linspace(0.5, 3.0, 20)
+    bb, aa = np.meshgrid(b, a)
+    tau = 4.0
+    a_eq = np.sqrt(1 + bb**2)
+    v_b = -0.6 * bb
+    v_a = -1.2 * (aa - a_eq) + np.cos(tau * bb) / (tau + 0.1)
+    mag = np.sqrt(v_b**2 + v_a**2) + 1e-5
+    fig, ax = plt.subplots(figsize=(10, 6))
+    dense = np.linspace(-2.0, 2.0, 300)
+    ax.plot(dense, np.sqrt(1 + dense**2), color="crimson", linewidth=2, label=r"hyperbola $\sqrt{1+\beta^2}$")
+    ax.quiver(bb, aa, v_b / mag, v_a / mag, mag, cmap="viridis", angles="xy", scale_units="xy", scale=15, width=0.003)
+    ax.set_title(r"formula: $V_\beta=-0.6\beta$, $V_\alpha=-1.2(\alpha-\sqrt{1+\beta^2})+\cos(4\beta)/4.1$")
+    ax.set_xlim(-2.2, 2.2)
+    ax.set_ylim(0.4, 3.2)
+    ax.legend()
+    ax.grid(True, linestyle=":")
+    save(fig, "relaxation_quiver.png")
+
+
 def main():
     fig_ch3_surface()
     fig_ch3_slice()
@@ -418,6 +439,7 @@ def main():
     fig_hyper_orbits()
     fig_tau_slice()
     fig_tau_relaxation()
+    fig_relaxation_quiver()
     return 0
 
 
