@@ -37,3 +37,9 @@ jobs:
 
       - name: Cross-check the same rows in Python
         run: python3 validate_mukai.py
+
+      - name: Render submitted formulas
+        run: |
+          python3 -m pip install matplotlib
+          python3 plots/render_formulas.py
+

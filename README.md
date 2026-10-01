@@ -38,6 +38,8 @@ and proves the four rows below with `decide`. The pairing is \(\langle u, v \ran
 | `RELEASES.md` | What the build checks. It does not list a Hodge-conjecture release. |
 | `scripts/pre-commit` | Optional local hook: `lake build`, then the Mukai table must match. |
 | `scripts/pre-push` | Optional local hook: `verify_lean.sh`, then `validate_mukai.py`. |
+
+`plots/render_formulas.py` writes PNG files of the submitted expressions to `plots/out/`. Those files are not committed. A successful render is not a wall, a filtration, or a Hodge number. The cubic-fourfold value \(h^{2,2}=21\) is not the \(23\) drawn in the center of `submitted_array.png`.
 | `RELEASE_NOTES.md` | The four integer rows. Not a class in \(K_0\), and not Lean 4.11.0. |
 | `GEOMETRY.md` | The orthogonal in \(\mathbb{Z}^3\). Not the transcendental lattice of a cubic fourfold. |
 | `verify_lean.sh` | `lean UniruledFourfolds/MukaiLattice.lean` and `lean --run`; output must match the table. |

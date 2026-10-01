@@ -4,3 +4,4 @@
 *.olean
 *.ilean
 .DS_Store
+plots/out/
