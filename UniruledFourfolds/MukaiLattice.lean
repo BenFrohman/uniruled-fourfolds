@@ -74,6 +74,51 @@ theorem disc_of_orthogonal_pair (u v : MukaiVector) (h : mukaiPairing u v = 0) :
   unfold subLatticeDiscriminant
   rw [h, Int.mul_zero, Int.sub_zero]
 
+/-
+`inSpan u v z` means z = x * u + y * v in Z^3.
+`IsPrimitiveSpan` is the torsion-free condition on Z^3 / Z u + Z v:
+if n * z is in the span and n ≠ 0, then z is in the span.
+This is not a check that gcd(anything, 1) = 1. That equality is true
+for every pair of vectors, and it does not mention an ambient lattice.
+-/
+
+def inSpan (u v z : MukaiVector) : Prop :=
+  ∃ x y : Int,
+    z.v0 = x * u.v0 + y * v.v0 ∧
+    z.v2 = x * u.v2 + y * v.v2 ∧
+    z.v4 = x * u.v4 + y * v.v4
+
+def scaled (n : Int) (z : MukaiVector) : MukaiVector :=
+  { v0 := n * z.v0, v2 := n * z.v2, v4 := n * z.v4 }
+
+def IsPrimitiveSpan (u v : MukaiVector) : Prop :=
+  ∀ n z, n ≠ 0 → inSpan u v (scaled n z) → inSpan u v z
+
+theorem cert_k3_surface_span_primitive :
+    IsPrimitiveSpan vectorK3 vectorSurface := by
+  intro n z hn h
+  rcases h with ⟨x, _, h0, _, h4⟩
+  have hx : n * z.v0 = x := by
+    simpa [vectorK3, vectorSurface, scaled] using h0
+  have h4' : n * z.v4 = -x := by
+    simpa [vectorK3, vectorSurface, scaled] using h4
+  have hmul : n * (z.v0 + z.v4) = 0 := by
+    calc
+      n * (z.v0 + z.v4) = n * z.v0 + n * z.v4 := by rw [Int.mul_add]
+      _ = x + -x := by rw [hx, h4']
+      _ = 0 := by rw [Int.add_right_neg]
+  have hsum : z.v0 + z.v4 = 0 := by
+    rcases (Int.mul_eq_zero.mp hmul) with hn0 | hz
+    · exact absurd hn0 hn
+    · exact hz
+  have hv4 : z.v4 = -z.v0 :=
+    (Int.neg_eq_of_add_eq_zero hsum).symm
+  refine ⟨z.v0, z.v2, ?_, ?_, ?_⟩
+  · simp [vectorK3, vectorSurface]
+  · simp [vectorK3, vectorSurface]
+  · simp [vectorK3, vectorSurface, hv4]
+
+
 def main : IO Unit := do
   IO.println s!"(1, 0, -1) square {mukaiSquareNorm vectorK3} primitive {isPrimitive vectorK3}"
   IO.println s!"(2, 0, -1) square {mukaiSquareNorm vectorTransverse} primitive {isPrimitive vectorTransverse}"
