@@ -12,6 +12,9 @@ This is not a v1.0.1 release, and it is not a computation in \(K_0(\mathcal{A}_X
 | `(2, 0, -1)` | 4 | yes |
 | `(0, 1, 0)` | 1 | yes |
 | `(2, 0, -2)` | 8 | no, the gcd is 2 |
+| `(2, 1, -2)` | 9 | yes |
+
+`(2, 1, -2)` pairs with `(1, 0, -1)` to 4. The prose that calls this pairing \(-1\) does not match the formula. The triple is not a class on a Gushel–Mukai fourfold.
 
 The same file proves, for every vector `v`, that the square equals the pairing of `v` with itself: \(v_2^2 - 2 v_0 v_4 = \langle v, v \rangle\). It also proves \(\langle (1,0,-1), (-1,0,1) \rangle = -2\) and \(\langle (1,0,-1), (0,1,0) \rangle = 0\). For that orthogonal pair the Gram determinant is \(2 \cdot 1 - 0^2 = 2\). The same two vectors span a primitive subgroup of \(\mathbb{Z}^3\): if \(n z\) is an integral combination of them and \(n \neq 0\), then \(z\) is too. That is `cert_k3_surface_span_primitive`. It is not an embedding into the Mukai lattice of a K3 surface, and `gcd(_, 1) = 1` is not that statement. No Mathlib import.
 

@@ -30,6 +30,7 @@ EXPECTED = {
     (2, 0, -1): (4, True),
     (0, 1, 0): (1, True),
     (2, 0, -2): (8, False),
+    (2, 1, -2): (9, True),
 }
 
 
@@ -49,6 +50,7 @@ def main() -> int:
     pairings = [
         ((1, 0, -1), (-1, 0, 1), -2),
         ((1, 0, -1), (0, 1, 0), 0),
+        ((1, 0, -1), (2, 1, -2), 4),
     ]
     for u, v, expected_pair in pairings:
         got = mukai_pairing(u, v)

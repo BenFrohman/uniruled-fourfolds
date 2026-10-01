@@ -39,6 +39,9 @@ def vectorSurface : MukaiVector := { v0 := 0, v2 := 1, v4 := 0 }
 def vectorNonPrim : MukaiVector := { v0 := 2, v2 := 0, v4 := -2 }
 def vectorNegK3 : MukaiVector := { v0 := -1, v2 := 0, v4 := 1 }
 
+/-- The triple (2, 1, -2). This is not a class on a Gushel–Mukai fourfold. -/
+def vectorTwoOneNegTwo : MukaiVector := { v0 := 2, v2 := 1, v4 := -2 }
+
 /-
 These are proofs about the four integer vectors above.
 They use only Lean's `Int` and `Nat.gcd`. They do not import Mathlib,
@@ -47,6 +50,11 @@ and they do not mention cycles or the Hodge conjecture.
 
 theorem cert_k3_norm : mukaiSquareNorm vectorK3 = 2 := by decide
 theorem cert_k3_primitive : isPrimitive vectorK3 = true := by decide
+
+theorem cert_two_one_neg_two_norm : mukaiSquareNorm vectorTwoOneNegTwo = 9 := by decide
+theorem cert_two_one_neg_two_primitive : isPrimitive vectorTwoOneNegTwo = true := by decide
+theorem cert_k3_pairs_two_one_neg_two :
+    mukaiPairing vectorK3 vectorTwoOneNegTwo = 4 := by decide
 
 theorem cert_transverse_norm : mukaiSquareNorm vectorTransverse = 4 := by decide
 theorem cert_transverse_primitive : isPrimitive vectorTransverse = true := by decide
