@@ -255,6 +255,34 @@ theorem pairing_add_left (v1 v2 s : MukaiVector) :
   unfold mukaiPairing vectorAdd
   simp [Int.add_mul, Int.sub_eq_add_neg, Int.neg_add, Int.add_assoc, Int.add_left_comm]
 
+def braidA : MukaiVector := { v0 := -2, v2 := -2, v4 := -1 }
+def braidB : MukaiVector := { v0 := -1, v2 := -2, v4 := -1 }
+def braidV : MukaiVector := { v0 := -1, v2 := -1, v4 := -1 }
+
+theorem braid_pair : mukaiPairing braidA braidB = 1 := by
+  unfold mukaiPairing braidA braidB
+  rfl
+
+def braidLeft : MukaiVector :=
+  shiftByPairing (shiftByPairing (shiftByPairing braidV braidA (-1)) braidB (-1)) braidA (-1)
+
+def braidRight : MukaiVector :=
+  shiftByPairing (shiftByPairing (shiftByPairing braidV braidB (-1)) braidA (-1)) braidB (-1)
+
+theorem braid_left_coord : braidLeft.v0 = -6 := by
+  unfold braidLeft shiftByPairing mukaiPairing braidA braidB braidV
+  rfl
+
+theorem braid_right_coord : braidRight.v0 = -2 := by
+  unfold braidRight shiftByPairing mukaiPairing braidA braidB braidV
+  rfl
+
+theorem braid_fails : braidLeft ≠ braidRight := by
+  intro h
+  have : braidLeft.v0 = braidRight.v0 := congrArg MukaiVector.v0 h
+  rw [braid_left_coord, braid_right_coord] at this
+  cases this
+
 theorem complement_of_k3_surface (w : MukaiVector) :
     inOrthogonalComplement vectorK3 vectorSurface w ↔ w.v2 = 0 ∧ w.v0 = w.v4 := by
   unfold inOrthogonalComplement mukaiPairing vectorK3 vectorSurface
