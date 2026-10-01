@@ -25,7 +25,9 @@ printf '%s\n' "$out"
 expected="(1, 0, -1) square 2 primitive true
 (2, 0, -1) square 4 primitive true
 (0, 1, 0) square 1 primitive true
-(2, 0, -2) square 8 primitive false"
+(2, 0, -2) square 8 primitive false
+pairing (1, 0, -1) (-1, 0, 1) = -2
+orthogonal (1, 0, -1) (0, 1, 0) = true"
 
 if [ "$out" != "$expected" ]; then
   echo "Mukai output did not match the certified table." >&2

@@ -14,6 +14,12 @@ def mukai_square(v0: int, v2: int, v4: int) -> int:
     return (v2 * v2) - (2 * v0 * v4)
 
 
+def mukai_pairing(u: tuple[int, int, int], v: tuple[int, int, int]) -> int:
+    u0, u2, u4 = u
+    v0, v2, v4 = v
+    return (u2 * v2) - (u0 * v4) - (u4 * v0)
+
+
 def is_primitive(v0: int, v2: int, v4: int) -> bool:
     return math.gcd(abs(v0), abs(v2), abs(v4)) == 1
 
@@ -39,6 +45,16 @@ def main() -> int:
             f"(expected {square}) primitive {got_primitive} "
             f"(expected {primitive})"
         )
+        failed = failed or not ok
+    pairings = [
+        ((1, 0, -1), (-1, 0, 1), -2),
+        ((1, 0, -1), (0, 1, 0), 0),
+    ]
+    for u, v, expected_pair in pairings:
+        got = mukai_pairing(u, v)
+        ok = got == expected_pair
+        status = "ok" if ok else "FAIL"
+        print(f"{status} pairing {u} {v} = {got} (expected {expected_pair})")
         failed = failed or not ok
     return 1 if failed else 0
 

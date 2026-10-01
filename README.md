@@ -28,7 +28,7 @@ The uniruled reduction uses a rational curve through a general point. It stops t
 \langle v, v \rangle = v_2^2 - 2 v_0 v_4, \qquad \text{primitive} \iff \gcd(|v_0|, |v_2|, |v_4|) = 1
 \]
 
-and proves the four rows below with `decide`. No Mathlib. No cycle-class statement.
+and proves the four rows below with `decide`. The pairing is \(\langle u, v \rangle = u_2 v_2 - u_0 v_4 - u_4 v_0\), and the square is that pairing on the diagonal. No Mathlib. No cycle-class statement.
 
 | File | Role |
 |---|---|
