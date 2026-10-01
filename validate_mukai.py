@@ -156,6 +156,19 @@ def main() -> int:
         ok = got == expected and expected[1] < 0
         print(f"{'ok' if ok else 'FAIL'} empty wall F={sub} {got} (expected {expected})")
         failed = failed or not ok
+    # Pairings with (3, 2, -1). Not wall radii. The 1e-5 term is not in the formula.
+    parent = (3, 2, -1)
+    for other, expected_pair in [((1, 0, 1), -2), ((2, 1, -2), 10), ((1, -1, 0), -1)]:
+        got = mukai_pairing(parent, other)
+        ok = got == expected_pair
+        print(f"{'ok' if ok else 'FAIL'} pairing {parent} {other} = {got} (expected {expected_pair})")
+        failed = failed or not ok
+    # (-3/5, 4/5) lies in the stand-in disk of squared radius 5/4 and not on a slope wall.
+    center = Fraction(-1, 2)
+    dist = (Fraction(-3, 5) - center) ** 2 + Fraction(4, 5) ** 2
+    ok = dist == Fraction(13, 20) and dist < Fraction(5, 4)
+    print(f"{'ok' if ok else 'FAIL'} fake-disk distance {dist} (expected 13/20)")
+    failed = failed or not ok
     return 1 if failed else 0
 
 
