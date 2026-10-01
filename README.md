@@ -35,6 +35,8 @@ It does not check geometry.
 | `Blueprint.lean` | Conditional statement. Unproved (`sorry`). |
 | `MukaiLattice.lean` | Square and primitivity, with a `main` that prints four vectors. |
 | `docs/special-cases.md` | Citations, the holes in a five-line pathway, and where the method ends. |
+| `lakefile.lean`, `lean-toolchain`, `lake-manifest.json` | Lean 4.34.1 build of the two sources above. No Mathlib. |
+| `.github/workflows/lean.yml` | CI: `lake build`. Green means elaboration, not a proof. |
 | `LICENSE` | All rights reserved to Benjamin Frohman. |
 | `COPYRIGHT` | Authorship and copyright notice. |
 
@@ -49,13 +51,18 @@ It does not check geometry.
 
 ## Commands
 
+Pinned toolchain: Lean 4.34.1 (`lean-toolchain`). There is no Mathlib dependency.
+
 ```bash
-lean --run MukaiLattice.lean
-lean Blueprint.lean
+lake build
+lake exe mukai
 ```
 
-The second command succeeds only as elaboration. It warns that `conditionalCycleClassReduction` uses `sorry`.
+`lake build` elaborates `Blueprint.lean` and compiles `MukaiLattice.lean`. It exits successfully while warning that `conditionalCycleClassReduction` uses `sorry`. Elaboration is not a proof.
+
+GitHub Actions (`.github/workflows/lean.yml`) runs that same build on pushes and pull requests to `main`. A green check means the files elaborated. It does not mean a theorem was proved.
+
 
 ## Not included
 
-No file here declares the cycle class map surjective for every fourfold. That would assume the Clay problem. No `lakefile` is committed: a requirement URL of `https://github.com` does not load Mathlib. A theorem named as a Clay-problem verification for cubic fourfolds is the cubic case, already due to Zucker, and is not a formalization.
+No file here declares the cycle class map surjective for every fourfold. That would assume the Clay problem. The committed `lakefile.lean` does not require Mathlib. A theorem named as a Clay-problem verification for cubic fourfolds is the cubic case, already due to Zucker, and is not a formalization.

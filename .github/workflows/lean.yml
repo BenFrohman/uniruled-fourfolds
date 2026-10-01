@@ -1,0 +1,25 @@
+# Elaborates the Lean sources. A green run is not a proof.
+# Blueprint.lean contains sorry. This project does not depend on Mathlib.
+
+name: Lean
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Elaborate Lean sources
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build with the Lean toolchain in lean-toolchain
+        uses: leanprover/lean-action@v1
+        with:
+          build: "true"
+          use-mathlib-cache: "false"
