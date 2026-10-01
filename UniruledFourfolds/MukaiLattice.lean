@@ -283,6 +283,43 @@ theorem braid_fails : braidLeft ≠ braidRight := by
   rw [braid_left_coord, braid_right_coord] at this
   cases this
 
+def smulVec (c : Int) (v : MukaiVector) : MukaiVector :=
+  { v0 := c * v.v0, v2 := c * v.v2, v4 := c * v.v4 }
+
+def twist (v s : MukaiVector) : MukaiVector :=
+  vectorAdd v (smulVec (-(mukaiPairing v s)) s)
+
+theorem pairing_smul_left (c : Int) (v s : MukaiVector) :
+    mukaiPairing (smulVec c v) s = c * mukaiPairing v s := by
+  unfold mukaiPairing smulVec
+  simp [Int.mul_assoc, Int.mul_sub]
+
+theorem pairing_twist (v a b : MukaiVector) :
+    mukaiPairing (twist v a) b = mukaiPairing v b + (-(mukaiPairing v a)) * mukaiPairing a b := by
+  unfold twist
+  rw [pairing_add_left, pairing_smul_left]
+
+theorem chain_clause_contradicts (a b : MukaiVector)
+    (h1 : mukaiPairing a b = 1) (h0 : mukaiPairing b a = 0) : False := by
+  rw [cert_mukai_pairing_is_symmetric b a, h1] at h0
+  cases h0
+
+theorem twists_commute_of_orthogonal (v a b : MukaiVector) (h : mukaiPairing a b = 0) :
+    twist (twist v a) b = twist (twist v b) a := by
+  have hba : mukaiPairing b a = 0 := by rw [cert_mukai_pairing_is_symmetric b a, h]
+  have left_pair : mukaiPairing (twist v a) b = mukaiPairing v b := by
+    rw [pairing_twist, h, Int.mul_zero, Int.add_zero]
+  have right_pair : mukaiPairing (twist v b) a = mukaiPairing v a := by
+    rw [pairing_twist, hba, Int.mul_zero, Int.add_zero]
+  have hL : mukaiPairing (vectorAdd v (smulVec (-(mukaiPairing v a)) a)) b = mukaiPairing v b := by
+    simpa [twist] using left_pair
+  have hR : mukaiPairing (vectorAdd v (smulVec (-(mukaiPairing v b)) b)) a = mukaiPairing v a := by
+    simpa [twist] using right_pair
+  unfold twist
+  rw [hL, hR]
+  unfold vectorAdd smulVec
+  simp [Int.add_assoc, Int.add_left_comm, Int.add_comm]
+
 theorem complement_of_k3_surface (w : MukaiVector) :
     inOrthogonalComplement vectorK3 vectorSurface w ↔ w.v2 = 0 ∧ w.v0 = w.v4 := by
   unfold inOrthogonalComplement mukaiPairing vectorK3 vectorSurface

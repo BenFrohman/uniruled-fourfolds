@@ -339,6 +339,34 @@ def fig_five_orbits():
     save(fig, "five_orbits.png")
 
 
+def fig_hyper_orbits():
+    def step(b, a, t):
+        denom = b**2 + a**2 + 0.3
+        return (b + 0.1 * t) / denom - 0.4, abs(a / denom) + 0.2, (t * b + 0.5) / (a + 0.5)
+
+    seeds = [(-0.5, 1.5, 0.2), (-0.2, 1.2, -0.4), (0.1, 1.8, 0.6), (-0.8, 0.9, 0.0)]
+    fig = plt.figure(figsize=(10, 6))
+    ax = fig.add_subplot(111, projection="3d")
+    for b, a, t in seeds:
+        bs, as_, ts = [b], [a], [t]
+        for s in range(40):
+            if s % 3 == 0:
+                b, a, t = step(b, a, t)
+            elif s % 3 == 1:
+                b, a, t = b + 0.25, a * 0.88, t - 0.1
+            else:
+                b, a, t = b - 0.1, a + 0.15, t * 0.9
+            bs.append(b)
+            as_.append(a)
+            ts.append(t)
+        ax.plot(bs, ts, as_, linewidth=1.2)
+    ax.set_title(r"formula: $(b+0.1\tau)/(b^2+a^2+0.3)-0.4$; not an $A_n$ orbit")
+    ax.set_xlabel(r"$\beta$")
+    ax.set_ylabel(r"$\tau$")
+    ax.set_zlabel(r"$\alpha$")
+    save(fig, "hyper_orbits.png")
+
+
 def main():
     fig_ch3_surface()
     fig_ch3_slice()
@@ -355,6 +383,7 @@ def main():
     fig_twist_standin()
     fig_one_orbit()
     fig_five_orbits()
+    fig_hyper_orbits()
     return 0
 
 
