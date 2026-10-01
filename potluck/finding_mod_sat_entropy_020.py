@@ -34,6 +34,9 @@ def main():
             f"H={binary_entropy(center):.4f}; "
             f"eight units above, H={binary_entropy(far):.4f}"
         )
+        sharp = 4.0 / (k - 1.9)
+        h = binary_entropy(center)
+        print(f"  drafted variance at the center {h * (1.0 - h) / (sharp + 0.1):.4f}")
     path = os.path.join(os.path.dirname(__file__), "finding_mod_sat_entropy_020.npz")
     np.savez_compressed(path, half=np.array([binary_entropy(0.5)]))
     print(f"wrote {path}")
