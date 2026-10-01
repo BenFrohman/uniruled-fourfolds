@@ -52,6 +52,13 @@ integer triples. It is not the definition of an exceptional collection.
 def squaresOneAndPairingZero (u v : MukaiVector) : Bool :=
   (mukaiSquareNorm u == 1) && (mukaiSquareNorm v == 1) && (mukaiPairing v u == 0)
 
+/--
+Integer recipe `v4 = c1^2 - 2*c2 + tdFactor`. The summand `tdFactor` is an
+input, not the Todd class. This is not the Grothendieck–Riemann–Roch theorem.
+-/
+def chernRecipe (rank c1 c2 tdFactor : Int) : MukaiVector :=
+  { v0 := rank, v2 := c1, v4 := c1 * c1 - 2 * c2 + tdFactor }
+
 /-
 These are proofs about the four integer vectors above.
 They use only Lean's `Int` and `Nat.gcd`. They do not import Mathlib,
@@ -71,6 +78,11 @@ theorem cert_surface_pairs_one_one_zero :
     mukaiPairing vectorSurface vectorOneOneZero = 1 := by decide
 theorem cert_one_one_zero_surface_not_this_boolean :
     squaresOneAndPairingZero vectorOneOneZero vectorSurface = false := by decide
+
+theorem cert_chern_recipe_hits_k3 :
+    chernRecipe 1 0 1 1 = vectorK3 := by
+  unfold chernRecipe vectorK3
+  rfl
 
 theorem cert_transverse_norm : mukaiSquareNorm vectorTransverse = 4 := by decide
 theorem cert_transverse_primitive : isPrimitive vectorTransverse = true := by decide

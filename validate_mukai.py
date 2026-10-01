@@ -64,6 +64,17 @@ def main() -> int:
     ok = disc == 2
     print(f"{'ok' if ok else 'FAIL'} discriminant (1, 0, -1), (0, 1, 0) = {disc} (expected 2)")
     failed = failed or not ok
+    # Gram matrix of (1,0,-1), (2,1,-2), (0,1,0). Indices are 0,1,2, not 4.
+    basis = [(1, 0, -1), (2, 1, -2), (0, 1, 0)]
+    expected_gram = [
+        [2, 4, 0],
+        [4, 9, 1],
+        [0, 1, 1],
+    ]
+    gram = [[mukai_pairing(u, v) for v in basis] for u in basis]
+    ok = gram == expected_gram
+    print(f"{'ok' if ok else 'FAIL'} gram {gram} (expected {expected_gram})")
+    failed = failed or not ok
     return 1 if failed else 0
 
 
