@@ -622,6 +622,11 @@ theorem poly_composition_coherence (f g : Nat → Nat)
   have hpow : (f n) ^ b ≤ (n ^ a + a) ^ b := Nat.pow_le_pow_left (ha n) b
   exact Nat.le_trans (Nat.le_trans hgf (Nat.add_le_add_right hpow b)) (comp_bound a b n)
 
+def DraftTimeClass (_f : Nat → Nat) : Prop := True
+
+theorem draft_time_class_ignores_bound (f g : Nat → Nat) :
+    DraftTimeClass f ↔ DraftTimeClass g := by
+  simp [DraftTimeClass]
 
 /--
 The degree-3 piece of a product of two integer series.
