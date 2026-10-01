@@ -516,6 +516,113 @@ theorem draft_cook_false :
   obtain ⟨f, hf⟩ := hred (fun _ => False) trivial
   exact (hf []).mpr (draft_sat_holds (f.map []))
 
+theorem two_le_pow (m : Nat) : m ≤ 2 ^ m := by
+  induction m with
+  | zero => decide
+  | succ m ih =>
+    calc
+      m + 1 ≤ 2 ^ m + 1 := Nat.add_le_add_right ih 1
+      _ ≤ 2 ^ m + 2 ^ m := Nat.add_le_add_left (Nat.one_le_pow m 2 (by decide)) _
+      _ = 2 ^ (m + 1) := by
+        rw [← Nat.two_mul, Nat.pow_succ]
+        omega
+
+theorem base_le_pow {n m : Nat} (hn : 2 ≤ n) : m ≤ n ^ m :=
+  Nat.le_trans (two_le_pow m) (Nat.pow_le_pow_left hn m)
+
+theorem comp_bound (a b n : Nat) :
+    (n ^ a + a) ^ b + b ≤ n ^ (a * b + (a + 1) ^ b + b) + (a * b + (a + 1) ^ b + b) := by
+  let k := a * b + (a + 1) ^ b + b
+  have hk_big : (a + 1) ^ b + b ≤ k := by
+    calc
+      (a + 1) ^ b + b ≤ a * b + ((a + 1) ^ b + b) := Nat.le_add_left _ _
+      _ = k := by simp [k, Nat.add_assoc]
+  cases n with
+  | zero =>
+    have h0a : 0 ^ a ≤ 1 := by
+      cases a with
+      | zero => simp
+      | succ _ => simp
+    have hsum : 0 ^ a + a ≤ a + 1 := by
+      calc
+        0 ^ a + a ≤ 1 + a := Nat.add_le_add_right h0a a
+        _ = a + 1 := by omega
+    have hp : (0 ^ a + a) ^ b ≤ (a + 1) ^ b := Nat.pow_le_pow_left hsum b
+    have hlhs : (0 ^ a + a) ^ b + b ≤ k := Nat.le_trans (Nat.add_le_add_right hp b) hk_big
+    have hkpos : 0 < k := by
+      have h1 : 1 ≤ (a + 1) ^ b := Nat.one_le_pow b (a + 1) (by omega)
+      have : 1 ≤ k := Nat.le_trans h1 (by
+        calc
+          (a + 1) ^ b ≤ a * b + (a + 1) ^ b := Nat.le_add_left _ _
+          _ ≤ k := Nat.le_add_right _ _)
+      omega
+    have hzero : 0 ^ k = 0 := Nat.zero_pow hkpos
+    simpa [k, hzero] using hlhs
+  | succ n1 =>
+    cases n1 with
+    | zero =>
+      have hone : 1 ^ a + a = 1 + a := by simp [Nat.one_pow]
+      have hcomm : (1 + a) ^ b = (a + 1) ^ b := by
+        have : 1 + a = a + 1 := by omega
+        rw [this]
+      have hrhs : k ≤ 1 ^ k + k := by simp [Nat.one_pow]
+      have hlhs : (1 ^ a + a) ^ b + b ≤ k := by
+        rw [hone, hcomm]
+        exact hk_big
+      exact Nat.le_trans hlhs hrhs
+    | succ n2 =>
+      let m := n2 + 2
+      have hm : m = n2 + 2 := rfl
+      have hn : 2 ≤ m := by simp [m]
+      have hna : 1 ≤ m ^ a := Nat.one_le_pow a m (by omega)
+      have ha_le : a ≤ a * m ^ a := by
+        calc
+          a = a * 1 := by omega
+          _ ≤ a * m ^ a := Nat.mul_le_mul_left a hna
+      have hsum : m ^ a + a ≤ (a + 1) * m ^ a := by
+        calc
+          m ^ a + a ≤ m ^ a + a * m ^ a := Nat.add_le_add_left ha_le _
+          _ = (1 + a) * m ^ a := by rw [Nat.add_mul, Nat.one_mul]
+          _ = (a + 1) * m ^ a := by
+            have : 1 + a = a + 1 := by omega
+            rw [this]
+      have hmul : ((a + 1) * m ^ a) ^ b = (a + 1) ^ b * m ^ (a * b) := by
+        rw [Nat.mul_pow, Nat.pow_mul]
+      have hbase : (a + 1) ^ b ≤ m ^ ((a + 1) ^ b) := base_le_pow hn
+      have hprod : (a + 1) ^ b * m ^ (a * b) ≤ m ^ ((a + 1) ^ b + a * b) := by
+        calc
+          (a + 1) ^ b * m ^ (a * b) ≤ m ^ ((a + 1) ^ b) * m ^ (a * b) :=
+            Nat.mul_le_mul_right _ hbase
+          _ = m ^ ((a + 1) ^ b + a * b) := by rw [← Nat.pow_add]
+      have hexp : (a + 1) ^ b + a * b ≤ k := by
+        simp only [k]
+        omega
+      have hpowk : m ^ ((a + 1) ^ b + a * b) ≤ m ^ k := Nat.pow_le_pow_right (by omega) hexp
+      have hb_le : b ≤ k := by simp [k]
+      have hfinal : m ^ ((a + 1) ^ b + a * b) + b ≤ m ^ k + k := Nat.add_le_add hpowk hb_le
+      have hleft : (m ^ a + a) ^ b ≤ ((a + 1) * m ^ a) ^ b := Nat.pow_le_pow_left hsum b
+      calc
+        (m ^ a + a) ^ b + b ≤ ((a + 1) * m ^ a) ^ b + b := Nat.add_le_add_right hleft b
+        _ = (a + 1) ^ b * m ^ (a * b) + b := by rw [hmul]
+        _ ≤ m ^ ((a + 1) ^ b + a * b) + b := Nat.add_le_add_right hprod b
+        _ ≤ m ^ k + k := hfinal
+
+theorem suggested_degree_fails :
+    ¬ ((1 ^ 2 + 2) ^ 2 + 2 ≤ 1 ^ (2 * 2 + 2 + 1) + (2 * 2 + 2 + 1)) := by
+  decide
+
+theorem poly_composition_coherence (f g : Nat → Nat)
+    (hf : IsPolynomialTimeBounded f) (hg : IsPolynomialTimeBounded g) :
+    IsPolynomialTimeBounded (g ∘ f) := by
+  rcases hf with ⟨a, ha⟩
+  rcases hg with ⟨b, hb⟩
+  refine ⟨a * b + (a + 1) ^ b + b, ?_⟩
+  intro n
+  have hgf : g (f n) ≤ (f n) ^ b + b := hb (f n)
+  have hpow : (f n) ^ b ≤ (n ^ a + a) ^ b := Nat.pow_le_pow_left (ha n) b
+  exact Nat.le_trans (Nat.le_trans hgf (Nat.add_le_add_right hpow b)) (comp_bound a b n)
+
+
 /--
 The degree-3 piece of a product of two integer series.
 The Todd class of a variety has rational coefficients, and there is no
