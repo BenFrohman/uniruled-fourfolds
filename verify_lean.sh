@@ -6,7 +6,7 @@
 set -e
 cd "$(dirname "$0")"
 
-LEAN_FILE="MukaiLattice.lean"
+LEAN_FILE="UniruledFourfolds/MukaiLattice.lean"
 if [ ! -f "$LEAN_FILE" ]; then
   echo "Error: $LEAN_FILE not found." >&2
   exit 1

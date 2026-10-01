@@ -13,8 +13,9 @@ means the file elaborates.
 package «uniruled-fourfolds»
 
 @[default_target]
-lean_lib Blueprint
+lean_lib UniruledFourfolds where
+  roots := #[`UniruledFourfolds.Blueprint]
 
 @[default_target]
 lean_exe mukai where
-  root := `MukaiLattice
+  root := `UniruledFourfolds.MukaiLattice

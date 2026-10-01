@@ -32,12 +32,12 @@ and proves the four rows below with `decide`. No Mathlib. No cycle-class stateme
 
 | File | Role |
 |---|---|
-| `Blueprint.lean` | Conditional statement. Unproved (`sorry`). |
-| `MukaiLattice.lean` | Square and primitivity, proved for four vectors by `decide`, plus a `main` that prints them. |
+| `UniruledFourfolds/Blueprint.lean` | Conditional statement. Unproved (`sorry`). |
+| `UniruledFourfolds/MukaiLattice.lean` | Square and primitivity, proved for four vectors by `decide`, plus a `main` that prints them. |
 | `docs/special-cases.md` | Citations, the holes in a five-line pathway, and where the method ends. |
 | `RELEASES.md` | What the build checks. It does not list a Hodge-conjecture release. |
 | `scripts/pre-commit` | Optional local hook: `lake build`, then the Mukai table must match. |
-| `verify_lean.sh` | `lean MukaiLattice.lean` and `lean --run`; output must match the table. |
+| `verify_lean.sh` | `lean UniruledFourfolds/MukaiLattice.lean` and `lean --run`; output must match the table. |
 | `validate_mukai.py` | The same four rows in Python. Exits 1 on a mismatch. |
 | `lakefile.lean`, `lean-toolchain`, `lake-manifest.json` | Lean 4.34.1 build of the two sources above. No Mathlib. |
 | `.github/workflows/verify.yml` | CI: `lake build`, then `verify_lean.sh` and `validate_mukai.py`. Green means those checks passed. |
@@ -62,7 +62,7 @@ lake build
 lake exe mukai
 ```
 
-`lake build` elaborates `Blueprint.lean` and compiles `MukaiLattice.lean`. It exits successfully while warning that `conditionalCycleClassReduction` uses `sorry`. Elaboration is not a proof.
+`lake build` elaborates `UniruledFourfolds/Blueprint.lean` and compiles `UniruledFourfolds/MukaiLattice.lean`. It exits successfully while warning that `conditionalCycleClassReduction` uses `sorry`. Elaboration is not a proof.
 
 GitHub Actions (`.github/workflows/verify.yml`) runs that build, then `verify_lean.sh` and `validate_mukai.py`, on pushes and pull requests to `main`. A green check means those commands passed. It does not mean a theorem of algebraic geometry was proved.
 
