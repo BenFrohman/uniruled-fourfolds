@@ -29,5 +29,6 @@ python3 potluck/finding_mod_navier_stokes_007.py
 python3 potluck/finding_mod_navier_stokes_pressure_010.py
 python3 potluck/finding_mod_sat_phase_transition_012.py
 python3 potluck/finding_mod_ksat_shift_014.py
+python3 potluck/finding_mod_sat_contour_016.py
 
 echo "[done] numerical modules finished"

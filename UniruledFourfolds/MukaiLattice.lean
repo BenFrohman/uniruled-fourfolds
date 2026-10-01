@@ -497,6 +497,25 @@ theorem reduction_refl (L : List Bool → Prop) :
   intro x
   rfl
 
+structure SatFormula where
+  vars : Nat
+  clauses : Nat
+
+def DraftSatisfiable (_f : SatFormula) : Prop := True
+
+def DraftSAT : List Bool → Prop := fun _str => ∃ f : SatFormula, DraftSatisfiable f
+
+theorem draft_sat_holds (x : List Bool) : DraftSAT x :=
+  ⟨{ vars := 0, clauses := 0 }, trivial⟩
+
+theorem draft_cook_false :
+    ¬ ((True : Prop) ∧ ∀ L : List Bool → Prop, True →
+        ∃ f : PolyTimeLabel, ∀ x, L x ↔ DraftSAT (f.map x)) := by
+  intro h
+  obtain ⟨_, hred⟩ := h
+  obtain ⟨f, hf⟩ := hred (fun _ => False) trivial
+  exact (hf []).mpr (draft_sat_holds (f.map []))
+
 /--
 The degree-3 piece of a product of two integer series.
 The Todd class of a variety has rational coefficients, and there is no
