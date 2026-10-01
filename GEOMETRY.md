@@ -17,3 +17,13 @@ These statements are not a description of a cubic fourfold. The numerical Grothe
 For a very general Gushel–Mukai fourfold the numerical Grothendieck group of the Kuznetsov component is isomorphic to \(\mathbb{Z}^2\), with Euler matrix \(\mathrm{diag}(-2,-2)\), not to \(\mathbb{Z}^3\). See Kuznetsov–Perry, Compositio Math. 154 (2018), as cited in Guo–Liu–Zhang, arXiv:2203.05442, Lemma 3.1. The triple \((2,1,-2)\) has square 9 under the form in this repository, so it is not one of those two generators. This file does not identify it with a tautological bundle on \(\mathrm{Gr}(2,5)\).
 
 The boolean `squaresOneAndPairingZero` requires two squares equal to 1 and one pairing equal to 0. For \((1,1,0)\) and \((0,1,0)\) the squares are 1 and 1, and the pairing is 1, so the boolean is false. That does not decide whether an exceptional collection exists in \(D^b(X)\). An exceptional object satisfies \(\mathrm{RHom}(E,E) \simeq \mathbb{C}\). The Kuznetsov component is a K3 category, with Serre functor the shift by 2, so its objects are not exceptional in that sense.
+
+## Gram matrix
+
+`cert_mukai_pairing_is_symmetric` proves \(\langle u, v \rangle = \langle v, u \rangle\) for every pair of these integer triples. `ring` is not used: this project does not import Mathlib. The values below are the ones `validate_mukai.py` checks. The column headings are the triples, not classes on a fourfold.
+
+| | `(1, 0, -1)` | `(2, 1, -2)` | `(0, 1, 0)` |
+| --- | ---: | ---: | ---: |
+| `(1, 0, -1)` | 2 | 4 | 0 |
+| `(2, 1, -2)` | 4 | 9 | 1 |
+| `(0, 1, 0)` | 0 | 1 | 1 |

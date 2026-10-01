@@ -80,6 +80,13 @@ def pairingPositive (u v : MukaiVector) : Bool :=
 theorem cert_k3_two_one_neg_two_pairing_positive :
     pairingPositive vectorK3 vectorTwoOneNegTwo = true := by decide
 
+theorem cert_mukai_pairing_is_symmetric (u v : MukaiVector) :
+    mukaiPairing u v = mukaiPairing v u := by
+  unfold mukaiPairing
+  rw [Int.mul_comm u.v2 v.v2, Int.mul_comm u.v0 v.v4, Int.mul_comm u.v4 v.v0]
+  -- a - x - y = a - y - x
+  rw [Int.sub_sub, Int.sub_sub, Int.add_comm]
+
 theorem cert_one_one_zero_norm : mukaiSquareNorm vectorOneOneZero = 1 := by decide
 theorem cert_surface_pairs_one_one_zero :
     mukaiPairing vectorSurface vectorOneOneZero = 1 := by decide
