@@ -645,6 +645,11 @@ def DraftChern : Int := 1
 
 theorem draft_chern_ignores_gauge (_gauge : Nat) : DraftChern = 1 := rfl
 
+theorem id_slope (x h : Int) (hh : h ≠ 0) : ((x + h) - x) / h = 1 := by
+  have : (x + h) - x = h := by omega
+  rw [this]
+  exact Int.ediv_self hh
+
 /--
 The degree-3 piece of a product of two integer series.
 The Todd class of a variety has rational coefficients, and there is no
