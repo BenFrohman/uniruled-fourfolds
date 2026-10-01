@@ -462,6 +462,29 @@ theorem nat_ge_not_wellFounded : ¬ WellFounded (fun a b : Nat => b ≤ a) := by
   intro h
   exact acc_irrefl (h.apply 0) (Nat.le_refl 0)
 
+def IsPolynomialTimeBounded (f : Nat → Nat) : Prop :=
+  ∃ k : Nat, ∀ n : Nat, f n ≤ n ^ k + k
+
+/-- The draft sets both machine predicates to `True`, so they do not mention a machine. -/
+def VacuousTime (_L : List Bool → Prop) (_f : Nat → Nat) : Prop := True
+
+theorem zero_is_poly : IsPolynomialTimeBounded (fun _ : Nat => 0) := by
+  refine ⟨1, ?_⟩
+  intro n
+  exact Nat.zero_le _
+
+theorem vacuous_class_nonempty (L : List Bool → Prop) :
+    ∃ f : Nat → Nat, IsPolynomialTimeBounded f ∧ VacuousTime L f := by
+  exact ⟨fun _ => 0, zero_is_poly, trivial⟩
+
+theorem vacuous_separation_false :
+    ¬ ∃ L : List Bool → Prop,
+        (∃ f, IsPolynomialTimeBounded f ∧ VacuousTime L f) ∧
+        ¬ (∃ g, IsPolynomialTimeBounded g ∧ VacuousTime L g) := by
+  intro h
+  obtain ⟨_L, hyes, hno⟩ := h
+  exact hno hyes
+
 /--
 The degree-3 piece of a product of two integer series.
 The Todd class of a variety has rational coefficients, and there is no

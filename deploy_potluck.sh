@@ -27,5 +27,6 @@ python3 potluck/finding_mod_spectral_map_002.py
 python3 potluck/finding_mod_nmf_factor_003.py
 python3 potluck/finding_mod_navier_stokes_007.py
 python3 potluck/finding_mod_navier_stokes_pressure_010.py
+python3 potluck/finding_mod_sat_phase_transition_012.py
 
 echo "[done] numerical modules finished"
