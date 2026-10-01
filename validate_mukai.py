@@ -82,6 +82,20 @@ def main() -> int:
     for label, row in zip(labels, gram):
         lines.append("| " + label + " | " + " | ".join(str(val) for val in row) + " |")
     print("\n".join(lines))
+    # det of the Gram matrix of (1,0,0), (0,1,0), (0,0,1)
+    b0, b2, b4 = (1, 0, 0), (0, 1, 0), (0, 0, 1)
+    rows = [
+        [mukai_pairing(b0, b0), mukai_pairing(b0, b2), mukai_pairing(b0, b4)],
+        [mukai_pairing(b2, b0), mukai_pairing(b2, b2), mukai_pairing(b2, b4)],
+        [mukai_pairing(b4, b0), mukai_pairing(b4, b2), mukai_pairing(b4, b4)],
+    ]
+    a, b, c = rows[0]
+    d, e, f = rows[1]
+    g, h, i = rows[2]
+    det = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g)
+    ok = det == -1
+    print(f"{'ok' if ok else 'FAIL'} coordinate gram det {det} (expected -1)")
+    failed = failed or not ok
     return 1 if failed else 0
 
 

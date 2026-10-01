@@ -45,6 +45,22 @@ def vectorTwoOneNegTwo : MukaiVector := { v0 := 2, v2 := 1, v4 := -2 }
 /-- The triple (1, 1, 0). Not an exceptional object of a derived category. -/
 def vectorOneOneZero : MukaiVector := { v0 := 1, v2 := 1, v4 := 0 }
 
+def basisV0 : MukaiVector := { v0 := 1, v2 := 0, v4 := 0 }
+def basisV4 : MukaiVector := { v0 := 0, v2 := 0, v4 := 1 }
+
+/-- Determinant of the 3×3 Gram matrix of three vectors. -/
+def gramDet (u v w : MukaiVector) : Int :=
+  let a := mukaiPairing u u
+  let b := mukaiPairing u v
+  let c := mukaiPairing u w
+  let d := mukaiPairing v u
+  let e := mukaiPairing v v
+  let f := mukaiPairing v w
+  let g := mukaiPairing w u
+  let h := mukaiPairing w v
+  let i := mukaiPairing w w
+  a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g)
+
 /--
 Squares equal to 1 and one pairing equal to 0. This is a boolean on two
 integer triples. It is not the definition of an exceptional collection.
@@ -97,6 +113,14 @@ theorem cert_chern_recipe_hits_k3 :
     chernRecipe 1 0 1 1 = vectorK3 := by
   unfold chernRecipe vectorK3
   rfl
+
+/--
+The Gram matrix of the coordinate basis `(1,0,0)`, `(0,1,0)`, `(0,0,1)`
+has determinant `-1`. The form is nondegenerate. It is not positive definite:
+`(1,0,-1)` has square `2` and `(1,0,1)` has square `-2`.
+-/
+theorem cert_coordinate_gram_det :
+    gramDet basisV0 vectorSurface basisV4 = -1 := by decide
 
 theorem cert_transverse_norm : mukaiSquareNorm vectorTransverse = 4 := by decide
 theorem cert_transverse_primitive : isPrimitive vectorTransverse = true := by decide

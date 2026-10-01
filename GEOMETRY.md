@@ -27,3 +27,5 @@ The boolean `squaresOneAndPairingZero` requires two squares equal to 1 and one p
 | `(1, 0, -1)` | 2 | 4 | 0 |
 | `(2, 1, -2)` | 4 | 9 | 1 |
 | `(0, 1, 0)` | 0 | 1 | 1 |
+
+On the coordinate basis `(1,0,0)`, `(0,1,0)`, `(0,0,1)`, the same form has Gram determinant `-1`. That is `cert_coordinate_gram_det`. The form is not positive definite: the square of `(1,0,-1)` is `2` and the square of `(1,0,1)` is `-2`. A free \(\mathbb{Z}\)-module of rank 3 does not, by itself, carry this number. No semicircle in the \((\beta, \alpha)\)-plane is determined by these triples.
