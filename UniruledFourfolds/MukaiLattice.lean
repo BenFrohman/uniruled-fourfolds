@@ -632,11 +632,11 @@ theorem theta_does_not_preserve_sign :
     (∃ C, ∀ _n : Nat, Int.natAbs (1 : Int) ≤ C * Int.natAbs (-1)) ∧
     (∃ C, ∀ _n : Nat, Int.natAbs (-1) ≤ C * Int.natAbs (1 : Int)) ∧
     (∀ _n : Nat, (0 : Int) ≤ 1) ∧
-    ¬ (∀ n : Nat, (0 : Int) ≤ -1) := by
+    ¬ (∀ _n : Nat, (0 : Int) ≤ -1) := by
   refine ⟨⟨1, ?_⟩, ⟨1, ?_⟩, ?_, ?_⟩
-  · intro n; decide
-  · intro n; decide
-  · intro n; decide
+  · intro _; decide
+  · intro _; decide
+  · intro _; decide
   · intro h
     have h0 : (0 : Int) ≤ -1 := h 0
     omega
