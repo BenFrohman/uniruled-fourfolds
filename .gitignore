@@ -5,3 +5,8 @@
 *.ilean
 .DS_Store
 plots/out/
+.venv/
+potluck/*.npz
+potluck/potluck_manifest.json
+*.h5
+
