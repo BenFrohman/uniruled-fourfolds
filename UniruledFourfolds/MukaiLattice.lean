@@ -349,6 +349,19 @@ theorem cubic_anticanonical :
 theorem quintic_anticanonical :
     -quinticThreefoldNumbers.canonical = 0 := by decide
 
+/--
+The degree-3 piece of a product of two integer series.
+The Todd class of a variety has rational coefficients, and there is no
+pushforward here, so this is not the Grothendieck–Riemann–Roch theorem.
+-/
+def chernToddDegree3 (ch0 ch1 ch2 ch3 td0 td1 td2 td3 : Int) : Int :=
+  ch3 * td0 + ch2 * td1 + ch1 * td2 + ch0 * td3
+
+theorem degree3_when_higher_todd_vanishes (ch0 ch1 ch2 ch3 : Int) :
+    chernToddDegree3 ch0 ch1 ch2 ch3 1 0 0 0 = ch3 := by
+  unfold chernToddDegree3
+  simp [Int.mul_one, Int.mul_zero, Int.add_zero]
+
 def main : IO Unit := do
   IO.println s!"(1, 0, -1) square {mukaiSquareNorm vectorK3} primitive {isPrimitive vectorK3}"
   IO.println s!"(2, 0, -1) square {mukaiSquareNorm vectorTransverse} primitive {isPrimitive vectorTransverse}"
