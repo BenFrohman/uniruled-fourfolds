@@ -451,6 +451,17 @@ theorem cubic_anticanonical :
 theorem quintic_anticanonical :
     -quinticThreefoldNumbers.canonical = 0 := by decide
 
+/-- A reflexive relation is not well-founded: `a` related to `a` blocks accessibility. -/
+theorem acc_irrefl {α : Type} {r : α → α → Prop} {a : α} (h : Acc r a) : ¬ r a a := by
+  induction h with
+  | intro x _ ih =>
+    intro hxx
+    exact ih x hxx hxx
+
+theorem nat_ge_not_wellFounded : ¬ WellFounded (fun a b : Nat => b ≤ a) := by
+  intro h
+  exact acc_irrefl (h.apply 0) (Nat.le_refl 0)
+
 /--
 The degree-3 piece of a product of two integer series.
 The Todd class of a variety has rational coefficients, and there is no

@@ -386,6 +386,19 @@ def fig_tau_slice():
     save(fig, "tau_slice.png")
 
 
+def fig_tau_relaxation():
+    beta = np.linspace(-2.0, 2.0, 400)
+    fig, ax = plt.subplots(figsize=(10, 6))
+    for tau in (1.0, 5.0, 20.0, 100.0):
+        alpha = np.sqrt(1 + beta**2) + np.sin(tau * beta) / (tau + 0.1)
+        ax.plot(beta, alpha, label=f"tau={tau}")
+    ax.set_title(r"formula: $\sqrt{1+\beta^2}+\sin(\tau\beta)/(\tau+0.1)$; the limit is a hyperbola")
+    ax.set_ylim(0.5, 3.0)
+    ax.legend()
+    ax.grid(True, linestyle=":")
+    save(fig, "tau_relaxation.png")
+
+
 def main():
     fig_ch3_surface()
     fig_ch3_slice()
@@ -404,6 +417,7 @@ def main():
     fig_five_orbits()
     fig_hyper_orbits()
     fig_tau_slice()
+    fig_tau_relaxation()
     return 0
 
 
