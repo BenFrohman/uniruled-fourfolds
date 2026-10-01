@@ -45,3 +45,5 @@ Equating \(\nu(E)=\nu(F)\) for \(E=(2,0,-1)\) and the three classes \(F=(1,-1,0)
 namely \(-\tfrac12\), \(-\tfrac34\), and \(\tfrac12\). Completing the square gives squared radii \(-\tfrac34\), \(-\tfrac{7}{16}\), and \(-\tfrac34\). Those loci do not meet the half-plane \(\alpha>0\). The square-root expression \(\sqrt{\lvert \mathrm{center}^2+2(s_F/r_F-s_E/r_E)\rvert}\) is a different, positive number, and it is not this radius.
 
 For the same rank and first Chern numbers, \(\mu(F)>\mu(E)\) with positive ranks is the integer inequality \(c_F r_E>c_E r_F\). For \(E=(2,0)\) and \(F=(1,-1)\) that is \(-2>0\), which is false, and the opposite inequality holds. That comparison does not use \(\mathrm{ch}_2\). It is not \(\chi(E(mH))\). A fourfold Hilbert polynomial has degree 4 and needs \(H\) and \(\mathrm{td}(X)\).
+
+If \(c=0\), \(r\ge 0\), and \(s\le 0\), then \(c^2-2rs\ge 0\). That is `disc_nonneg_of_vanishing_ch1`. The product \(c^2\) is not an intersection number, and a nonnegative value is not Bogomolov–Gieseker stability.

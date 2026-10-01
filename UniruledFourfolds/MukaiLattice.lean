@@ -263,6 +263,25 @@ theorem parent_higher_slope : higherSlope slopeParent slopeSub := by
   unfold higherSlope slopeParent slopeSub
   exact ⟨by decide, by decide, by decide⟩
 
+/--
+If `ch1 = 0`, `ch0 ≥ 0`, and `ch2 ≤ 0`, then `ch1^2 - 2 ch0 ch2 ≥ 0`.
+This is an integer sign check. It is not the Bogomolov–Gieseker theorem:
+nonnegative discriminant does not mean a sheaf is stable, and `ch1^2`
+here is a product of integers, not an intersection number.
+-/
+theorem disc_nonneg_of_vanishing_ch1
+    (ch0 ch1 ch2 : Int) (hc1 : ch1 = 0) (hr : 0 ≤ ch0) (hs : ch2 ≤ 0) :
+    ch1 * ch1 - 2 * ch0 * ch2 ≥ 0 := by
+  rw [hc1]
+  have hneg : 0 ≤ -ch2 := Int.neg_nonneg_of_nonpos hs
+  have hprod : 0 ≤ ch0 * -ch2 := Int.mul_nonneg hr hneg
+  have htwo : (0 : Int) ≤ 2 := by decide
+  have hscaled : 0 ≤ 2 * (ch0 * -ch2) := Int.mul_nonneg htwo hprod
+  have heq : (0 : Int) * 0 - 2 * ch0 * ch2 = 2 * (ch0 * -ch2) := by
+    rw [Int.mul_zero, Int.zero_sub, Int.neg_mul_eq_mul_neg, ← Int.mul_assoc]
+  rw [heq]
+  exact hscaled
+
 def main : IO Unit := do
   IO.println s!"(1, 0, -1) square {mukaiSquareNorm vectorK3} primitive {isPrimitive vectorK3}"
   IO.println s!"(2, 0, -1) square {mukaiSquareNorm vectorTransverse} primitive {isPrimitive vectorTransverse}"
