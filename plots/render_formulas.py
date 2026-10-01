@@ -367,6 +367,25 @@ def fig_hyper_orbits():
     save(fig, "hyper_orbits.png")
 
 
+def fig_tau_slice():
+    rng = np.random.default_rng(42)
+    n = 4000
+    b = rng.uniform(-2.5, 1.5, n)
+    a = rng.uniform(0.05, 2.5, n)
+    t = np.sin(3 * b) * np.cos(2 * a) + rng.normal(0, 0.05, n)
+    mask = np.abs(t - 0.25) < 0.08
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sc = ax.scatter(b[mask], a[mask], c=t[mask], cmap="plasma", s=20)
+    fig.colorbar(sc, ax=ax, label=r"$\tau$")
+    ax.set_title(r"formula: $\sin(3\beta)\cos(2\alpha)$ plus noise, sliced at $0.25\pm 0.08$")
+    ax.set_xlabel(r"$\beta$")
+    ax.set_ylabel(r"$\alpha$")
+    ax.set_xlim(-2.5, 1.5)
+    ax.set_ylim(0.05, 2.5)
+    ax.grid(True, linestyle=":")
+    save(fig, "tau_slice.png")
+
+
 def main():
     fig_ch3_surface()
     fig_ch3_slice()
@@ -384,6 +403,7 @@ def main():
     fig_one_orbit()
     fig_five_orbits()
     fig_hyper_orbits()
+    fig_tau_slice()
     return 0
 
 
