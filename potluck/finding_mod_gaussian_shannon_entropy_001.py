@@ -31,8 +31,11 @@ def main():
     np.savez_compressed(path, entropy=entropy, gradient_sum=grad_sum)
     print(f"wrote {path}")
     print(f"grid spacing {axis[1] - axis[0]:.6f}")
-    print(f"shannon {entropy[0]:.6f} -> {entropy[-1]:.6f}")
-    print(f"index-gradient sum {grad_sum[0]:.6e} -> {grad_sum[-1]:.6e}")
+    print(f"shannon {entropy[0]:.6f} -> {entropy[len(entropy) // 2]:.6f} -> {entropy[-1]:.6f}")
+    print(
+        f"index-gradient sum {grad_sum[0]:.6e} -> "
+        f"{grad_sum[len(grad_sum) // 2]:.6e} -> {grad_sum[-1]:.6e}"
+    )
 
 
 if __name__ == "__main__":

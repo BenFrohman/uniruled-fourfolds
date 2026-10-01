@@ -650,6 +650,10 @@ theorem id_slope (x h : Int) (hh : h ≠ 0) : ((x + h) - x) / h = 1 := by
   rw [this]
   exact Int.ediv_self hh
 
+theorem id_difference_quotient_rat (x h : Rat) (hh : h ≠ 0) :
+    ((x + h) - x) / h = 1 := by
+  grind
+
 /--
 The degree-3 piece of a product of two integer series.
 The Todd class of a variety has rational coefficients, and there is no
