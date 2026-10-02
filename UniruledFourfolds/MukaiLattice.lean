@@ -650,6 +650,9 @@ theorem id_slope (x h : Int) (hh : h ≠ 0) : ((x + h) - x) / h = 1 := by
   rw [this]
   exact Int.ediv_self hh
 
+theorem nat_offset_sub_self (x h : Nat) : (x + h) - x = h :=
+  Nat.add_sub_cancel_left x h
+
 theorem id_difference_quotient_rat (x h : Rat) (hh : h ≠ 0) :
     ((x + h) - x) / h = 1 := by
   grind
