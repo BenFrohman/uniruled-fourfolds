@@ -1,4 +1,4 @@
-# Copyright (c) 2026 Benjamin Frohman (GitHub: BenFrohman). MIT License.
+# Copyright (c) 2026 Benjamin Stanley Frohman (GitHub: BenFrohman). Apache License, Version 2.0.
 """A moving Gaussian with a phase. Not a quantum Hall state.
 
 The curvature expression is not integrated to a Chern number.

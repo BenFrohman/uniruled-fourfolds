@@ -1,4 +1,4 @@
-# Copyright (c) 2026 Benjamin Frohman (GitHub: BenFrohman). MIT License.
+# Copyright (c) 2026 Benjamin Stanley Frohman (GitHub: BenFrohman). Apache License, Version 2.0.
 """Integrate the damped driven Duffing equation and record the run.
 
 The path is not a cubic fourfold. The quantity a^2/2 - b^2/2 + b^4/4 is

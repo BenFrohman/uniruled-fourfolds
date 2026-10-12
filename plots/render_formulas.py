@@ -1,4 +1,4 @@
-# Copyright (c) 2026 Benjamin Frohman (GitHub: BenFrohman). MIT License.
+# Copyright (c) 2026 Benjamin Stanley Frohman (GitHub: BenFrohman). Apache License, Version 2.0.
 """Draw the submitted formulas and save PNG files.
 
 A green run of this file is not a stability wall, a Harder-Narasimhan

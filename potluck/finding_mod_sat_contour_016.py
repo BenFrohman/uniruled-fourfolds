@@ -1,4 +1,4 @@
-# Copyright (c) 2026 Benjamin Frohman (GitHub: BenFrohman). MIT License.
+# Copyright (c) 2026 Benjamin Stanley Frohman (GitHub: BenFrohman). Apache License, Version 2.0.
 """Evaluate the drafted threshold curve. It is not a SAT count.
 
 At k=5 the expression equals 26.78, not 21.11. The grid is a sigmoid

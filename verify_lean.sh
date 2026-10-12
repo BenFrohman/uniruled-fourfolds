@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2026 Benjamin Frohman. MIT License.
+# Copyright (c) 2026 Benjamin Stanley Frohman. Apache License, Version 2.0.
 # Typecheck MukaiLattice.lean and require main to print the proved table.
 # This does not check Blueprint.lean and does not bear on the Hodge conjecture.
 

@@ -1,4 +1,4 @@
-# Copyright (c) 2026 Benjamin Frohman (GitHub: BenFrohman). MIT License.
+# Copyright (c) 2026 Benjamin Stanley Frohman (GitHub: BenFrohman). Apache License, Version 2.0.
 """Binary entropy of the drafted sigmoid. It is not a SAT distribution.
 
 H(1/2)=1. The pasted source has its newlines removed, so that text

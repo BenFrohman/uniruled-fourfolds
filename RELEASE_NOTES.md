@@ -1,6 +1,6 @@
 # What the four vectors are
 
-Copyright (c) 2026 Benjamin Frohman. MIT License. See LICENSE.
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache License, Version 2.0. See LICENSE.
 
 This is not a v1.0.1 release, and it is not a computation in \(K_0(\mathcal{A}_X)\). The repository pins `leanprover/lean4:v4.34.1` in `lean-toolchain`. It does not target Lean 4.11.0.
 

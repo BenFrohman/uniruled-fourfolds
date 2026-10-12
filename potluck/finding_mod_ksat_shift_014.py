@@ -1,4 +1,4 @@
-# Copyright (c) 2026 Benjamin Frohman (GitHub: BenFrohman). MIT License.
+# Copyright (c) 2026 Benjamin Stanley Frohman (GitHub: BenFrohman). Apache License, Version 2.0.
 """Evaluate the drafted probability formula. It does not build clauses.
 
 The pasted module also contains the syntax error `for k in:`, so that

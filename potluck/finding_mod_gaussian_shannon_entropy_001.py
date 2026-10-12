@@ -1,4 +1,4 @@
-# Copyright (c) 2026 Benjamin Frohman (GitHub: BenFrohman). MIT License.
+# Copyright (c) 2026 Benjamin Stanley Frohman (GitHub: BenFrohman). Apache License, Version 2.0.
 """Shannon entropy of a discrete Gaussian translated on a fixed grid.
 
 np.gradient uses index spacing 1. The grid spacing is 10/39.

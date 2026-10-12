@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 Benjamin Frohman. MIT License.
+# Copyright (c) 2026 Benjamin Stanley Frohman. Apache License, Version 2.0.
 """Cross-check the four Mukai rows proved in MukaiLattice.lean.
 
 Square is v2^2 - 2*v0*v4. Primitive means gcd(|v0|, |v2|, |v4|) == 1.

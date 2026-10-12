@@ -1,4 +1,4 @@
-# Copyright (c) 2026 Benjamin Frohman (GitHub: BenFrohman). MIT License.
+# Copyright (c) 2026 Benjamin Stanley Frohman (GitHub: BenFrohman). Apache License, Version 2.0.
 """The submitted pressure iteration, measured against a discrete Laplacian.
 
 Five sweeps of averaging the previous pressure and subtracting

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2026 Benjamin Frohman (GitHub: BenFrohman). MIT License.
+# Copyright (c) 2026 Benjamin Stanley Frohman (GitHub: BenFrohman). Apache License, Version 2.0.
 # Runs the three numerical modules. This host is not macOS and has no
 # PostgreSQL. A database write happens only inside a module when
 # STABILITY_DB_URI is set. Exiting zero is not a proof.

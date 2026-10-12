@@ -1,6 +1,6 @@
 # What this arithmetic is not
 
-Copyright (c) 2026 Benjamin Frohman. MIT License. See LICENSE.
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache License, Version 2.0. See LICENSE.
 
 `UniruledFourfolds/MukaiLattice.lean` computes a bilinear form on \(\mathbb{Z}^3\):
 
