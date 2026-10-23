@@ -1,5 +1,9 @@
 /-
-Copyright (c) 2026 Benjamin Stanley Frohman. Apache License, Version 2.0.
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+/-
 See LICENSE in the repository root.
 
 Conditional sketch for uniruled complex projective fourfolds.
