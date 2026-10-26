@@ -1,0 +1,125 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
+
+\title{\textbf{Uniruled Fourfolds and Mukai Lattice Cycle Reductions in Lean 4: Conditional Cycle-Class Frameworks}}
+\author{Benjamin Stanley Frohman\\
+\small ORCID: \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718} \quad|\quad
+GitHub: \href{https://github.com/BenFrohman/uniruled-fourfolds}{\texttt{BenFrohman/uniruled-fourfolds}}\\
+\small Dedicated 1-to-1 Zenodo DOI: \href{https://doi.org/10.5281/zenodo.23652974}{\texttt{10.5281/zenodo.23652974}}}
+\date{Earliest Commit Provenance: 2026-10-01 04:51:29 PM CDT (UTC-5)\\
+Siloed Archival Edition: October 25, 2026 (America/Chicago CDT)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Standalone Lean 4 formalization (`UniruledFourfolds.lean`, `UniruledFourfolds/Blueprint.lean`, `UniruledFourfolds/MukaiLattice.lean`) and Python Mukai lattice signature/discriminant calculator (`scripts/mukai\_lattice\_calc.py`) for conditional cycle-class reductions on smooth projective uniruled fourfolds. Formalizes how middle Hodge classes reduce under cylinder/correspondence maps when a uniruled parametrization hypothesis holds.
+\end{abstract}
+
+\section{Scope, Scientific Honesty, and Non-Claim Boundary}
+All cycle-class surjectivity deductions in this repository are conditional on explicit geometric correspondence hypotheses; this repository does not claim an unconditional proof of any open Hodge surjectivity conjecture.
+
+\begin{itemize}
+  \item \textbf{Repository:} \texttt{https://github.com/BenFrohman/uniruled-fourfolds}
+  \item \textbf{Dedicated 1-to-1 Zenodo DOI:} \texttt{10.5281/zenodo.23652974}
+  \item \textbf{Earliest Git Commit SHA:} \texttt{18b62b11b26338ecab62426eaf4844cc57e8353b} (2026-10-01 04:51:29 PM CDT (UTC-5))
+  \item \textbf{License \& Copyright:} Copyright \textcopyright\ 2026 Benjamin Stanley Frohman. Licensed under the Apache License, Version 2.0.
+\end{itemize}
+
+\section{Technical Overview \& Repository Specification}
+Copyright (c) 2026 Benjamin Stanley Frohman.
+
+Author: Benjamin Stanley Frohman (GitHub: BenFrohman).
+
+License: [Apache-2.0](LICENSE). Copies must keep the copyright notice and the permission notice.
+
+**The Clay Mathematics Institute Hodge conjecture is open. This repository does not resolve it.**
+
+What the literature already contains, and what this repository does not formalize, is recorded in [docs/special-cases.md](docs/special-cases.md). Short form:
+
+| Statement | Status |
+
+|---|---|
+
+| Hodge conjecture for a general smooth complex projective variety | **Open.** |
+
+| Rational Hodge conjecture for fourfolds covered by rational curves | **Theorem** of Conte–Murre, Math. Ann. **238** (1978). Not proved in this repository. |
+
+| Smooth cubic fourfolds | **Theorem** of Zucker, Compositio Math. **34** (1977). They are also Fano, so Conte–Murre applies. |
+
+| Smooth complex Fano fourfolds | **Corollary** of Conte–Murre plus Kollár–Miyaoka–Mori, J. Diff. Geom. **36** (1992). Not a case beyond uniruled fourfolds. |
+
+| Rationality of a general cubic fourfold, Kuznetsov's conjecture | **Open.** |
+
+The uniruled reduction uses a rational curve through a general point. It stops there. It is not a route to the general fourfold.
+
+`Blueprint.lean` is a conditional sketch: *if* a Bloch–Srinivas package is supplied for a uniruled fourfold, the file *states* that codimension-2 cycle-class surjectivity would reduce to the classical Lefschetz theorem on (1,1)-classes on a threefold. The proof is `sorry`. Elaborating the file only checks that the statement is well-formed.
+
+`MukaiLattice.lean` defines the integer form
+
+\textbackslash\{\}[
+
+\textbackslash\{\}langle v, v \textbackslash\{\}rangle = v\_2\textasciicircum{}2 - 2 v\_0 v\_4, \textbackslash\{\}qquad \textbackslash\{\}text\{primitive\} \textbackslash\{\}iff \textbackslash\{\}gcd(|v\_0|, |v\_2|, |v\_4|) = 1
+
+\textbackslash\{\}]
+
+\section{Cryptographic Provenance \& File Inventory}
+Every source artifact in \texttt{BenFrohman/uniruled-fourfolds} is audited via \texttt{titan-audit}
+(\texttt{audit/TITAN\_AUDIT\_CERTIFICATE.json}) and sealed under a deterministic SHA-256 Merkle tree via
+\texttt{sealguard} (\texttt{PROVENANCE\_MERKLE\_ROOT.json}) signed with Ed25519 key fingerprint
+\texttt{b428fb72676f1c52}.
+
+\begin{center}
+\small
+\begin{tabular}{p{0.52\textwidth}rr}
+\toprule
+\textbf{Repository Path} & \textbf{Size} & \textbf{SHA-256 Prefix} \\
+\midrule
+\texttt{.github/ISSUE\_TEMPLATE/peer\_review.md} & 782 B & \texttt{5f631a14dc34eac3...} \\
+\texttt{.github/workflows/verify.yml} & 1183 B & \texttt{352bc80124ce57e0...} \\
+\texttt{.gitignore} & 205 B & \texttt{9b49bb8918dfc2a6...} \\
+\texttt{COPYRIGHT} & 273 B & \texttt{6090f1609bc4aa06...} \\
+\texttt{GEOMETRY.md} & 15556 B & \texttt{21a7d3f8dd690bbb...} \\
+\texttt{LICENSE} & 11355 B & \texttt{9da72c2bee4f20ba...} \\
+\texttt{NOTICE} & 485 B & \texttt{db024313d28bb067...} \\
+\texttt{README.md} & 4954 B & \texttt{810976598544dc50...} \\
+\texttt{RELEASES.md} & 1294 B & \texttt{ac033062c1d4633a...} \\
+\texttt{RELEASE\_NOTES.md} & 1984 B & \texttt{272a88719103d22b...} \\
+\texttt{UniruledFourfolds/Blueprint.lean} & 2831 B & \texttt{32254baf297f4cf5...} \\
+\texttt{UniruledFourfolds/MukaiLattice.lean} & 26313 B & \texttt{631233c45cf3ab94...} \\
+\texttt{deploy\_potluck.sh} & 1367 B & \texttt{ae18cf897a90c640...} \\
+\texttt{docs/special-cases.md} & 7354 B & \texttt{61fcbbca0a53402b...} \\
+\texttt{lake-manifest.json} & 154 B & \texttt{f74dbc7f897503a6...} \\
+\texttt{lakefile.lean} & 666 B & \texttt{e088462a2c63308f...} \\
+\texttt{lean-toolchain} & 25 B & \texttt{d5edba4e4b8faad9...} \\
+\texttt{plots/render\_formulas.py} & 16937 B & \texttt{b358af22bf95d7b7...} \\
+\texttt{potluck/finding\_mod\_gaussian\_shannon\_entropy\_001.py} & 1518 B & \texttt{9a2b1f88cd78a83c...} \\
+\texttt{potluck/finding\_mod\_grand\_finale\_999.py} & 1869 B & \texttt{71a6d19b18ad02b4...} \\
+\texttt{potluck/finding\_mod\_ksat\_shift\_014.py} & 1341 B & \texttt{87c7572da9db5958...} \\
+\texttt{potluck/finding\_mod\_navier\_stokes\_007.py} & 2881 B & \texttt{8c5a16f66840156d...} \\
+\texttt{potluck/finding\_mod\_navier\_stokes\_pressure\_010.py} & 3689 B & \texttt{f002959ece6fcfd4...} \\
+\texttt{potluck/finding\_mod\_nmf\_factor\_003.py} & 2538 B & \texttt{9a2e3f49772cd2bb...} \\
+\texttt{potluck/finding\_mod\_sat\_contour\_016.py} & 991 B & \texttt{2288e0f6fdecde34...} \\
+\texttt{potluck/finding\_mod\_sat\_entropy\_020.py} & 1376 B & \texttt{f3c482adc82e206c...} \\
+\texttt{potluck/finding\_mod\_sat\_phase\_transition\_012.py} & 2208 B & \texttt{c58c3de5e59681ac...} \\
+\texttt{potluck/finding\_mod\_sat\_wireframe\_018.py} & 728 B & \texttt{8393c9d79e0b9c07...} \\
+\texttt{potluck/finding\_mod\_spectral\_map\_002.py} & 2929 B & \texttt{9d2a7ab6b0a0a49e...} \\
+\texttt{potluck/sync\_manifest.py} & 3454 B & \texttt{449675f78065697d...} \\
+\texttt{scripts/pre-commit} & 1076 B & \texttt{e9b21c0ad9afb183...} \\
+\texttt{scripts/pre-push} & 540 B & \texttt{3cdbc6e44a570d83...} \\
+\texttt{validate\_mukai.py} & 6552 B & \texttt{de91900884db478b...} \\
+\texttt{verify\_lean.sh} & 890 B & \texttt{e191c4ef992a1738...} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vfill
+\noindent\rule{\textwidth}{0.4pt}\\
+\footnotesize
+\textbf{Attribution \& Licensing Notice:} Copyright \textcopyright\ 2026 Benjamin Stanley Frohman (ORCID: \texttt{0009-0006-7068-3718}).
+Licensed under the Apache License, Version 2.0.
+\end{document}

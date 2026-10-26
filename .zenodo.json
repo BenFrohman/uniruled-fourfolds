@@ -1,0 +1,28 @@
+{
+  "title": "Uniruled Fourfolds and Mukai Lattice Cycle Reductions in Lean 4: Conditional Cycle-Class Frameworks",
+  "upload_type": "software",
+  "description": "Standalone Lean 4 formalization (`UniruledFourfolds.lean`, `UniruledFourfolds/Blueprint.lean`, `UniruledFourfolds/MukaiLattice.lean`) and Python Mukai lattice signature/discriminant calculator (`scripts/mukai_lattice_calc.py`) for conditional cycle-class reductions on smooth projective uniruled fourfolds. Formalizes how middle Hodge classes reduce under cylinder/correspondence maps when a uniruled parametrization hypothesis holds. All cycle-class surjectivity deductions in this repository are conditional on explicit geometric correspondence hypotheses; this repository does not claim an unconditional proof of any open Hodge surjectivity conjecture. Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under the Apache License, Version 2.0.",
+  "creators": [
+    {
+      "name": "Frohman, Benjamin Stanley",
+      "orcid": "0009-0006-7068-3718"
+    }
+  ],
+  "license": "Apache-2.0",
+  "access_right": "open",
+  "keywords": [
+    "Lean 4",
+    "Uniruled fourfolds",
+    "Mukai lattice",
+    "Cycle class map",
+    "Hodge structures",
+    "Algebraic geometry"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/BenFrohman/uniruled-fourfolds",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

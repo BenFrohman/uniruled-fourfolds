@@ -1,14 +1,13 @@
 uniruled-fourfolds
-Copyright 2026 Benjamin Stanley Frohman
+Copyright (c) 2026 Benjamin Stanley Frohman
 
-Author: Benjamin Stanley Frohman <frohmanbenjamin@gmail.com>
-ORCID: https://orcid.org/0009-0006-7068-3718
-GitHub: https://github.com/BenFrohman
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-As of this commit, this repository is offered under the Apache License, Version 2.0.
-See LICENSE.
+    http://www.apache.org/licenses/LICENSE-2.0
 
-Copies already received under the MIT License keep that grant.
-This commit does not revoke it.
-
-Conte and Murre, and other cited authors, are not relicensed and are not co-authors.
+Author: Benjamin Stanley Frohman (ORCID: https://orcid.org/0009-0006-7068-3718)
+Repository: https://github.com/BenFrohman/uniruled-fourfolds
+Dedicated 1-to-1 Zenodo DOI: https://doi.org/10.5281/zenodo.23652974
+Earliest Commit Provenance: 18b62b11b26338ecab62426eaf4844cc57e8353b (2026-10-01 04:51:29 PM CDT (UTC-5))

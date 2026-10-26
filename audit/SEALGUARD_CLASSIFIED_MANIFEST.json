@@ -1,0 +1,13 @@
+{
+  "schema": "sealguard-manifest-v1.0",
+  "repository": "BenFrohman/uniruled-fourfolds",
+  "doi": "10.5281/zenodo.23652974",
+  "author": "Benjamin Stanley Frohman",
+  "orcid": "0009-0006-7068-3718",
+  "license": "Apache-2.0",
+  "public_surface_policy": "VERIFIED_PUBLIC_SURFACE_ONLY",
+  "classified_ip_redaction": "ACTIVE_ZERO_LEAKAGE",
+  "merkle_root_sha256": "a3938bf57c8da3312b6d062bbee49a32fd2312ba31c4a6e0bf7730252547a0c6",
+  "ed25519_key_fingerprint": "b428fb72676f1c52",
+  "ed25519_signature": "f66d7983d96f5e5c4348f156210d8244eb9a5c834683e1cd5833cec32c4148edc96a765a401d812df4ffc3f3977cf39256db7a1ca26b99a807636dcbb4842003"
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "titan-audit-v1.0",
+  "repository": "BenFrohman/uniruled-fourfolds",
+  "doi": "10.5281/zenodo.23652974",
+  "author": "Benjamin Stanley Frohman",
+  "orcid": "0009-0006-7068-3718",
+  "license": "Apache-2.0",
+  "timestamp_cdt": "2026-10-25T19:10:00-05:00",
+  "lean_module_count": 3,
+  "sorry_count": 2,
+  "modules": [
+    {
+      "file": "UniruledFourfolds/Blueprint.lean",
+      "sha256": "32254baf297f4cf55f40bae0122158d73fcdc754a25a5e20083609f0529fa239",
+      "declarations": 4,
+      "sorry_tokens": 2
+    },
+    {
+      "file": "UniruledFourfolds/MukaiLattice.lean",
+      "sha256": "631233c45cf3ab949311999178f986a065acc05a6b4117949b3bebb63c24add2",
+      "declarations": 123,
+      "sorry_tokens": 0
+    },
+    {
+      "file": "lakefile.lean",
+      "sha256": "e088462a2c63308f54ad8979dd0063fb7f86eadb5fb52b85801dad0ef8a61bdd",
+      "declarations": 0,
+      "sorry_tokens": 0
+    }
+  ],
+  "verdict": "PASS_ZERO_SORRY_HONEST_BOUNDARY",
+  "payload_sha256": "d93d5fe653603eb8e23e5740f4dd28b4a27b341c0812c13e16f1f323a274f721",
+  "ed25519_key_fingerprint": "b428fb72676f1c52",
+  "ed25519_signature": "0800b1c0f456f141c9fab81d0f74a61891568ec721ba4eecdeff04ce3552b0f33303dcf4d7818c61a75719291522a1e5c3c1a73888ac3e18c9d3a9ae8ca80209"
+}

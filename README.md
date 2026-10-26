@@ -1,5 +1,7 @@
 # Uniruled fourfolds: conditional cycle reductions and Mukai lattice tools
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23652974.svg)](https://doi.org/10.5281/zenodo.23652974) [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+
 Copyright (c) 2026 Benjamin Stanley Frohman.
 Author: Benjamin Stanley Frohman (GitHub: BenFrohman).
 License: [Apache-2.0](LICENSE). Copies must keep the copyright notice and the permission notice.
@@ -75,3 +77,14 @@ GitHub Actions (`.github/workflows/verify.yml`) runs that build, then `verify_le
 ## Not included
 
 No file here declares the cycle class map surjective for every fourfold. That would assume the Clay problem. The committed `lakefile.lean` does not require Mathlib. A theorem named as a Clay-problem verification for cubic fourfolds is the cubic case, already due to Zucker, and is not a formalization.
+
+---
+## Archival DOI & Cryptographic Provenance
+
+- **Dedicated 1-to-1 Zenodo DOI:** [10.5281/zenodo.23652974](https://doi.org/10.5281/zenodo.23652974)
+- **Author:** Benjamin Stanley Frohman (ORCID: [0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718))
+- **License:** Apache License, Version 2.0 (`Copyright (c) 2026 Benjamin Stanley Frohman`)
+- **Earliest Commit Provenance:** `18b62b11b26338ecab62426eaf4844cc57e8353b` (2026-10-01 04:51:29 PM CDT (UTC-5))
+- **SealGuard SHA-256 Merkle Root:** `a3938bf57c8da3312b6d062bbee49a32fd2312ba31c4a6e0bf7730252547a0c6` (`PROVENANCE_MERKLE_ROOT.json`)
+- **Titan Audit Certificate:** `audit/TITAN_AUDIT_CERTIFICATE.json` (Ed25519 key `b428fb72676f1c52`)
+- **Scope & Scientific Boundary:** All cycle-class surjectivity deductions in this repository are conditional on explicit geometric correspondence hypotheses; this repository does not claim an unconditional proof of any open Hodge surjectivity conjecture.

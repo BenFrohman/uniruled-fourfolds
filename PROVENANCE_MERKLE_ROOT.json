@@ -1,0 +1,215 @@
+{
+  "schema": "sealguard-merkle-provenance-v1.0",
+  "repository": "BenFrohman/uniruled-fourfolds",
+  "doi": "10.5281/zenodo.23652974",
+  "author": "Benjamin Stanley Frohman",
+  "orcid": "0009-0006-7068-3718",
+  "license": "Apache-2.0",
+  "timestamp_cdt": "2026-10-25T19:10:00-05:00",
+  "merkle_root_sha256": "a3938bf57c8da3312b6d062bbee49a32fd2312ba31c4a6e0bf7730252547a0c6",
+  "ed25519_key_fingerprint": "b428fb72676f1c52",
+  "ed25519_signature": "f66d7983d96f5e5c4348f156210d8244eb9a5c834683e1cd5833cec32c4148edc96a765a401d812df4ffc3f3977cf39256db7a1ca26b99a807636dcbb4842003",
+  "leaf_count": 40,
+  "leaves": [
+    {
+      "path": ".github/ISSUE_TEMPLATE/peer_review.md",
+      "sha256": "5f631a14dc34eac32950b1633206e0ba4f0dc308e36b29d210667b544d885076",
+      "bytes": 782
+    },
+    {
+      "path": ".github/workflows/verify.yml",
+      "sha256": "352bc80124ce57e08ab8fc5b4c2cb3ba7b4bdcdd90920c46791b95870208c19b",
+      "bytes": 1183
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "9b49bb8918dfc2a6cc6ff5525783f39f7552b6977a322d4c82555c789db39414",
+      "bytes": 205
+    },
+    {
+      "path": ".zenodo.json",
+      "sha256": "3bbf8d858d8a81448c32016baa5182316d4cea8bd9b99bd897cd3b36f8ac1889",
+      "bytes": 1409
+    },
+    {
+      "path": "AUTHORS.md",
+      "sha256": "1732529c9d516b14378c2ea60b7a29a9dd01385bb5f302efa163c42b3dceb130",
+      "bytes": 320
+    },
+    {
+      "path": "CITATION.cff",
+      "sha256": "5bdd09741a57c6d61deb1c14b03cd12ce58db6cd1725b692ec543efeeb0d1745",
+      "bytes": 603
+    },
+    {
+      "path": "COPYRIGHT",
+      "sha256": "6090f1609bc4aa06495cadd8555e8899498d3a344906c950f339f903d98b2eec",
+      "bytes": 273
+    },
+    {
+      "path": "GEOMETRY.md",
+      "sha256": "21a7d3f8dd690bbbf2f8f059d21afa19fba1cc3b5eb1e1ed68f53288b63baeae",
+      "bytes": 15556
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "ec43eec7417d548fb78a8dc50830f1d854b91a89c2daf0d4e957601515c15e87",
+      "bytes": 10773
+    },
+    {
+      "path": "NOTICE",
+      "sha256": "ef18048450e02b8c732b4c714ee4c58a98720b0af0ba52d66e382e7ec0890e14",
+      "bytes": 598
+    },
+    {
+      "path": "README.md",
+      "sha256": "2d6f85a25b7efe16ba184551eebf73bdb1b1a48728ca141ceb7e7edcfa056d1f",
+      "bytes": 6115
+    },
+    {
+      "path": "RELEASES.md",
+      "sha256": "ac033062c1d4633a40afaa7d5f4d468afc0aeb56713ffabe7a81ecda04f8320e",
+      "bytes": 1294
+    },
+    {
+      "path": "RELEASE_NOTES.md",
+      "sha256": "272a88719103d22b621abef7082d00ce3b87b605a2722870b39eb601990790e3",
+      "bytes": 1984
+    },
+    {
+      "path": "UniruledFourfolds/Blueprint.lean",
+      "sha256": "32254baf297f4cf55f40bae0122158d73fcdc754a25a5e20083609f0529fa239",
+      "bytes": 2831
+    },
+    {
+      "path": "UniruledFourfolds/MukaiLattice.lean",
+      "sha256": "631233c45cf3ab949311999178f986a065acc05a6b4117949b3bebb63c24add2",
+      "bytes": 26313
+    },
+    {
+      "path": "audit/TITAN_AUDIT_CERTIFICATE.json",
+      "sha256": "77bbbe136c7bf4f45c9ed3f847dabbbac285599e3b9d7fd889f75a992ea3ff72",
+      "bytes": 1248
+    },
+    {
+      "path": "deploy_potluck.sh",
+      "sha256": "ae18cf897a90c640833d198d72875b188e5a2a29efc36854dcb709c9feedffd4",
+      "bytes": 1367
+    },
+    {
+      "path": "docs/special-cases.md",
+      "sha256": "61fcbbca0a53402bb6daa2f5addec88b6a59b78d0fcb9daea7f13b2578aa9173",
+      "bytes": 7354
+    },
+    {
+      "path": "lake-manifest.json",
+      "sha256": "f74dbc7f897503a61f1afeab29f946ae9d53fef1b4818e20dbece5b40b35aa20",
+      "bytes": 154
+    },
+    {
+      "path": "lakefile.lean",
+      "sha256": "e088462a2c63308f54ad8979dd0063fb7f86eadb5fb52b85801dad0ef8a61bdd",
+      "bytes": 666
+    },
+    {
+      "path": "lean-toolchain",
+      "sha256": "d5edba4e4b8faad9c1baeadb265716d20d03be4d1a2647dc5e35b0c0325bea7b",
+      "bytes": 25
+    },
+    {
+      "path": "paper/uniruled_fourfolds_Technical_Monograph_2026.pdf",
+      "sha256": "f3419a1d17539a6ab34f91af148c027eae4af3217dab155147ab6425f026b95e",
+      "bytes": 50922
+    },
+    {
+      "path": "paper/uniruled_fourfolds_Technical_Monograph_2026.tex",
+      "sha256": "c9762b4e18b306e8caa6a248a3e5ae8673307fe431d7a67427787a0ceb617d5b",
+      "bytes": 7584
+    },
+    {
+      "path": "plots/render_formulas.py",
+      "sha256": "b358af22bf95d7b75dac62fd23b69af2dd902d7fb5e4484091828ae736926f31",
+      "bytes": 16937
+    },
+    {
+      "path": "potluck/finding_mod_gaussian_shannon_entropy_001.py",
+      "sha256": "9a2b1f88cd78a83c76051f09ed80dbe121966dcefa76199b1708491b67c96495",
+      "bytes": 1518
+    },
+    {
+      "path": "potluck/finding_mod_grand_finale_999.py",
+      "sha256": "71a6d19b18ad02b43bcaedbb3a4599902c1cc6b321e0675c233f4a5d97d580a2",
+      "bytes": 1869
+    },
+    {
+      "path": "potluck/finding_mod_ksat_shift_014.py",
+      "sha256": "87c7572da9db5958004025f228ae05280997ab18c2a81a7b49c5b0777fbc4797",
+      "bytes": 1341
+    },
+    {
+      "path": "potluck/finding_mod_navier_stokes_007.py",
+      "sha256": "8c5a16f66840156d8dddf0131c937f087a06af84cb55c7eed17c1979e4a0b69a",
+      "bytes": 2881
+    },
+    {
+      "path": "potluck/finding_mod_navier_stokes_pressure_010.py",
+      "sha256": "f002959ece6fcfd4c18d577bec6f5ce576239fe848b6e07287bedeb238975b69",
+      "bytes": 3689
+    },
+    {
+      "path": "potluck/finding_mod_nmf_factor_003.py",
+      "sha256": "9a2e3f49772cd2bbe7da737fb1199e549e90fc7717d6c7859f8edeceee8ed2fb",
+      "bytes": 2538
+    },
+    {
+      "path": "potluck/finding_mod_sat_contour_016.py",
+      "sha256": "2288e0f6fdecde343ca5faffbe553a4563606f57984895b27a7113ee6337fa91",
+      "bytes": 991
+    },
+    {
+      "path": "potluck/finding_mod_sat_entropy_020.py",
+      "sha256": "f3c482adc82e206c8d27176b7b1c7344d064163208b86906c151fa591aa22790",
+      "bytes": 1376
+    },
+    {
+      "path": "potluck/finding_mod_sat_phase_transition_012.py",
+      "sha256": "c58c3de5e59681ac412cf4f12189d57bc7a98684ef582241dc8bf7da8ca03934",
+      "bytes": 2208
+    },
+    {
+      "path": "potluck/finding_mod_sat_wireframe_018.py",
+      "sha256": "8393c9d79e0b9c07c725eee3070a73f4daa1e6ba20630fa14a06277677f8e628",
+      "bytes": 728
+    },
+    {
+      "path": "potluck/finding_mod_spectral_map_002.py",
+      "sha256": "9d2a7ab6b0a0a49e3027e51bac2c3f9312f3324fe0bdabfa07732c6ec599592a",
+      "bytes": 2929
+    },
+    {
+      "path": "potluck/sync_manifest.py",
+      "sha256": "449675f78065697dbcc95cc5bc2aff20b044a26b5c9b3618f1b2755e08198483",
+      "bytes": 3454
+    },
+    {
+      "path": "scripts/pre-commit",
+      "sha256": "e9b21c0ad9afb18320b8db1529ca1279e553afa28e152596d5b36fed5a5462ca",
+      "bytes": 1076
+    },
+    {
+      "path": "scripts/pre-push",
+      "sha256": "3cdbc6e44a570d83f5815ba2b702aeda3a7841cf2c8a8d089352e76a50418aa3",
+      "bytes": 540
+    },
+    {
+      "path": "validate_mukai.py",
+      "sha256": "de91900884db478bbf1a8663aa00a29d5532bd507b16856c01832ecc2b96456e",
+      "bytes": 6552
+    },
+    {
+      "path": "verify_lean.sh",
+      "sha256": "e191c4ef992a173827062d885e2c1647ab3f604155b4441a7319062e6b93591a",
+      "bytes": 890
+    }
+  ]
+}
