@@ -1,5 +1,7 @@
 # Uniruled fourfolds: conditional cycle reductions and Mukai lattice tools
 
+[![verify.yml](https://github.com/BenFrohman/uniruled-fourfolds/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/BenFrohman/uniruled-fourfolds/actions/workflows/verify.yml)
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23652974.svg)](https://doi.org/10.5281/zenodo.23652974) [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 Copyright (c) 2026 Benjamin Stanley Frohman.
