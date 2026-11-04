@@ -90,3 +90,9 @@ No file here declares the cycle class map surjective for every fourfold. That wo
 - **SealGuard SHA-256 Merkle Root:** `a3938bf57c8da3312b6d062bbee49a32fd2312ba31c4a6e0bf7730252547a0c6` (`PROVENANCE_MERKLE_ROOT.json`)
 - **Titan Audit Certificate:** `audit/TITAN_AUDIT_CERTIFICATE.json` (Ed25519 key `b428fb72676f1c52`)
 - **Scope & Scientific Boundary:** All cycle-class surjectivity deductions in this repository are conditional on explicit geometric correspondence hypotheses; this repository does not claim an unconditional proof of any open Hodge surjectivity conjecture.
+
+## Zenodo archive
+
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23652973.svg)](https://doi.org/10.5281/zenodo.23652973) Uniruled Fourfolds and Mukai Lattice Cycle Reductions in Lean 4: Conditional Cycle-Class Frameworks — all versions: [10.5281/zenodo.23652973](https://doi.org/10.5281/zenodo.23652973); latest version: [10.5281/zenodo.23652974](https://doi.org/10.5281/zenodo.23652974)
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23632803.svg)](https://doi.org/10.5281/zenodo.23632803) Cohomological Obstructions, Atiyah-Hirzebruch Integral Torsion Differentials, and Conditional Mukai-Lattice Cycle Reductions on Smooth Projective Fourfolds — all versions: [10.5281/zenodo.23632803](https://doi.org/10.5281/zenodo.23632803); latest version: [10.5281/zenodo.23632804](https://doi.org/10.5281/zenodo.23632804)
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23867557.svg)](https://doi.org/10.5281/zenodo.23867557) Uniruled Fourfolds and Mukai Lattice Cycle Reductions in Lean 4: Conditional Cycle-Class Frameworks — all versions: [10.5281/zenodo.23867557](https://doi.org/10.5281/zenodo.23867557); latest version: [10.5281/zenodo.23867558](https://doi.org/10.5281/zenodo.23867558)
