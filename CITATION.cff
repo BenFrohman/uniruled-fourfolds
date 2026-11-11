@@ -4,6 +4,7 @@ title: "Uniruled Fourfolds and Mukai Lattice Cycle Reductions in Lean 4: Conditi
 authors:
   - family-names: "Frohman"
     given-names: "Benjamin Stanley"
+    alias: "B.S. Frohman"
     orcid: "https://orcid.org/0009-0006-7068-3718"
 doi: 10.5281/zenodo.23652974
 url: "https://github.com/BenFrohman/uniruled-fourfolds"
