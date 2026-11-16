@@ -3,6 +3,7 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 GitHub account: BenFrohman.
 See LICENSE in the repository root.
@@ -15,6 +16,12 @@ Integer arithmetic on a rank-3 vector (v0, v2, v4).
 
 The square is the pairing of a vector with itself.
 This file does not state or prove any cycle-class surjectivity claim.
+-/
+
+/-!
+# UniruledFourfolds.MukaiLattice
+
+Machine-checked Lean 4 module.
 -/
 
 structure MukaiVector where
