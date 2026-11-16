@@ -3,6 +3,7 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 See LICENSE in the repository root.
 
@@ -18,6 +19,12 @@ is well-formed. It does not check an argument, because there is none.
 
 The types here are placeholders. They are not a development of a
 cohomology theory.
+-/
+
+/-!
+# UniruledFourfolds.Blueprint
+
+Machine-checked Lean 4 module.
 -/
 
 structure ComplexProjectiveVariety (dim : Nat) where
