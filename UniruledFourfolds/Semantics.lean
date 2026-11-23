@@ -75,8 +75,11 @@ Scope: CONDITIONAL. (L11), (BS), (CL) and (U) are assumptions, not theorems of t
 development; the groups, maps and the uniruledness predicate are uninterpreted fields of
 `CycleClassSetting`. The kernel certifies the implications and the finite-model
 propositions only. Lock written 2026-11-23 under the author's instruction of that day
-(restate the axioms and the sorry as named hypotheses, paper says conditional); the
-transcription text itself awaits the author's review.
+(restate the axioms and the sorry as named hypotheses, paper says conditional). Approval is
+recorded under the author's standing rule of 2026-11-17, 12:55 AM CT (America/Chicago), in his
+words: "my approval auto records as yes if the lean kernel and mathcing paper are aligned and
+all checks pass less the author truth gate". On 2026-11-23 the Truth Gate alignment and every
+other check passed on PR #3 (runs 45265634643, 45265634605, 45265568312, 45265633840).
 -/
 
 namespace UniruledFourfolds.TruthGate
