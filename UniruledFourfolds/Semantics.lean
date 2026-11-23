@@ -80,6 +80,8 @@ recorded under the author's standing rule of 2026-11-17, 12:55 AM CT (America/Ch
 words: "my approval auto records as yes if the lean kernel and mathcing paper are aligned and
 all checks pass less the author truth gate". On 2026-11-23 the Truth Gate alignment and every
 other check passed on PR #3 (runs 45265634643, 45265634605, 45265568312, 45265633840).
+Re-locked to the retitled paper under the same rule after every check passed on PR #5
+(runs 45270613722, 45270613856, 45270573972, 45270613678, 45270574008); no statement changed.
 -/
 
 namespace UniruledFourfolds.TruthGate
