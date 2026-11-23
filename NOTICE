@@ -7,6 +7,11 @@ You may obtain a copy of the License at
 
     http://www.apache.org/licenses/LICENSE-2.0
 
+The paper in paper/ (LaTeX source and PDF) is licensed under the Creative Commons
+Attribution 4.0 International License (CC BY 4.0); see LICENSE-paper. Any use,
+reproduction or redistribution must credit Benjamin Stanley Frohman as the author
+and keep this NOTICE.
+
 Author: Benjamin Stanley Frohman (ORCID: https://orcid.org/0009-0006-7068-3718)
 Repository: https://github.com/BenFrohman/uniruled-fourfolds
 Dedicated 1-to-1 Zenodo DOI: https://doi.org/10.5281/zenodo.23652974
