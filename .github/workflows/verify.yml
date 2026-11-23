@@ -1,8 +1,8 @@
-# Copyright (c) 2026 Benjamin Frohman (GitHub: BenFrohman). MIT License.
+# Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0 (see LICENSE).
 # One runner: elaborate the Lake project, then re-check MukaiLattice.lean
 # and the Python copy of the same four rows.
 # A green run is not a proof of any geometric statement.
-# Blueprint.lean still contains sorry; lake build only warns.
+# Any sorry, admit, native_decide or axiom declaration in a tracked .lean file fails the run.
 
 name: Verify
 
@@ -26,6 +26,12 @@ jobs:
         with:
           build: "true"
           use-mathlib-cache: "false"
+
+      - name: No sorry / admit / native_decide / axiom in any tracked Lean file
+        run: python3 certificates/tools/sorry_scan.py
+
+      - name: No-skip guard
+        run: python3 scripts/check_no_skips.py
 
       - name: Set up Python
         uses: actions/setup-python@v5
