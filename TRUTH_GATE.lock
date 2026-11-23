@@ -3,7 +3,7 @@
   "semantics_module": "UniruledFourfolds.Semantics",
   "audit_file": "scripts/TruthGateAudit.lean",
   "paper_path": "paper/uniruled_fourfolds_Technical_Monograph_2026.tex",
-  "paper_sha256": "7b75721a67768feb2206743128e0a9fb7a460b2c79b596f238757aaeff6bc7c5",
+  "paper_sha256": "189b6e1abf0bcc5f7eeb34ba03180262e220744c32e47d54211c179cae120526",
   "claims": [
     "reduction",
     "uniruled",
@@ -50,5 +50,5 @@
   "certifying": true,
   "scope": "conditional",
   "toolchain": "leanprover/lean4:v4.34.1",
-  "approver": "Benjamin Stanley Frohman: instruction of 2026-11-23 14:03 CT to restate the axioms and the sorry as named hypotheses and say conditional; transcription text not yet separately reviewed"
+  "approver": "Benjamin Stanley Frohman: instruction of 2026-11-23 14:03 CT to restate the axioms and the sorry as named hypotheses and say conditional; approval recorded as yes under his standing rule of 2026-11-17 12:55 AM CT, his words: \"my approval auto records as yes if the lean kernel and mathcing paper are aligned and all checks pass less the author truth gate\"; Truth Gate alignment and every other check passed on PR #3 at 574f266 (runs 45265634643, 45265634605, 45265568312, 45265633840)"
 }

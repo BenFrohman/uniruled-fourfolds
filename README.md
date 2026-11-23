@@ -6,7 +6,7 @@
 
 Copyright (c) 2026 Benjamin Stanley Frohman.
 Author: Benjamin Stanley Frohman (GitHub: BenFrohman).
-License: [Apache-2.0](LICENSE). Copies must keep the copyright notice and the permission notice.
+License: Lean code and scripts [Apache-2.0](LICENSE); the paper in `paper/` (LaTeX source and PDF) [CC BY 4.0](LICENSE-paper). Copies must keep the copyright notice, the permission notice and the [NOTICE](NOTICE).
 
 **The Clay Mathematics Institute Hodge conjecture is open. This repository does not resolve it.**
 

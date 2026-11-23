@@ -3,6 +3,11 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{booktabs}
 \usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[htt]{hyphenat}
+\usepackage{microtype}
+\setlength{\emergencystretch}{3em}
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
 \theoremstyle{definition}
@@ -22,7 +27,7 @@ Revised: November 23, 2026 (America/Chicago CST), conditional restatement}
 \maketitle
 
 \begin{abstract}
-A Lean~4 development (\texttt{UniruledFourfolds/Blueprint.lean}, \texttt{UniruledFourfolds/NonVacuity.lean}, \texttt{UniruledFourfolds/Semantics.lean}, \texttt{UniruledFourfolds/MukaiLattice.lean}) of a conditional cycle-class reduction for smooth complex projective fourfolds. The development contains no \texttt{sorry} and no \texttt{axiom}. It proves: if a correspondence from a threefold satisfies a Bloch--Srinivas type decomposition on Hodge classes and is compatible with the cycle class map, and the Lefschetz theorem on $(1,1)$-classes holds on the threefold, then the codimension-2 cycle class map is surjective onto rational Hodge classes. Each of these inputs is a named hypothesis, not a theorem of the development. Finite models show that the hypotheses are jointly consistent and that none of them can be dropped.
+A Lean~4 development (\texttt{UniruledFourfolds/\allowbreak Blueprint.lean}, \texttt{UniruledFourfolds/\allowbreak NonVacuity.lean}, \texttt{UniruledFourfolds/\allowbreak Semantics.lean}, \texttt{UniruledFourfolds/\allowbreak MukaiLattice.lean}) of a conditional cycle-class reduction for smooth complex projective fourfolds. The development contains no \texttt{sorry} and no \texttt{axiom}. It proves: if a correspondence from a threefold satisfies a Bloch--Srinivas type decomposition on Hodge classes and is compatible with the cycle class map, and the Lefschetz theorem on $(1,1)$-classes holds on the threefold, then the codimension-2 cycle class map is surjective onto rational Hodge classes. Each of these inputs is a named hypothesis, not a theorem of the development. Finite models show that the hypotheses are jointly consistent and that none of them can be dropped.
 \end{abstract}
 
 \section{Scope, Scientific Honesty, and Non-Claim Boundary}
@@ -32,7 +37,7 @@ Every result in this paper is conditional on the named hypotheses (L11), (BS), (
   \item \textbf{Repository:} \texttt{https://github.com/BenFrohman/uniruled-fourfolds}
   \item \textbf{Dedicated 1-to-1 Zenodo DOI:} \texttt{10.5281/zenodo.23652974}
   \item \textbf{Earliest Git Commit SHA:} \texttt{18b62b11b26338ecab62426eaf4844cc57e8353b} (2026-10-01 04:51:29 PM CDT (UTC-5))
-  \item \textbf{License \& Copyright:} Copyright \textcopyright\ 2026 Benjamin Stanley Frohman. The Lean code is licensed under the Apache License, Version 2.0 (see \texttt{LICENSE} and \texttt{NOTICE}).
+  \item \textbf{License \& Copyright:} Copyright \textcopyright\ 2026 Benjamin Stanley Frohman. The text of this paper (LaTeX source and PDF) is licensed under the Creative Commons Attribution 4.0 International License, CC BY 4.0 (see \texttt{LICENSE-paper}). The Lean code is licensed under the Apache License, Version 2.0 (see \texttt{LICENSE} and \texttt{NOTICE}).
 \end{itemize}
 
 \section{Setting and named hypotheses}\label{sec:setting}
@@ -116,6 +121,7 @@ Continuous integration rebuilds every tracked Lean file (the file list comes fro
 \vfill
 \noindent\rule{\textwidth}{0.4pt}\\
 \footnotesize
-\textbf{Attribution \& Licensing Notice:} Copyright \textcopyright\ 2026 Benjamin Stanley Frohman (ORCID: \texttt{0009-0006-7068-3718}).
-Licensed under the Apache License, Version 2.0.
+\textbf{Attribution \& Licensing Notice:}\\
+Copyright \textcopyright\ 2026 Benjamin Stanley Frohman (ORCID: \texttt{0009-0006-7068-3718}).\\
+Paper text: CC BY 4.0 (\texttt{LICENSE-paper}). Lean code: Apache License, Version 2.0 (\texttt{LICENSE}). Reuse must credit Benjamin Stanley Frohman and keep the \texttt{NOTICE}.
 \end{document}
