@@ -1,0 +1,54 @@
+{
+  "semantics_file": "UniruledFourfolds/Semantics.lean",
+  "semantics_module": "UniruledFourfolds.Semantics",
+  "audit_file": "scripts/TruthGateAudit.lean",
+  "paper_path": "paper/uniruled_fourfolds_Technical_Monograph_2026.tex",
+  "paper_sha256": "7b75721a67768feb2206743128e0a9fb7a460b2c79b596f238757aaeff6bc7c5",
+  "claims": [
+    "reduction",
+    "uniruled",
+    "consistent",
+    "l11_needed",
+    "bs_needed",
+    "cl_needed",
+    "u_needed"
+  ],
+  "main_theorems": [
+    "UniruledFourfolds.conditionalCycleClassReduction",
+    "UniruledFourfolds.uniruled_cycleClassSurjective",
+    "UniruledFourfolds.hypotheses_consistent",
+    "UniruledFourfolds.lefschetz_not_redundant",
+    "UniruledFourfolds.decomposition_not_redundant",
+    "UniruledFourfolds.compatibility_not_redundant",
+    "UniruledFourfolds.blochSrinivas_not_redundant"
+  ],
+  "paper_labels": {
+    "reduction": "thm:reduction",
+    "uniruled": "thm:uniruled",
+    "consistent": "prop:consistent",
+    "l11_needed": "prop:independent",
+    "bs_needed": "prop:independent",
+    "cl_needed": "prop:independent",
+    "u_needed": "prop:independent"
+  },
+  "paper_forbidden_names": [
+    "Lefschetz11",
+    "BSDecomposition",
+    "ClCompatible",
+    "BlochSrinivasHypothesis",
+    "CycleClassSurjective",
+    "Represents",
+    "conditionalCycleClassReduction",
+    "uniruled_cycleClassSurjective",
+    "hypotheses_consistent",
+    "lefschetz_not_redundant",
+    "decomposition_not_redundant",
+    "compatibility_not_redundant",
+    "blochSrinivas_not_redundant"
+  ],
+  "lock_region_sha256": "c2651c09694cffce9a6d82c8179f3a7fc5145dfbdaba476b83c07f42ce54fd46",
+  "certifying": true,
+  "scope": "conditional",
+  "toolchain": "leanprover/lean4:v4.34.1",
+  "approver": "Benjamin Stanley Frohman: instruction of 2026-11-23 14:03 CT to restate the axioms and the sorry as named hypotheses and say conditional; transcription text not yet separately reviewed"
+}
