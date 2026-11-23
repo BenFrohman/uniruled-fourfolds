@@ -1,0 +1,39 @@
+{
+  "schema": "uniruled-fourfolds-bot-contract/1",
+  "author": "Benjamin Stanley Frohman",
+  "orcid": "0009-0006-7068-3718",
+  "repository": "BenFrohman/uniruled-fourfolds",
+  "base": "main",
+  "base_sha": "78b58561ea5b04436fcea4a2a0c284b6640419a6",
+  "doi": "10.5281/zenodo.23652974",
+  "zenodo_action": "do_not_deposit",
+  "reason": "No Zenodo workflow exists. The record already exists. This handoff adds no theorem.",
+  "merge_policy": "Merge only if kernel-certificate, lean-header, truth-gate and Verify all conclude success on this pull request. Do not merge on a skipped check.",
+  "frozen_paths": [
+    "paper/uniruled_fourfolds_Technical_Monograph_2026.tex",
+    "UniruledFourfolds/Semantics.lean",
+    "TRUTH_GATE.lock",
+    "TRUTH_GATE.md",
+    ".zenodo.json",
+    "CITATION.cff"
+  ],
+  "forbidden_claims": [
+    "The Mukai vector solver resolves the Clay Hodge conjecture",
+    "The Hodge conjecture is closed",
+    "This repository proves a case of the Hodge conjecture"
+  ],
+  "allowed_statement": "Conditional cycle-class reduction under named hypotheses (L11), (BS), (CL) and (U). The Mukai integer table is arithmetic only.",
+  "workflows": [
+    "kernel-certificate.yml",
+    "lean-header.yml",
+    "truth-gate.yml",
+    "verify.yml"
+  ],
+  "read_first": [
+    "TRUTH_GATE.md",
+    "handoff/README.md",
+    "handoff/BOT_CONTRACT.json",
+    "handoff/SESSION_LOG.md",
+    "handoff/MANIFEST.json"
+  ]
+}

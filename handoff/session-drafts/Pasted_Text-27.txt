@@ -1,0 +1,46 @@
+3D Wall-Crossing Surface Visualizer
+By extending the stability parameter space to include the third Chern character (\(\text{ch}_{3}\)), the standard 2D semicircular walls sweep out curved 3D geometric surfaces. The script below uses matplotlib to render these destabilizing walls over the \((\beta, \alpha, \text{ch}_3)\) coordinate system.
+python
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Parent sheaf E invariants: [r, c1, ch2]
+E = {"r": 2, "c1": 0, "ch2": -1}
+
+# Subobject invariants for surface generation
+F = {"r": 1, "c1": -1, "ch2": 0}
+
+# Compute base wall parameters
+num_center = F["r"] * E["ch2"] - E["r"] * F["ch2"]
+den_center = F["r"] * E["c1"] - E["r"] * F["c1"]
+base_center = num_center / den_center
+base_radius = np.sqrt(abs(base_center**2 + 2 * (F["ch2"]/F["r"] - E["ch2"]/E["r"])))
+
+# Generate grid over beta and ch3
+beta_line = np.linspace(base_center - base_radius + 0.01, base_center + base_radius - 0.01, 100)
+ch3_line = np.linspace(-2.0, 2.0, 100)
+B, C3 = np.meshgrid(beta_line, ch3_line)
+
+# Base semicircular alpha profile
+alpha_base = np.sqrt(np.maximum(0, base_radius**2 - (B - base_center)**2))
+
+# Distort alpha based on ch3 value (simulating the 4D geometric tilt)
+# As ch3 varies, the stability boundary expands or contracts
+A = alpha_base * (1 + 0.2 * C3 * (B - base_center))
+A = np.maximum(0, A) # Keep alpha positive
+
+# Plotting the 3D Stability Locus Surface
+fig = plt.figure(figsize=(12, 8))
+ax = fig.add_subplot(111, projection='3d')
+
+surf = ax.plot_surface(B, C3, A, cmap='viridis', edgecolor='none', alpha=0.85)
+
+ax.set_title("3D Wall Crossing Boundary Surface over $(\\beta, \\text{ch}_3, \\alpha)$", fontsize=14, fontweight='bold')
+ax.set_xlabel(r"$\beta$ (Slope Parameter)", fontsize=11)
+ax.set_ylabel(r"$\text{ch}_3$ Variation", fontsize=11)
+ax.set_zlabel(r"$\alpha$ (Stability Scale)", fontsize=11)
+ax.view_init(elev=25, azim=-60)
+
+fig.colorbar(surf, ax=ax, shrink=0.5, aspect=10, label=r'$\alpha$ value')
+plt.show()
