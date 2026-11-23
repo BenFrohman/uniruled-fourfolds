@@ -3,7 +3,7 @@
   "semantics_module": "UniruledFourfolds.Semantics",
   "audit_file": "scripts/TruthGateAudit.lean",
   "paper_path": "paper/uniruled_fourfolds_Technical_Monograph_2026.tex",
-  "paper_sha256": "189b6e1abf0bcc5f7eeb34ba03180262e220744c32e47d54211c179cae120526",
+  "paper_sha256": "d5c4f64c4886e3fdd7457e01ccd2ee0c93ea7fede2e3b3dd4aaf600be6be7a47",
   "claims": [
     "reduction",
     "uniruled",

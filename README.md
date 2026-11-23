@@ -2,7 +2,7 @@
 
 [![verify.yml](https://github.com/BenFrohman/uniruled-fourfolds/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/BenFrohman/uniruled-fourfolds/actions/workflows/verify.yml)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23652974.svg)](https://doi.org/10.5281/zenodo.23652974) [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23652973.svg)](https://doi.org/10.5281/zenodo.23652973) [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 Copyright (c) 2026 Benjamin Stanley Frohman.
 Author: Benjamin Stanley Frohman (GitHub: BenFrohman).
@@ -83,18 +83,17 @@ GitHub Actions (`verify.yml`, `kernel-certificate.yml`, `truth-gate.yml`) run th
 No file here declares the cycle class map surjective for every fourfold. That would assume the Clay problem. The committed `lakefile.lean` does not require Mathlib. A theorem named as a Clay-problem verification for cubic fourfolds is the cubic case, already due to Zucker, and is not a formalization.
 
 ---
-## Archival DOI & Cryptographic Provenance
+## Archival DOI & Provenance
 
-- **Dedicated 1-to-1 Zenodo DOI:** [10.5281/zenodo.23652974](https://doi.org/10.5281/zenodo.23652974)
+- **Zenodo concept DOI (all versions, resolves to the latest):** [10.5281/zenodo.23652973](https://doi.org/10.5281/zenodo.23652973)
 - **Author:** Benjamin Stanley Frohman (ORCID: [0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718))
-- **License:** Apache License, Version 2.0 (`Copyright (c) 2026 Benjamin Stanley Frohman`)
+- **License:** Lean code Apache License, Version 2.0; paper CC BY 4.0 (`Copyright (c) 2026 Benjamin Stanley Frohman`)
 - **Earliest Commit Provenance:** `18b62b11b26338ecab62426eaf4844cc57e8353b` (2026-10-01 04:51:29 PM CDT (UTC-5))
-- **SealGuard SHA-256 Merkle Root:** `a3938bf57c8da3312b6d062bbee49a32fd2312ba31c4a6e0bf7730252547a0c6` (`PROVENANCE_MERKLE_ROOT.json`)
-- **Titan Audit Certificate:** `audit/TITAN_AUDIT_CERTIFICATE.json` (Ed25519 key `b428fb72676f1c52`)
+- **Legacy files, not certificates:** `audit/TITAN_AUDIT_CERTIFICATE.json`, `audit/SEALGUARD_CLASSIFIED_MANIFEST.json` and `PROVENANCE_MERKLE_ROOT.json` were committed at `7f24320` (October 25, 2026) and were not produced by this repository's CI. The TITAN file records `sorry_count` 2 with the verdict `PASS_ZERO_SORRY_HONEST_BOUNDARY`, which was false. The certificates are the official artifacts of the `Kernel certificate` and `truth-gate` workflows.
 - **Scope & Scientific Boundary:** All cycle-class surjectivity deductions in this repository are conditional on explicit geometric correspondence hypotheses; this repository does not claim an unconditional proof of any open Hodge surjectivity conjecture.
 
 ## Zenodo archive
 
-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23652973.svg)](https://doi.org/10.5281/zenodo.23652973) Uniruled Fourfolds and Mukai Lattice Cycle Reductions in Lean 4: Conditional Cycle-Class Frameworks — all versions: [10.5281/zenodo.23652973](https://doi.org/10.5281/zenodo.23652973); latest version: [10.5281/zenodo.23652974](https://doi.org/10.5281/zenodo.23652974)
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23652973.svg)](https://doi.org/10.5281/zenodo.23652973) Uniruled Fourfolds in Lean 4: A Conditional Cycle-Class Reduction under Four Named Hypotheses (L11), (BS), (CL), (U) — all versions: [10.5281/zenodo.23652973](https://doi.org/10.5281/zenodo.23652973) (v1.0.0, superseded: [10.5281/zenodo.23652974](https://doi.org/10.5281/zenodo.23652974))
 - [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23632803.svg)](https://doi.org/10.5281/zenodo.23632803) Cohomological Obstructions, Atiyah-Hirzebruch Integral Torsion Differentials, and Conditional Mukai-Lattice Cycle Reductions on Smooth Projective Fourfolds — all versions: [10.5281/zenodo.23632803](https://doi.org/10.5281/zenodo.23632803); latest version: [10.5281/zenodo.23632804](https://doi.org/10.5281/zenodo.23632804)
 - [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23867557.svg)](https://doi.org/10.5281/zenodo.23867557) Uniruled Fourfolds and Mukai Lattice Cycle Reductions in Lean 4: Conditional Cycle-Class Frameworks — all versions: [10.5281/zenodo.23867557](https://doi.org/10.5281/zenodo.23867557); latest version: [10.5281/zenodo.23867558](https://doi.org/10.5281/zenodo.23867558)
