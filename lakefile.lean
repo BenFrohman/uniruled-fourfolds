@@ -18,16 +18,15 @@ open Lake DSL
 Copyright (c) 2026 Benjamin Stanley Frohman. Apache License, Version 2.0.
 See LICENSE.
 
-Builds the two Lean files in this repository. Neither file imports
-Mathlib. `Blueprint.lean` contains `sorry`; a successful build only
-means the file elaborates.
+Builds every Lean module in this repository. No file imports
+Mathlib. No file contains `sorry` or `axiom`; CI fails on either.
 -/
 
 package «uniruled-fourfolds»
 
 @[default_target]
 lean_lib UniruledFourfolds where
-  roots := #[`UniruledFourfolds.Blueprint]
+  roots := #[`UniruledFourfolds.Blueprint, `UniruledFourfolds.NonVacuity, `UniruledFourfolds.Semantics]
 
 @[default_target]
 lean_exe mukai where

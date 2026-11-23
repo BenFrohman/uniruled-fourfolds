@@ -24,7 +24,7 @@ The uniruled reduction uses a rational curve through a general point. It stops t
 
 ## What is in this repository
 
-`Blueprint.lean` is a conditional sketch: *if* a Bloch–Srinivas package is supplied for a uniruled fourfold, the file *states* that codimension-2 cycle-class surjectivity would reduce to the classical Lefschetz theorem on (1,1)-classes on a threefold. The proof is `sorry`. Elaborating the file only checks that the statement is well-formed.
+`Blueprint.lean` proves a **conditional** reduction, with no `sorry` and no `axiom`: if a correspondence Γ from a threefold Ỹ satisfies **(BS)** `Γ_* Γ^* γ = γ` on `Hdg⁴(X)` and **(CL)** `cl_X(Γ_* z) = Γ_*(cl_Ỹ z)`, and **(L11)** Lefschetz (1,1) holds on Ỹ, then `cl_X : CH²(X)_ℚ → Hdg⁴(X)` is surjective (`conditionalCycleClassReduction`); and under **(U)** (every uniruled fourfold has such a Γ) plus (L11) on every threefold, `cl_X` is surjective for every uniruled `X` (`uniruled_cycleClassSurjective`). (L11), (BS), (CL) and (U) are named hypotheses, **open assumptions of this repository, not proved here**. The groups, cycle class maps and the uniruledness predicate are uninterpreted fields of `CycleClassSetting`; nothing here constructs cohomology or Chow groups. `NonVacuity.lean` shows with finite models that the hypotheses are consistent and that none can be dropped. The Truth Gate (`TRUTH_GATE.md`, `UniruledFourfolds/Semantics.lean`) locks every theorem and proposition of the paper.
 
 `MukaiLattice.lean` defines the integer form
 
@@ -36,7 +36,9 @@ and proves the four rows below with `decide`. The pairing is \(\langle u, v \ran
 
 | File | Role |
 |---|---|
-| `UniruledFourfolds/Blueprint.lean` | Conditional statement. Unproved (`sorry`). |
+| `UniruledFourfolds/Blueprint.lean` | Conditional theorems `hypotheses ⇒ conclusion`, proved; no `sorry`, no `axiom`. |
+| `UniruledFourfolds/NonVacuity.lean` | Finite models: hypotheses consistent, each one needed. |
+| `UniruledFourfolds/Semantics.lean` | Truth Gate lock of the whole paper. |
 | `UniruledFourfolds/MukaiLattice.lean` | Square and primitivity, proved for four vectors by `decide`, plus a `main` that prints them. |
 | `docs/special-cases.md` | Citations, the holes in a five-line pathway, and where the method ends. |
 | `RELEASES.md` | What the build checks. It does not list a Hodge-conjecture release. |
@@ -71,9 +73,9 @@ lake build
 lake exe mukai
 ```
 
-`lake build` elaborates `UniruledFourfolds/Blueprint.lean` and compiles `UniruledFourfolds/MukaiLattice.lean`. It exits successfully while warning that `conditionalCycleClassReduction` uses `sorry`. Elaboration is not a proof.
+`lake build` builds every module. CI fails on any `sorry`, `admit`, `native_decide` or `axiom` in any tracked Lean file or in the full build log, on any tracked Lean file that is not built (file list from `git ls-files`), and on any theorem whose `#print axioms` goes beyond `propext`, `Classical.choice`, `Quot.sound`. `bash scripts/verify-lock.sh` runs the Truth Gate.
 
-GitHub Actions (`.github/workflows/verify.yml`) runs that build, then `verify_lean.sh` and `validate_mukai.py`, on pushes and pull requests to `main`. A green check means those commands passed. It does not mean a theorem of algebraic geometry was proved.
+GitHub Actions (`verify.yml`, `kernel-certificate.yml`, `truth-gate.yml`) run these checks. A green check means the conditional theorems are proved from their named hypotheses. It does not mean the hypotheses hold, or that any case of the Hodge conjecture was proved here.
 
 
 ## Not included

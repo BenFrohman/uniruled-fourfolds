@@ -3,6 +3,10 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{booktabs}
 \usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
 \hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
 
 \title{\textbf{Uniruled Fourfolds and Mukai Lattice Cycle Reductions in Lean 4: Conditional Cycle-Class Frameworks}}
@@ -11,111 +15,103 @@
 GitHub: \href{https://github.com/BenFrohman/uniruled-fourfolds}{\texttt{BenFrohman/uniruled-fourfolds}}\\
 \small Dedicated 1-to-1 Zenodo DOI: \href{https://doi.org/10.5281/zenodo.23652974}{\texttt{10.5281/zenodo.23652974}}}
 \date{Earliest Commit Provenance: 2026-10-01 04:51:29 PM CDT (UTC-5)\\
-Siloed Archival Edition: October 25, 2026 (America/Chicago CDT)}
+Siloed Archival Edition: October 25, 2026 (America/Chicago CDT)\\
+Revised: November 23, 2026 (America/Chicago CST), conditional restatement}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Standalone Lean 4 formalization (`UniruledFourfolds.lean`, `UniruledFourfolds/Blueprint.lean`, `UniruledFourfolds/MukaiLattice.lean`) and Python Mukai lattice signature/discriminant calculator (`scripts/mukai\_lattice\_calc.py`) for conditional cycle-class reductions on smooth projective uniruled fourfolds. Formalizes how middle Hodge classes reduce under cylinder/correspondence maps when a uniruled parametrization hypothesis holds.
+A Lean~4 development (\texttt{UniruledFourfolds/Blueprint.lean}, \texttt{UniruledFourfolds/NonVacuity.lean}, \texttt{UniruledFourfolds/Semantics.lean}, \texttt{UniruledFourfolds/MukaiLattice.lean}) of a conditional cycle-class reduction for smooth complex projective fourfolds. The development contains no \texttt{sorry} and no \texttt{axiom}. It proves: if a correspondence from a threefold satisfies a Bloch--Srinivas type decomposition on Hodge classes and is compatible with the cycle class map, and the Lefschetz theorem on $(1,1)$-classes holds on the threefold, then the codimension-2 cycle class map is surjective onto rational Hodge classes. Each of these inputs is a named hypothesis, not a theorem of the development. Finite models show that the hypotheses are jointly consistent and that none of them can be dropped.
 \end{abstract}
 
 \section{Scope, Scientific Honesty, and Non-Claim Boundary}
-All cycle-class surjectivity deductions in this repository are conditional on explicit geometric correspondence hypotheses; this repository does not claim an unconditional proof of any open Hodge surjectivity conjecture.
+Every result in this paper is conditional on the named hypotheses (L11), (BS), (CL) and (U) of Section~\ref{sec:setting}. None of these hypotheses is proved in this repository. The groups, cycle class maps and the uniruledness predicate are uninterpreted data in Lean: the development does not construct cohomology, Chow groups or cycle class maps. This repository does not prove the Hodge conjecture, or any case of it.
 
 \begin{itemize}
   \item \textbf{Repository:} \texttt{https://github.com/BenFrohman/uniruled-fourfolds}
   \item \textbf{Dedicated 1-to-1 Zenodo DOI:} \texttt{10.5281/zenodo.23652974}
   \item \textbf{Earliest Git Commit SHA:} \texttt{18b62b11b26338ecab62426eaf4844cc57e8353b} (2026-10-01 04:51:29 PM CDT (UTC-5))
-  \item \textbf{License \& Copyright:} Copyright \textcopyright\ 2026 Benjamin Stanley Frohman. Licensed under the Apache License, Version 2.0.
+  \item \textbf{License \& Copyright:} Copyright \textcopyright\ 2026 Benjamin Stanley Frohman. The Lean code is licensed under the Apache License, Version 2.0 (see \texttt{LICENSE} and \texttt{NOTICE}).
 \end{itemize}
 
-\section{Technical Overview \& Repository Specification}
-Copyright (c) 2026 Benjamin Stanley Frohman.
+\section{Setting and named hypotheses}\label{sec:setting}
+\begin{definition}[Cycle-class setting, Lean \texttt{CycleClassSetting}]\label{def:setting}
+A cycle-class setting $S$ assigns to every fourfold label $X$ types $\mathrm{Hdg}^4(X)$ (rational Hodge classes $H^4(X,\mathbb{Q})\cap H^{2,2}(X)$) and $\mathrm{CH}^2(X)_{\mathbb{Q}}$, and a map $\mathrm{cl}_X:\mathrm{CH}^2(X)_{\mathbb{Q}}\to\mathrm{Hdg}^4(X)$; to every threefold label $Y$ types $\mathrm{Hdg}^2(Y)$ and $\mathrm{CH}^1(Y)_{\mathbb{Q}}$, and a map $\mathrm{cl}_Y:\mathrm{CH}^1(Y)_{\mathbb{Q}}\to\mathrm{Hdg}^2(Y)$; and a predicate ``$X$ is uniruled''. These are uninterpreted data.
+\end{definition}
 
-Author: Benjamin Stanley Frohman (GitHub: BenFrohman).
+\begin{definition}[Correspondence, Lean \texttt{Correspondence}]\label{def:corr}
+A correspondence $\Gamma$ for $X$ consists of a threefold label $\tilde Y$ and maps $\Gamma^*:\mathrm{Hdg}^4(X)\to\mathrm{Hdg}^2(\tilde Y)$, $\Gamma_*:\mathrm{Hdg}^2(\tilde Y)\to\mathrm{Hdg}^4(X)$ and $\Gamma_*:\mathrm{CH}^1(\tilde Y)_{\mathbb{Q}}\to\mathrm{CH}^2(X)_{\mathbb{Q}}$.
+\end{definition}
 
-License: [Apache-2.0](LICENSE). Copies must keep the copyright notice and the permission notice.
+The named hypotheses are:
+\begin{itemize}
+  \item \textbf{(L11)} \emph{Lefschetz $(1,1)$ on $Y$}, Lean \texttt{Lefschetz11}: for every $\beta\in\mathrm{Hdg}^2(Y)$ there is $z\in\mathrm{CH}^1(Y)_{\mathbb{Q}}$ with $\mathrm{cl}_Y(z)=\beta$.
+  \item \textbf{(BS)} \emph{Bloch--Srinivas decomposition on Hodge classes}, Lean \texttt{BSDecomposition}: $\Gamma_*\Gamma^*\gamma=\gamma$ for every $\gamma\in\mathrm{Hdg}^4(X)$.
+  \item \textbf{(CL)} \emph{Compatibility of the cycle class map}, Lean \texttt{ClCompatible}: $\mathrm{cl}_X(\Gamma_* z)=\Gamma_*(\mathrm{cl}_{\tilde Y}z)$ for every $z\in\mathrm{CH}^1(\tilde Y)_{\mathbb{Q}}$.
+  \item \textbf{(U)} \emph{Bloch--Srinivas correspondences for uniruled fourfolds}, Lean \texttt{BlochSrinivasHypothesis}: every uniruled $X$ has a correspondence $\Gamma$ satisfying (BS) and (CL).
+\end{itemize}
 
-**The Clay Mathematics Institute Hodge conjecture is open. This repository does not resolve it.**
+\section{Results proved in Lean}\label{sec:results}
+Each statement below is checked by the Lean kernel and locked by the Truth Gate (\texttt{TRUTH\_GATE.lock}, \texttt{UniruledFourfolds/Semantics.lean}).
 
-What the literature already contains, and what this repository does not formalize, is recorded in [docs/special-cases.md](docs/special-cases.md). Short form:
+\begin{theorem}[Conditional reduction, Lean \texttt{conditionalCycleClassReduction}]\label{thm:reduction}
+Let $S$ be a cycle-class setting, $X$ a fourfold label and $\Gamma$ a correspondence for $X$ with threefold $\tilde Y$. If $\Gamma$ satisfies (BS) and (CL), and (L11) holds on $\tilde Y$, then for every $\gamma\in\mathrm{Hdg}^4(X)$ there is $Z\in\mathrm{CH}^2(X)_{\mathbb{Q}}$ with $\mathrm{cl}_X(Z)=\gamma$.
+\end{theorem}
+\noindent\emph{Proof.} By (L11) choose $z$ with $\mathrm{cl}_{\tilde Y}(z)=\Gamma^*\gamma$. Then $\mathrm{cl}_X(\Gamma_*z)=\Gamma_*(\mathrm{cl}_{\tilde Y}z)=\Gamma_*\Gamma^*\gamma=\gamma$ by (CL) and (BS). \qed
 
-| Statement | Status |
+\begin{theorem}[Conditional statement for uniruled fourfolds, Lean \texttt{uniruled\_cycleClassSurjective}]\label{thm:uniruled}
+Let $S$ be a cycle-class setting. If (U) holds and (L11) holds on every threefold label, then for every uniruled fourfold label $X$ and every $\gamma\in\mathrm{Hdg}^4(X)$ there is $Z\in\mathrm{CH}^2(X)_{\mathbb{Q}}$ with $\mathrm{cl}_X(Z)=\gamma$.
+\end{theorem}
 
-|---|---|
+\begin{proposition}[Consistency, Lean \texttt{hypotheses\_consistent}]\label{prop:consistent}
+There are a cycle-class setting $S$, a uniruled fourfold label $X$ and a correspondence $\Gamma$ for $X$ such that (U) holds, (L11) holds on every threefold label, and $\Gamma$ satisfies (BS) and (CL).
+\end{proposition}
 
-| Hodge conjecture for a general smooth complex projective variety | **Open.** |
+\begin{proposition}[No hypothesis can be dropped, Lean \texttt{lefschetz\_not\_redundant}, \texttt{decomposition\_not\_redundant}, \texttt{compatibility\_not\_redundant}, \texttt{blochSrinivas\_not\_redundant}]\label{prop:independent}
+(a) There are $S$, $X$, $\Gamma$ such that $\Gamma$ satisfies (BS) and (CL), (L11) fails on $\tilde Y$, and some $\gamma\in\mathrm{Hdg}^4(X)$ is not $\mathrm{cl}_X(Z)$ for any $Z$.
+(b) There are $S$, $X$, $\Gamma$ such that (L11) holds on $\tilde Y$, $\Gamma$ satisfies (CL), (BS) fails, and some $\gamma\in\mathrm{Hdg}^4(X)$ is not $\mathrm{cl}_X(Z)$ for any $Z$.
+(c) There are $S$, $X$, $\Gamma$ such that (L11) holds on $\tilde Y$, $\Gamma$ satisfies (BS), (CL) fails, and some $\gamma\in\mathrm{Hdg}^4(X)$ is not $\mathrm{cl}_X(Z)$ for any $Z$.
+(d) There are $S$ and a uniruled $X$ such that (L11) holds on every threefold label, (U) fails, and some $\gamma\in\mathrm{Hdg}^4(X)$ is not $\mathrm{cl}_X(Z)$ for any $Z$.
+\end{proposition}
 
-| Rational Hodge conjecture for fourfolds covered by rational curves | **Theorem** of Conte–Murre, Math. Ann. **238** (1978). Not proved in this repository. |
+The models in Propositions~\ref{prop:consistent} and~\ref{prop:independent} use the finite types $\mathrm{Unit}$, $\mathrm{Bool}$ and $\mathrm{Empty}$. They show the logical form of the hypotheses: the theorems are not true because their hypotheses are contradictory, and no hypothesis restates the conclusion. They are not geometry.
 
-| Smooth cubic fourfolds | **Theorem** of Zucker, Compositio Math. **34** (1977). They are also Fano, so Conte–Murre applies. |
+\section{Open assumptions}\label{sec:open}
+The following are assumptions of Theorems~\ref{thm:reduction} and~\ref{thm:uniruled}. None is proved in this repository.
+\begin{itemize}
+  \item (L11), Lefschetz $(1,1)$: a classical theorem for smooth complex projective varieties (Lefschetz, 1924). Not formalized here.
+  \item (BS), the decomposition on Hodge classes, and (CL), compatibility of the cycle class map with the correspondence: modelled on the decomposition of the diagonal of Bloch--Srinivas, Amer.\ J.\ Math.\ \textbf{105} (1983). Not formalized here. This repository does not check that a given fourfold satisfies them in exactly this form.
+  \item (U), existence of such correspondences on every uniruled fourfold: the step that Bloch--Srinivas and Conte--Murre take from uniruledness. Not formalized here.
+  \item The cohomology groups, Chow groups, cycle class maps and the uniruledness predicate themselves: uninterpreted data (Definition~\ref{def:setting}).
+\end{itemize}
+In an earlier version, \texttt{Blueprint.lean} postulated these objects with eight \texttt{axiom} declarations and left the reduction as \texttt{sorry}. They are now fields of \texttt{CycleClassSetting} and the named hypotheses above.
 
-| Smooth complex Fano fourfolds | **Corollary** of Conte–Murre plus Kollár–Miyaoka–Mori, J. Diff. Geom. **36** (1992). Not a case beyond uniruled fourfolds. |
-
-| Rationality of a general cubic fourfold, Kuznetsov's conjecture | **Open.** |
-
-The uniruled reduction uses a rational curve through a general point. It stops there. It is not a route to the general fourfold.
-
-`Blueprint.lean` is a conditional sketch: *if* a Bloch–Srinivas package is supplied for a uniruled fourfold, the file *states* that codimension-2 cycle-class surjectivity would reduce to the classical Lefschetz theorem on (1,1)-classes on a threefold. The proof is `sorry`. Elaborating the file only checks that the statement is well-formed.
-
-`MukaiLattice.lean` defines the integer form
-
-\textbackslash\{\}[
-
-\textbackslash\{\}langle v, v \textbackslash\{\}rangle = v\_2\textasciicircum{}2 - 2 v\_0 v\_4, \textbackslash\{\}qquad \textbackslash\{\}text\{primitive\} \textbackslash\{\}iff \textbackslash\{\}gcd(|v\_0|, |v\_2|, |v\_4|) = 1
-
-\textbackslash\{\}]
-
-\section{Cryptographic Provenance \& File Inventory}
-Every source artifact in \texttt{BenFrohman/uniruled-fourfolds} is audited via \texttt{titan-audit}
-(\texttt{audit/TITAN\_AUDIT\_CERTIFICATE.json}) and sealed under a deterministic SHA-256 Merkle tree via
-\texttt{sealguard} (\texttt{PROVENANCE\_MERKLE\_ROOT.json}) signed with Ed25519 key fingerprint
-\texttt{b428fb72676f1c52}.
-
+\section{Literature, not formalized}
 \begin{center}
 \small
-\begin{tabular}{p{0.52\textwidth}rr}
+\begin{tabular}{p{0.5\textwidth}p{0.42\textwidth}}
 \toprule
-\textbf{Repository Path} & \textbf{Size} & \textbf{SHA-256 Prefix} \\
+\textbf{Statement} & \textbf{Status} \\
 \midrule
-\texttt{.github/ISSUE\_TEMPLATE/peer\_review.md} & 782 B & \texttt{5f631a14dc34eac3...} \\
-\texttt{.github/workflows/verify.yml} & 1183 B & \texttt{352bc80124ce57e0...} \\
-\texttt{.gitignore} & 205 B & \texttt{9b49bb8918dfc2a6...} \\
-\texttt{COPYRIGHT} & 273 B & \texttt{6090f1609bc4aa06...} \\
-\texttt{GEOMETRY.md} & 15556 B & \texttt{21a7d3f8dd690bbb...} \\
-\texttt{LICENSE} & 11355 B & \texttt{9da72c2bee4f20ba...} \\
-\texttt{NOTICE} & 485 B & \texttt{db024313d28bb067...} \\
-\texttt{README.md} & 4954 B & \texttt{810976598544dc50...} \\
-\texttt{RELEASES.md} & 1294 B & \texttt{ac033062c1d4633a...} \\
-\texttt{RELEASE\_NOTES.md} & 1984 B & \texttt{272a88719103d22b...} \\
-\texttt{UniruledFourfolds/Blueprint.lean} & 2831 B & \texttt{32254baf297f4cf5...} \\
-\texttt{UniruledFourfolds/MukaiLattice.lean} & 26313 B & \texttt{631233c45cf3ab94...} \\
-\texttt{deploy\_potluck.sh} & 1367 B & \texttt{ae18cf897a90c640...} \\
-\texttt{docs/special-cases.md} & 7354 B & \texttt{61fcbbca0a53402b...} \\
-\texttt{lake-manifest.json} & 154 B & \texttt{f74dbc7f897503a6...} \\
-\texttt{lakefile.lean} & 666 B & \texttt{e088462a2c63308f...} \\
-\texttt{lean-toolchain} & 25 B & \texttt{d5edba4e4b8faad9...} \\
-\texttt{plots/render\_formulas.py} & 16937 B & \texttt{b358af22bf95d7b7...} \\
-\texttt{potluck/finding\_mod\_gaussian\_shannon\_entropy\_001.py} & 1518 B & \texttt{9a2b1f88cd78a83c...} \\
-\texttt{potluck/finding\_mod\_grand\_finale\_999.py} & 1869 B & \texttt{71a6d19b18ad02b4...} \\
-\texttt{potluck/finding\_mod\_ksat\_shift\_014.py} & 1341 B & \texttt{87c7572da9db5958...} \\
-\texttt{potluck/finding\_mod\_navier\_stokes\_007.py} & 2881 B & \texttt{8c5a16f66840156d...} \\
-\texttt{potluck/finding\_mod\_navier\_stokes\_pressure\_010.py} & 3689 B & \texttt{f002959ece6fcfd4...} \\
-\texttt{potluck/finding\_mod\_nmf\_factor\_003.py} & 2538 B & \texttt{9a2e3f49772cd2bb...} \\
-\texttt{potluck/finding\_mod\_sat\_contour\_016.py} & 991 B & \texttt{2288e0f6fdecde34...} \\
-\texttt{potluck/finding\_mod\_sat\_entropy\_020.py} & 1376 B & \texttt{f3c482adc82e206c...} \\
-\texttt{potluck/finding\_mod\_sat\_phase\_transition\_012.py} & 2208 B & \texttt{c58c3de5e59681ac...} \\
-\texttt{potluck/finding\_mod\_sat\_wireframe\_018.py} & 728 B & \texttt{8393c9d79e0b9c07...} \\
-\texttt{potluck/finding\_mod\_spectral\_map\_002.py} & 2929 B & \texttt{9d2a7ab6b0a0a49e...} \\
-\texttt{potluck/sync\_manifest.py} & 3454 B & \texttt{449675f78065697d...} \\
-\texttt{scripts/pre-commit} & 1076 B & \texttt{e9b21c0ad9afb183...} \\
-\texttt{scripts/pre-push} & 540 B & \texttt{3cdbc6e44a570d83...} \\
-\texttt{validate\_mukai.py} & 6552 B & \texttt{de91900884db478b...} \\
-\texttt{verify\_lean.sh} & 890 B & \texttt{e191c4ef992a1738...} \\
+Hodge conjecture for a general smooth complex projective variety & Open. \\
+Rational Hodge conjecture for fourfolds covered by rational curves & Theorem of Conte--Murre, Math.\ Ann.\ \textbf{238} (1978). Not proved in this repository. \\
+Smooth cubic fourfolds & Theorem of Zucker, Compositio Math.\ \textbf{34} (1977). Not proved in this repository. \\
+Smooth complex Fano fourfolds & Corollary of Conte--Murre and Koll\'ar--Miyaoka--Mori, J.\ Diff.\ Geom.\ \textbf{36} (1992). Not proved in this repository. \\
+Rationality of a general cubic fourfold, Kuznetsov's conjecture & Open. \\
 \bottomrule
 \end{tabular}
 \end{center}
+See \texttt{docs/special-cases.md}.
+
+\section{The Mukai lattice file}
+\texttt{UniruledFourfolds/MukaiLattice.lean} defines, for integer vectors $v=(v_0,v_2,v_4)$, the form $\langle v,v\rangle=v_2^2-2v_0v_4$ and calls $v$ primitive when $\gcd(|v_0|,|v_2|,|v_4|)=1$, and checks finitely many integer identities about these definitions. This paper states no theorem about it, and it does not bear on cycle-class surjectivity.
+
+\section{Verification}
+Continuous integration rebuilds every tracked Lean file (the file list comes from \texttt{git ls-files}; a coverage step names any file that was not built), scans the full build log and every tracked Lean file for \texttt{sorry}, \texttt{admit}, \texttt{native\_decide} and \texttt{axiom} with no exclusions, runs \texttt{\#print axioms} on every theorem, re-checks every module with the external kernel checker, and runs the Truth Gate. The run fails if any theorem depends on an axiom other than \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. Rebuild: \texttt{lake build \&\& bash scripts/verify-lock.sh}.
+
+\section{Provenance}
+\texttt{audit/TITAN\_AUDIT\_CERTIFICATE.json} and \texttt{PROVENANCE\_MERKLE\_ROOT.json} (Ed25519 key fingerprint \texttt{b428fb72676f1c52}) were generated for an earlier commit. They do not cover the files added or changed in this revision. The file inventory of that earlier edition is no longer current and has been removed; the file list of any commit is given by \texttt{git ls-files} at that commit.
 
 \vfill
 \noindent\rule{\textwidth}{0.4pt}\\

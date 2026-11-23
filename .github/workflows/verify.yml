@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0 (see LICENSE).
-# One runner: elaborate the Lake project, then re-check MukaiLattice.lean
+# One runner: build the Lake project (full log scanned), then re-check MukaiLattice.lean
 # and the Python copy of the same four rows.
 # A green run is not a proof of any geometric statement.
 # Any sorry, admit, native_decide or axiom declaration in a tracked .lean file fails the run.
@@ -21,11 +21,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Lean 4.34.1 and build
+      - name: Install Lean 4.34.1
         uses: leanprover/lean-action@v1
         with:
-          build: "true"
+          build: "false"
           use-mathlib-cache: "false"
+          use-github-cache: "false"
+
+      - name: lake build (fresh, full log)
+        run: |
+          set -o pipefail
+          lake build 2>&1 | tee build.log
+
+      - name: Full build log scan (every line; no sorry, no error, every module built in this run)
+        run: python3 scripts/check_build_log.py build.log
+
+      - name: Coverage (every tracked .lean file is built, run by CI, or a verified excerpt)
+        run: python3 scripts/check_lean_coverage.py
 
       - name: No sorry / admit / native_decide / axiom in any tracked Lean file
         run: python3 certificates/tools/sorry_scan.py
