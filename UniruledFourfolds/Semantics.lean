@@ -19,7 +19,7 @@ Section sec:setting (no paper_claim names `Lefschetz11`, `BSDecomposition`,
 `intended_correspondence_X : formal_claim_X ↔ paper_claim_X` proved by reasoning, not `rfl`.
 
 PAPER_PATH: paper/uniruled_fourfolds_Technical_Monograph_2026.tex
-PAPER_SHA256: 189b6e1abf0bcc5f7eeb34ba03180262e220744c32e47d54211c179cae120526
+PAPER_SHA256: 1c7be94dfb711ab4eb380503da5cb9780dcb0358d86b2660b7747b095782df32
 PAPER_SECTION: Sections 2 (sec:setting) and 3 (sec:results), Theorems 3-4 and Propositions 5-6
 
 PAPER_QUOTE_BEGIN
@@ -80,6 +80,8 @@ recorded under the author's standing rule of 2026-11-17, 12:55 AM CT (America/Ch
 words: "my approval auto records as yes if the lean kernel and mathcing paper are aligned and
 all checks pass less the author truth gate". On 2026-11-23 the Truth Gate alignment and every
 other check passed on PR #3 (runs 45265634643, 45265634605, 45265568312, 45265633840).
+Re-locked to the retitled paper under the same rule after every check passed on PR #5
+(runs 45270613722, 45270613856, 45270573972, 45270613678, 45270574008); no statement changed.
 -/
 
 namespace UniruledFourfolds.TruthGate

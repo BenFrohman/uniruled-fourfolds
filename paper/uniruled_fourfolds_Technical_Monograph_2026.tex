@@ -14,11 +14,11 @@
 \newtheorem{definition}[theorem]{Definition}
 \hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
 
-\title{\textbf{Uniruled Fourfolds and Mukai Lattice Cycle Reductions in Lean 4: Conditional Cycle-Class Frameworks}}
+\title{\textbf{Uniruled Fourfolds in Lean 4: A Conditional Cycle-Class Reduction under Four Named Hypotheses (L11), (BS), (CL), (U)}}
 \author{Benjamin Stanley Frohman\\
 \small ORCID: \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718} \quad|\quad
 GitHub: \href{https://github.com/BenFrohman/uniruled-fourfolds}{\texttt{BenFrohman/uniruled-fourfolds}}\\
-\small Dedicated 1-to-1 Zenodo DOI: \href{https://doi.org/10.5281/zenodo.23652974}{\texttt{10.5281/zenodo.23652974}}}
+\small Zenodo concept DOI (all versions): \href{https://doi.org/10.5281/zenodo.23652973}{\texttt{10.5281/zenodo.23652973}}}
 \date{Earliest Commit Provenance: 2026-10-01 04:51:29 PM CDT (UTC-5)\\
 Siloed Archival Edition: October 25, 2026 (America/Chicago CDT)\\
 Revised: November 23, 2026 (America/Chicago CST), conditional restatement}
@@ -35,7 +35,7 @@ Every result in this paper is conditional on the named hypotheses (L11), (BS), (
 
 \begin{itemize}
   \item \textbf{Repository:} \texttt{https://github.com/BenFrohman/uniruled-fourfolds}
-  \item \textbf{Dedicated 1-to-1 Zenodo DOI:} \texttt{10.5281/zenodo.23652974}
+  \item \textbf{Zenodo concept DOI (resolves to the latest version):} \texttt{10.5281/zenodo.23652973}
   \item \textbf{Earliest Git Commit SHA:} \texttt{18b62b11b26338ecab62426eaf4844cc57e8353b} (2026-10-01 04:51:29 PM CDT (UTC-5))
   \item \textbf{License \& Copyright:} Copyright \textcopyright\ 2026 Benjamin Stanley Frohman. The text of this paper (LaTeX source and PDF) is licensed under the Creative Commons Attribution 4.0 International License, CC BY 4.0 (see \texttt{LICENSE-paper}). The Lean code is licensed under the Apache License, Version 2.0 (see \texttt{LICENSE} and \texttt{NOTICE}).
 \end{itemize}
@@ -116,7 +116,9 @@ See \texttt{docs/special-cases.md}.
 Continuous integration rebuilds every tracked Lean file (the file list comes from \texttt{git ls-files}; a coverage step names any file that was not built), scans the full build log and every tracked Lean file for \texttt{sorry}, \texttt{admit}, \texttt{native\_decide} and \texttt{axiom} with no exclusions, runs \texttt{\#print axioms} on every theorem, re-checks every module with the external kernel checker, and runs the Truth Gate. The run fails if any theorem depends on an axiom other than \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. Rebuild: \texttt{lake build \&\& bash scripts/verify-lock.sh}.
 
 \section{Provenance}
-\texttt{audit/TITAN\_AUDIT\_CERTIFICATE.json} and \texttt{PROVENANCE\_MERKLE\_ROOT.json} (Ed25519 key fingerprint \texttt{b428fb72676f1c52}) were generated for an earlier commit. They do not cover the files added or changed in this revision. The file inventory of that earlier edition is no longer current and has been removed; the file list of any commit is given by \texttt{git ls-files} at that commit.
+The files \texttt{audit/\allowbreak TITAN\_AUDIT\_CERTIFICATE.json}, \texttt{audit/\allowbreak SEALGUARD\_CLASSIFIED\_MANIFEST.json} and \texttt{PROVENANCE\_\allowbreak MERKLE\_ROOT.json} were committed together at commit \texttt{7f24320} (October 25, 2026). No workflow of this repository produced them, and they are not certificates. As committed, \texttt{TITAN\_AUDIT\_CERTIFICATE.json} recorded \texttt{sorry\_count} $2$ together with the verdict \texttt{PASS\_ZERO\_SORRY\_HONEST\_BOUNDARY}; at that commit \texttt{Blueprint.lean} ended in \texttt{sorry}, and the official GitHub Actions run of that commit reported \texttt{declaration uses `sorry'}, so that verdict was false. Its content is now replaced by a pointer to the official \texttt{kernel-certificate} artifact; the original remains in the git history at \texttt{7f24320}. The other two files are kept as history only.
+
+The certificates for this paper are the official GitHub Actions artifacts of the \texttt{Kernel certificate} and \texttt{truth-gate} workflows at the commit that contains this paper: the repository's \texttt{lake-manifest.json} and its SHA-256, the toolchain versions, the full \texttt{lake build} log, the \texttt{\#print axioms} output and the external kernel re-check. The file list of any commit is given by \texttt{git ls-files} at that commit.
 
 \vfill
 \noindent\rule{\textwidth}{0.4pt}\\

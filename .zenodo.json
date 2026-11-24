@@ -1,11 +1,12 @@
 {
-  "title": "Uniruled Fourfolds and Mukai Lattice Cycle Reductions in Lean 4: Conditional Cycle-Class Frameworks",
+  "title": "Uniruled Fourfolds in Lean 4: A Conditional Cycle-Class Reduction under Four Named Hypotheses (L11), (BS), (CL), (U)",
   "upload_type": "software",
-  "description": "Standalone Lean 4 formalization (`UniruledFourfolds.lean`, `UniruledFourfolds/Blueprint.lean`, `UniruledFourfolds/MukaiLattice.lean`) and Python Mukai lattice signature/discriminant calculator (`scripts/mukai_lattice_calc.py`) for conditional cycle-class reductions on smooth projective uniruled fourfolds. Formalizes how middle Hodge classes reduce under cylinder/correspondence maps when a uniruled parametrization hypothesis holds. All cycle-class surjectivity deductions in this repository are conditional on explicit geometric correspondence hypotheses; this repository does not claim an unconditional proof of any open Hodge surjectivity conjecture. Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under the Apache License, Version 2.0.",
+  "description": "Lean 4 development (UniruledFourfolds/Blueprint.lean, UniruledFourfolds/NonVacuity.lean, UniruledFourfolds/Semantics.lean, UniruledFourfolds/MukaiLattice.lean) of a conditional cycle-class reduction for smooth complex projective fourfolds, with no sorry and no axiom. Kernel-checked: if a correspondence from a threefold satisfies (BS) a Bloch–Srinivas decomposition on Hodge classes and (CL) compatibility with the cycle class map, and (L11) the Lefschetz (1,1) theorem holds on the threefold, then the codimension-2 cycle class map is surjective onto rational Hodge classes; under (U) this holds for every uniruled fourfold. Finite models show the four hypotheses are jointly consistent and that none can be dropped. (L11), (BS), (CL) and (U) are open assumptions, not theorems of the development; the cohomology groups, Chow groups and cycle class maps are uninterpreted placeholders. No case of the Hodge conjecture is proven. MukaiLattice.lean checks integer identities about a quadratic form and does not bear on cycle-class surjectivity. Copyright (c) 2026 Benjamin Stanley Frohman. Lean code: Apache License 2.0. Paper (paper/): CC BY 4.0.",
   "creators": [
     {
       "name": "Frohman, Benjamin Stanley",
-      "orcid": "0009-0006-7068-3718"
+      "orcid": "0009-0006-7068-3718",
+      "affiliation": "Independent Researcher, Texas, United States"
     }
   ],
   "license": "Apache-2.0",
@@ -13,10 +14,10 @@
   "keywords": [
     "Lean 4",
     "Uniruled fourfolds",
-    "Mukai lattice",
     "Cycle class map",
-    "Hodge structures",
-    "Algebraic geometry"
+    "Hodge classes",
+    "Bloch–Srinivas decomposition",
+    "Conditional result"
   ],
   "related_identifiers": [
     {

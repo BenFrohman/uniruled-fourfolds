@@ -1,12 +1,12 @@
 cff-version: 1.2.0
 message: "If you use or reference this repository, please cite it using the metadata below."
-title: "Uniruled Fourfolds and Mukai Lattice Cycle Reductions in Lean 4: Conditional Cycle-Class Frameworks"
+title: "Uniruled Fourfolds in Lean 4: A Conditional Cycle-Class Reduction under Four Named Hypotheses (L11), (BS), (CL), (U)"
 authors:
   - family-names: "Frohman"
     given-names: "Benjamin Stanley"
     alias: "B.S. Frohman"
     orcid: "https://orcid.org/0009-0006-7068-3718"
-doi: 10.5281/zenodo.23652974
+doi: 10.5281/zenodo.23652973
 url: "https://github.com/BenFrohman/uniruled-fourfolds"
 repository-code: "https://github.com/BenFrohman/uniruled-fourfolds"
 license: Apache-2.0
