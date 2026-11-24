@@ -19,7 +19,7 @@ Section sec:setting (no paper_claim names `Lefschetz11`, `BSDecomposition`,
 `intended_correspondence_X : formal_claim_X ↔ paper_claim_X` proved by reasoning, not `rfl`.
 
 PAPER_PATH: paper/uniruled_fourfolds_Technical_Monograph_2026.tex
-PAPER_SHA256: 1c7be94dfb711ab4eb380503da5cb9780dcb0358d86b2660b7747b095782df32
+PAPER_SHA256: 6f0222333b757415a454c0a219b1888e274d0029a7a34f01b3bb0d54e1ed9f65
 PAPER_SECTION: Sections 2 (sec:setting) and 3 (sec:results), Theorems 3-4 and Propositions 5-6
 
 PAPER_QUOTE_BEGIN

@@ -1,0 +1,56 @@
+# Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0 (see LICENSE).
+# Builds the paper PDF from the committed LaTeX source with pdflatex (two passes),
+# fails on any LaTeX error or Overfull box, and uploads the PDF, the full log and
+# the sha256 of the .tex and .pdf as the artifact 'paper-pdf'.
+
+name: paper-pdf
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  paper-pdf:
+    name: paper-pdf
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TEX: uniruled_fourfolds_Technical_Monograph_2026
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install TeX Live
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q --no-install-recommends texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended lmodern
+
+      - name: Build PDF (two passes)
+        run: |
+          mkdir -p out
+          cp "paper/$TEX.tex" out/
+          cd out
+          pdflatex -interaction=nonstopmode -halt-on-error "$TEX.tex" > pass1.log
+          pdflatex -interaction=nonstopmode -halt-on-error "$TEX.tex" > pass2.log
+          if grep -n "Overfull" "$TEX.log"; then echo "Overfull boxes found"; exit 1; fi
+          echo "Overfull boxes: 0"
+
+      - name: Checksums
+        run: |
+          cd out
+          sha256sum "$TEX.tex" "$TEX.pdf" | tee SHA256SUMS.txt
+          pdflatex --version | head -1 | tee -a SHA256SUMS.txt
+          echo "commit: $GITHUB_SHA" | tee -a SHA256SUMS.txt
+
+      - name: Upload paper-pdf artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-pdf
+          path: |
+            out/${{ env.TEX }}.pdf
+            out/${{ env.TEX }}.log
+            out/SHA256SUMS.txt
+          if-no-files-found: error

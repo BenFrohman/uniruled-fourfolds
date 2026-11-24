@@ -10,7 +10,7 @@ There is no release of this repository that certifies a case of the Hodge conjec
 
 ## History
 
-- v1.0.0 (tag `v1.0.0`, commit `7f24320`, October 2026): historical. At that version `Blueprint.lean` ended in `sorry` and postulated its data with eight `axiom` declarations. The `audit/TITAN_AUDIT_CERTIFICATE.json` committed then recorded `sorry_count` 2 with the verdict `PASS_ZERO_SORRY_HONEST_BOUNDARY`, which was false; it was not a certificate. Its content is now a pointer to the official `kernel-certificate` artifact.
+- v1.0.0 (tag `v1.0.0`, commit `7f24320`, October 2026): historical. At that version `Blueprint.lean` ended in `sorry` and postulated its data with eight `axiom` declarations. The `audit/TITAN_AUDIT_CERTIFICATE.json` committed then recorded `sorry_count` 2 with the verdict `PASS_ZERO_SORRY_HONEST_BOUNDARY`, which was false; it was not a certificate. Its content, and that of `audit/SEALGUARD_CLASSIFIED_MANIFEST.json` and `PROVENANCE_MERKLE_ROOT.json` committed at the same time, is now a pointer to the official `kernel-certificate` and `truth-gate-report` artifacts; the originals remain in git history at `7f24320`.
 
 
 ## Checked
