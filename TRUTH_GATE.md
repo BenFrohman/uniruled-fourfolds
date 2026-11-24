@@ -10,7 +10,7 @@ unfolds to it, the correspondence is `Iff.rfl` and proves nothing. That is forbi
 ## The lock in this repository
 - Semantics file: `UniruledFourfolds/Semantics.lean`, one `formal_claim_X`, `paper_claim_X`,
   `intended_correspondence_X` triple for every theorem and proposition of the paper.
-- Paper: `paper/uniruled_fourfolds_Technical_Monograph_2026.tex`, sha256 `acc96f4566be19881984e206d3d16897ca935a2f96399e8439b774f05686f356`.
+- Paper: `paper/uniruled_fourfolds_Technical_Monograph_2026.tex`, sha256 `6f0222333b757415a454c0a219b1888e274d0029a7a34f01b3bb0d54e1ed9f65`.
 - Claims: `reduction` (thm:reduction), `uniruled` (thm:uniruled), `consistent` (prop:consistent), `l11_needed` (prop:independent), `bs_needed` (prop:independent), `cl_needed` (prop:independent), `u_needed` (prop:independent).
 - Whole paper: `scripts/truth_gate_check.py` fails if any `theorem`, `proposition`, `lemma` or
   `corollary` environment of the paper has a label that no claim covers.
