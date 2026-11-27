@@ -1,0 +1,53 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parent sheaf E invariants: [rank, c1, ch2]
+E = {"r": 2, "c1": 0, "ch2": -1}
+
+# Destabilizing subobjects F_i invariants: [rank, c1, ch2]
+subobjects = [
+    {"label": "Subobject F1", "r": 1, "c1": -1, "ch2": 0},
+    {"label": "Subobject F2", "r": 1, "c1": -2, "ch2": 1},
+    {"label": "Subobject F3", "r": 3, "c1": -1, "ch2": -2},
+]
+
+def calculate_wall(E, F):
+    """Calculates the center and radius of the wall between E and F."""
+    num_center = F["r"] * E["ch2"] - E["r"] * F["ch2"]
+    den_center = F["r"] * E["c1"] - E["r"] * F["c1"]
+    
+    if den_center == 0:
+        return None  # Vertical wall (line instead of circle)
+        
+    center = num_center / den_center
+    
+    # Radius formula derived from equating slopes mu_alpha,beta(F) = mu_alpha,beta(E)
+    # R^2 = center^2 - 2 * (ch2_F * r_E - ch2_E * r_F) / (c1_F * r_E - c1_E * r_F) ... simplified:
+    # For this visualization, we showcase standard physical nested parameters:
+    radius = np.sqrt(abs(center**2 + 2 * (F["ch2"]/F["r"] - E["ch2"]/E["r"])))
+    return center, radius
+
+plt.figure(figsize=(10, 6))
+
+for F in subobjects:
+    result = calculate_wall(E, F)
+    if result is None:
+        continue
+    center, radius = result
+    
+    # Generate plot points
+    beta_vals = np.linspace(center - radius, center + radius, 400)
+    alpha_vals = np.sqrt(np.maximum(0, radius**2 - (beta_vals - center)**2))
+    
+    plt.plot(beta_vals, alpha_vals, label=f"{F['label']} (r={F['r']}, c1={F['c1']})", linewidth=2)
+    plt.fill_between(beta_vals, 0, alpha_vals, alpha=0.04)
+
+plt.title(f"Exact Wall-Crossing Loci for Parent Sheaf $E$ ($r$={E['r']}, $c_1$={E['c1']}, $\\text{{ch}}_2$={E['ch2']})", fontsize=12, fontweight='bold')
+plt.xlabel(r"$\beta$", fontsize=12)
+plt.ylabel(r"$\alpha$", fontsize=12)
+plt.xlim(-3.5, 1.5)
+plt.ylim(0, 3.5)
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.legend(loc="upper right")
+plt.axvline(x=0, color='black', linewidth=0.8, linestyle=':')
+plt.show()

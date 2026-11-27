@@ -1,0 +1,94 @@
+Lean 4 Formalization: Functorial t-Structure Truncations
+To complete our axiomatic model of t-structures, we formalize the truncation operations as a functorial pair \(\tau_{\leq 0}: \mathcal{D} \to \mathcal{D}^{\leq 0}\) and \(\tau_{\geq 1}: \mathcal{D} \to \mathcal{Dalignment}^{\geq 1}\). This ensures that the decomposition step is not merely an existential claim but an operationally sound functorial assignment compatible with morphism actions.
+lean
+import Mathlib.CategoryTheory.Functor.Basic
+import Mathlib.CategoryTheory.MorphismProperty
+
+/-!
+# Functorial t-Structure Truncations in Lean 4
+-/
+
+open CategoryTheory
+
+variable (D : Type*) [Category D]
+
+/-- The comprehensive functorial framework for a t-structure layout. -/
+structure FunctorialTStructure where
+  D_le0 : D → Prop
+  D_ge1 : D → Prop
+  
+  -- Functorial truncation pairs
+  trunc_le0 : D ⥤ D
+  trunc_ge1 : D ⥤ D
+  
+  -- Property constraints: truncations land in their respective subcategories
+  lands_le0 : ∀ (X : D), D_le0 (trunc_le0.obj X)
+  lands_ge1 : ∀ (X : D), D_ge1 (trunc_ge1.obj X)
+  
+  -- Natural transformation modeling the core morphic sequence component (A → X)
+  to_subobject : trunc_le0 ⟶ functor.id D
+
+namespace FunctorialTStructure
+
+variable {D} (t : FunctorialTStructure D)
+
+/-- Verification checking that the truncation functor maps morphisms accurately. -/
+theorem truncation_map_property {X Y : D} (f : X ⟶ Y) :
+    t.trunc_le0.map f ≫ t.to_subobject.app Y = t.to_subobject.app X ≫ f := by
+  exact t.to_subobject.naturality f
+
+end FunctorialTStructure
+Use code with caution.
+2. Python Script: Chaotic Dissipation & Attractor Basin Dynamics
+This script models a non-linear chaotic dissipation law based on a modified Lorentz-Duffing oscillator system. It tracks the parameters as they are pulled toward a dual-wing strange attractor basin, demonstrating how stability criteria settle under high friction and non-linear dissipation forces.
+python
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+def dissipative_duffing_step(b, a, t, dt=0.01, gamma=0.35, omega=1.2, force=0.4):
+    """
+    Computes time-evolution increments under specific chaotic dissipation laws 
+    governing fourfold stability condition metrics.
+    """
+    # Force laws mapping non-linear state shear forces
+    db = a
+    da = b - b**3 - gamma * a + force * np.cos(omega * t)
+    dt_param = 1.0  # Normalized time step metric
+    return b + db * dt, a + da * dt, t + dt
+
+# Generate multiple trajectories showing convergence into the strange attractor basin
+trajectories = [
+    {"init": (-1.5, 0.5), "color": "darkblue"},
+    {"init": (1.5, -0.5), "color": "crimson"},
+    {"init": (0.1, 2.0), "color": "forestgreen"}
+]
+
+fig = plt.figure(figsize=(11, 7.5))
+ax = fig.add_subplot(111, projection='3d')
+
+time_steps = 1500
+dt = 0.02
+
+for traj in trajectories:
+    b_val, a_val = traj["init"]
+    t_val = 0.0
+    
+    b_path, a_path, t_path = [b_val], [a_val], [t_val]
+    
+    for _ in range(time_steps):
+        b_val, a_val, t_val = dissipative_duffing_step(b_val, a_val, t_val, dt=dt)
+        b_path.append(b_val)
+        a_path.append(a_val)
+        t_path.append(t_val)
+        
+    ax.plot(b_path, a_path, t_path, color=traj["color"], alpha=0.6, linewidth=1.2)
+
+ax.set_title("Chaotic Dissipation & Attractor Basin Phase Space Limit", fontsize=13, fontweight='bold')
+ax.set_xlabel(r"$\beta$ Parameter Space", fontsize=11)
+ax.set_ylabel(r"$\alpha$ Relaxation Velocity", fontsize=11)
+ax.set_zlabel("Evolution Time Domain ($t$)", fontsize=11)
+ax.view_init(elev=20, azim=-45)
+
+plt.tight_layout()
+plt.show()

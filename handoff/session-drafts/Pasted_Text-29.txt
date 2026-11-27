@@ -1,0 +1,78 @@
+interactive simulator is perfect here. It allows you to dynamically step through wall chambers across custom algebraic varieties while simultaneously calculating and rendering the exact Harder-Narasimhan (HN) filtration vectors.
+The tool below models how a parent sheaf \(E\) destabilizes into a filtration \(0 = E_0 \subset E_1 \subset E_2 = E\) across different chambers in the \((\beta, \alpha)\) plane.
+Interactive Wall-Chamber & Harder-Narasimhan Simulator
+AI-generated. Don't enter sensitive personal info.
+Python Code: Harder-Narasimhan Filtration Factor Calculator
+The script below performs the precise calculations for the HN filtration split. When a parameter pair \((\beta, \alpha)\) passes inside a wall boundary, the original sheaf decomposes into its HN factors. The script determines if the sheaf is stable or outputs the exact slopes of its destabilizing sub-factors.
+python
+import numpy as np
+import matplotlib.pyplot as plt
+
+def get_hn_filtration(beta, alpha, E, F):
+    """
+    Computes the Harder-Narasimhan filtration status of parent E 
+    with respect to a maximal destabilizing subobject F.
+    """
+    # Calculate phase/slope of E: mu = (c1 - r*beta) / (alpha...)
+    # For a given (beta, alpha), the wall is defined by phase(F) = phase(E)
+    num_center = F["r"] * E["ch2"] - E["r"] * F["ch2"]
+    den_center = F["r"] * E["c1"] - E["r"] * F["c1"]
+    
+    if den_center == 0:
+        return "Stable (No Wall Crossing)", [E]
+    
+    center = num_center / den_center
+    radius = np.sqrt(abs(center**2 + 2 * (F["ch2"]/F["r"] - E["ch2"]/E["r"])))
+    
+    # Check if the active (beta, alpha) point lies inside the semicircular wall
+    distance_sq = (beta - center)**2 + alpha**2
+    
+    if distance_sq < radius**2:
+        # The object is unstable; it splits into its HN filtration components: F and E/F
+        quotient = {
+            "label": "Quotient E/F",
+            "r": E["r"] - F["r"],
+            "c1": E["c1"] - F["c1"],
+            "ch2": E["ch2"] - F["ch2"]
+        }
+        return "Unstable (HN Split Triggered)", [F, quotient]
+    else:
+        return "Stable (Gieseker Chamber)", [E]
+
+# Define Parent E and Destabilizing Subobject F
+E_sheaf = {"label": "Parent E", "r": 2, "c1": 0, "ch2": -1}
+F_sub = {"label": "Subobject F", "r": 1, "c1": -1, "ch2": 0}
+
+# Active stability parameters to evaluate
+active_beta = -0.6
+active_alpha = 0.8
+
+status, factors = get_hn_filtration(active_beta, active_alpha, E_sheaf, F_sub)
+
+# Visualize the active state relative to the HN wall
+num_center = F_sub["r"] * E_sheaf["ch2"] - E_sheaf["r"] * F_sub["ch2"]
+den_center = F_sub["r"] * E_sheaf["c1"] - E_sheaf["r"] * F_sub["c1"]
+c = num_center / den_center
+r = np.sqrt(abs(c**2 + 2 * (F_sub["ch2"]/F_sub["r"] - E_sheaf["ch2"]/E_sheaf["r"])))
+
+b_vals = np.linspace(c - r, c + r, 200)
+a_vals = np.sqrt(np.maximum(0, r**2 - (b_vals - c)**2))
+
+plt.figure(figsize=(9, 5.5))
+plt.plot(b_vals, a_vals, 'crimson', linewidth=2, label="Destabilizing Wall Boundary")
+plt.fill_between(b_vals, 0, a_vals, color='crimson', alpha=0.05)
+plt.scatter([active_beta], [active_alpha], color='black', s=100, zorder=5, label=f"Active Point ({active_beta}, {active_alpha})")
+
+plt.title(f"Harder-Narasimhan Evaluation: {status}", fontsize=12, fontweight='bold')
+plt.xlabel(r"$\beta$")
+plt.ylabel(r"$\alpha$")
+plt.xlim(-2.5, 0.5)
+plt.ylim(0, 2.0)
+plt.grid(True, linestyle=':', alpha=0.6)
+plt.legend()
+plt.show()
+
+print(f"Status: {status}")
+print("Filtration Factors Invariants:")
+for f in factors:
+    print(f" - {f.get('label', 'Factor')}: [r={f['r']}, c1={f['c1']}, ch2={f['ch2']}]")

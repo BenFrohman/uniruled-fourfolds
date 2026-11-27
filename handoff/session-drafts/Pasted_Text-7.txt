@@ -1,0 +1,51 @@
+GitHub Actions Workflow Configuration (.github/workflows/lean.yml)
+To automate the compilation and type-checking of your algebraic cycle modules, create a configuration file at .github/workflows/lean.yml inside your repository root.
+This workflow uses the official Lean 4 toolchain action to pull down your configurations, resolve mathlib4 via Lake, and verify your source files (MukaiLattice.lean, ConteMurre.lean, FanoFourfolds.lean, and CubicFourfolds.lean) every time you push to your BenFrohman repository.
+yaml
+name: Lean 4 Typecheck Verification
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    name: Verify Lean 4 Source Files
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Check out the repository source files under the BenFrohman context
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    # 2. Setup the official leanprover elan environment switcher
+    - name: Install Elan & Lean 4 Toolchain
+      uses: leanprover/lean-action@v1
+      with:
+        use-elan-cache: true
+
+    # 3. Pull down mathlib4 dependencies and compile targets
+    - name: Update Lake Dependencies
+      run: lake update
+
+    # 4. Execute a full build to verify that all algebraic blueprints typecheck safely
+    - name: Build Project Blueprints
+      run: lake build
+Use code with caution.
+Final Consolidated Local Directory Tree
+With all modules, packages, and continuous integration paths completed, your workspace folder configuration should match the following structural tree:
+text
+uniruled-fourfolds/
+├── .github/
+│   └── workflows/
+│       └── lean.yml          # The GitHub Actions configuration file provided above
+├── UniruledFourfolds/
+│   ├── ConteMurre.lean       # Unconditional uniruled reduction blueprint (1978)
+│   ├── FanoFourfolds.lean     # Fano-to-uniruled algebraic hierarchy
+│   ├── CubicFourfolds.lean    # Hypersurface Fano sub-case implementation
+│   └── MukaiLattice.lean      # Pure vector arithmetic with corrected gcd criteria
+├── lakefile.lean             # Package manager initialization setting up mathlib4
+└── README.md                 # Honest historical documentation for Clay Dimension 4
+Use code with caution.

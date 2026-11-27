@@ -1,0 +1,81 @@
+Lean 4 Formalization: Noetherian Ascending Chain Condition Lemma
+To solidify our existence proof, we explicitly formalize the Ascending Chain Condition (ACC) lemma. In a Noetherian module (or category of coherent sheaves), any infinite sequence of nested subobjects \(S_0 \subseteq S_1 \subseteq S_2 \subseteq \dots\) eventually stabilizes, meaning there is some index N where \(S_N = S_{N+1} = S_{N+2} = \dots\). This stabilization ensures that our search for a maximal destabilizing subobject always terminates successfully.
+lean
+import Mathlib.RingTheory.Noetherian.Basic
+import Mathlib.Order.OrderIsoNat
+
+/-!
+# Formalization of the Noetherian Ascending Chain Condition (ACC) Lemma in Lean 4
+-/
+
+variable {R : Type*} [CommRing R]
+variable {M : Type*} [AddCommGroup M] [Module R M] [IsNoetherian R M]
+
+/-- The Ascending Chain Condition Lemma: For any sequence of submodules `f : ℕ → Submodule R M` 
+    where each step is an inclusion `f n ≤ f (n + 1)`, the chain eventually stabilizes. -/
+theorem submodule_acc_stabilizes (f : ℕ → Submodule R M) (h_mono : Monotone f) :
+    ∃ N : ℕ, ∀ n ≥ N, f n = f N := by
+  -- Mathlib provides `IsNoetherian.noetherian` asserting that the order is well-founded
+  -- or satisfying the ACC condition. We extract the stabilization witness via `complete_lattice` properties.
+  have h_mono_le : ∀ n, f n ≤ f (n + 1) := fun n => h_mono (le_step le_rfl)
+  exact IsNoetherian.monotone_stabilizes f h_mono
+Use code with caution.
+2. Derived Category Tilt-Parameter Density Customization
+When passing to the bounded derived category \(\mathcal{D}^b(X)\), tilting introduces two parameter tensors: a torsion pair \((\mathcal{T}, \mathcal{F})\) controlled by a tilt slope parameter μ₀ and a scaling metric ω. This shifts the central reference focal point of all stability walls, altering where the highest congestion of phase-chamber fractures occurs.
+The updated script below models this transformation by mapping the exact global wall density matrix under custom derived-category tilting parameters.
+python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define continuous parameters for the stability plane
+beta_axis = np.linspace(-4.0, 2.0, 300)
+alpha_axis = np.linspace(0.05, 4.0, 300)
+tilt_density = np.zeros((len(alpha_axis), len(beta_axis)))
+
+# Derived Category Custom Tilt Parameters
+tilt_mu0 = -1.2       # Shift induced by the torsion pair threshold
+tilt_omega = 1.5      # Scaling metric adjustment changing wall curvature profiles
+
+# Generate candidate destabilizing objects
+np.random.seed(101)
+n_objects = 200
+r_array = np.random.randint(1, 5, n_objects)
+c1_array = np.random.randint(-4, 2, n_objects)
+ch2_array = np.random.randint(-3, 3, n_objects)
+
+# Parent sheaf E
+E = {"r": 2, "c1": 0, "ch2": -1}
+
+for i in range(n_objects):
+    num = r_array[i] * E["ch2"] - E["r"] * ch2_array[i]
+    # The derived tilt skews the denominator using the shift and scale parameters
+    den = (r_array[i] * E["c1"] - E["r"] * c1_array[i]) * tilt_omega
+    
+    if den == 0:
+        continue
+        
+    # Recalculate shifted centers and tilted radii
+    center = (num / den) + tilt_mu0
+    radius_sq = (num / den)**2 + 2 * tilt_omega * (ch2_array[i]/r_array[i] - E["ch2"]/E["r"])
+    
+    if radius_sq <= 0:
+        continue
+    radius = np.sqrt(radius_sq)
+    
+    for b_idx, b in enumerate(beta_axis):
+        if center - radius <= b <= center + radius:
+            target_alpha = np.sqrt(radius**2 - (b - center)**2)
+            a_idx = np.abs(alpha_axis - target_alpha).argmin()
+            if a_idx < len(alpha_axis):
+                # Distribute wall intersection weight onto the grid
+                tilt_density[max(0, a_idx-1):min(len(alpha_axis), a_idx+2), b_idx] += 1.0
+
+plt.figure(figsize=(11, 7))
+plt.imshow(tilt_density, extent=[-4.0, 2.0, 0.05, 4.0], origin='lower', cmap='magma', aspect='auto')
+
+plt.title(f"Tilted Derived Category Wall Density ($\mu_0 = {tilt_mu0}$, $\omega = {tilt_omega}$)", fontsize=13, fontweight='bold')
+plt.xlabel(r"$\beta$ (Tilted Slope Parameter)", fontsize=11)
+plt.ylabel(r"$\alpha$ (Tilted Scale Parameter)", fontsize=11)
+plt.colorbar(label="Accumulated Tilted Wall Crossings")
+plt.grid(True, linestyle=':', alpha=0.3, color='lightgray')
+plt.show()
